@@ -10,6 +10,7 @@ public class PhieuMuonDTO {
     private String maThe;
     private Date ngayMuon;
     private Date hanTra;
+    private Double tienCoc;
     private String trangThai;
 
     public PhieuMuonDTO() {
@@ -50,6 +51,14 @@ public class PhieuMuonDTO {
         return hanTra;
     }
 
+    public Double getTienCoc() {
+        return tienCoc;
+    }
+
+    public void setTienCoc(Double tienCoc) {
+        this.tienCoc = tienCoc;
+    }
+    
     public void setHanTra(Date ngayMuon) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
