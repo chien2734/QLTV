@@ -8,20 +8,24 @@ public class PhieuTraDTO {
     private String maPhieuMuon;
     private String maThe;
     private Date ngayMuon;
+    private Date ngayTra;
     private double phiDenBu;
     private double phiTreHan;
 
     public PhieuTraDTO() {
     }
 
-    public PhieuTraDTO(String id, String maPhieuMuon, String maThe, Date ngayMuon, double phiDenBu, double phiTreHan) {
+    public PhieuTraDTO(String id, String maPhieuMuon, String maThe, Date ngayMuon, Date ngayTra, double phiDenBu, double phiTreHan) {
         this.id = id;
         this.maPhieuMuon = maPhieuMuon;
         this.maThe = maThe;
         this.ngayMuon = ngayMuon;
+        this.ngayTra = ngayTra;
         this.phiDenBu = phiDenBu;
         this.phiTreHan = phiTreHan;
     }
+
+    
 
     public String getId() {
         return id;
@@ -53,6 +57,14 @@ public class PhieuTraDTO {
 
     public void setNgayMuon(Date ngayMuon) {
         this.ngayMuon = ngayMuon;
+    }
+
+    public Date getNgayTra() {
+        return ngayTra;
+    }
+
+    public void setNgayTra(Date ngayTra) {
+        this.ngayTra = ngayTra;
     }
 
     public double getPhiDenBu() {
