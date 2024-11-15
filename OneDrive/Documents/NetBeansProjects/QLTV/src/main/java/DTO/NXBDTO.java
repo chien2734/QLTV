@@ -17,10 +17,9 @@ public class NXBDTO {
         this.soLuongSach = soLuongSach;
     }
 
-    public NXBDTO(String id, String ten, int soLuongSach) {
+    public NXBDTO(String id, String ten) {
         this.id = id;
         this.ten = ten;
-        this.soLuongSach = soLuongSach;
     }
 
 

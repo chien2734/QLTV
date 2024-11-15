@@ -9,10 +9,9 @@ public class TheLoaiDTO {
     public TheLoaiDTO() {
     }
 
-    public TheLoaiDTO(String id, String ten, int soLuong) {
+    public TheLoaiDTO(String id, String ten) {
         this.id = id;
         this.ten = ten;
-        this.soLuong = soLuong;
     }
 
     public String getId() {

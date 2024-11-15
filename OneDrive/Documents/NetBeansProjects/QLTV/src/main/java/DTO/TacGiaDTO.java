@@ -9,10 +9,9 @@ public class TacGiaDTO {
     public TacGiaDTO() {
     }
 
-    public TacGiaDTO(String id, String ten, int soLuongSach) {
+    public TacGiaDTO(String id, String ten) {
         this.id = id;
         this.ten = ten;
-        this.soLuongSach = soLuongSach;
     }
 
     public String getId() {

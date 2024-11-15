@@ -16,12 +16,16 @@ public class PhieuMuonDTO {
     public PhieuMuonDTO() {
     }
 
-    public PhieuMuonDTO(String id, String maThe, Date ngayMuon, String trangThai) {
+    public PhieuMuonDTO(String id, String maThe, Date ngayMuon, Date hanTra, Double tienCoc, String trangThai) {
         this.id = id;
         this.maThe = maThe;
         this.ngayMuon = ngayMuon;
+        this.hanTra = hanTra;
+        this.tienCoc = tienCoc;
         this.trangThai = trangThai;
     }
+
+   
 
     public String getId() {
         return id;

@@ -18,12 +18,13 @@ public class ThanhVienDTO {
     public ThanhVienDTO() {
     }
 
-    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, Date ngayDK, double phiDuyTri, String trangThai) {
+    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, Date ngayDK, Date hanSD, double phiDuyTri, String trangThai) {
         this.id = id;
         this.ten = ten;
         this.CCCD = CCCD;
         this.sdt = sdt;
         this.ngayDK = ngayDK;
+        this.hanSD = hanSD;
         this.phiDuyTri = phiDuyTri;
         this.trangThai = trangThai;
     }
