@@ -9,7 +9,7 @@ public class SachDTO {
     private String NXB;
     private int namXB;
     private int soLuong;
-
+    private String trangthai;
     public SachDTO() {
     }
 
@@ -79,6 +79,20 @@ public class SachDTO {
 
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
+    }
+
+    public String getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int soLuong) {
+        String trangThai;
+        if(soLuong > 0){
+            trangThai = "Còn sách";
+        } else{
+            trangThai = "Không còn sách";
+        }
+        this.trangthai = trangThai;
     }
 
 }

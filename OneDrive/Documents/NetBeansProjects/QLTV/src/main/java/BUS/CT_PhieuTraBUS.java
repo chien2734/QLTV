@@ -2,43 +2,57 @@ package BUS;
 
 import DAL.CT_PhieuTraDAL;
 import DTO.CT_PhieuTraDTO;
-import java.util.List;
+import java.util.ArrayList;
 
 public class CT_PhieuTraBUS {
 
     private CT_PhieuTraDAL ctPhieuTraDAL;
-
+    private ArrayList<CT_PhieuTraDTO> ds;
     public CT_PhieuTraBUS() {
         ctPhieuTraDAL = new CT_PhieuTraDAL();
+        ds = ctPhieuTraDAL.getAllCT_PhieuTra();
     }
 
     // Thêm chi tiết phiếu trả
     public boolean addCT_PhieuTra(CT_PhieuTraDTO ctPhieuTraDTO) {
-        return ctPhieuTraDAL.addCT_PhieuTra(ctPhieuTraDTO);
+        boolean isAdded = ctPhieuTraDAL.addCT_PhieuTra(ctPhieuTraDTO);
+        if(isAdded){
+            ds.add(ctPhieuTraDTO);
+        }
+        return isAdded;
     }
 
     // Cập nhật chi tiết phiếu trả
     public boolean updateCT_PhieuTra(CT_PhieuTraDTO ctPhieuTraDTO) {
-        return ctPhieuTraDAL.updateCT_PhieuTra(ctPhieuTraDTO);
+        boolean isUpdated = ctPhieuTraDAL.updateCT_PhieuTra(ctPhieuTraDTO);
+        if (isUpdated) {
+            // Cập nhật danh sách
+            for (int i = 0; i < ds.size(); i++) {
+                if (ds.get(i).getMaPhieuTra().equals(ctPhieuTraDTO.getMaPhieuTra()) &&
+                    ds.get(i).getMaSach().equals(ctPhieuTraDTO.getMaSach())) {
+                    ds.set(i, ctPhieuTraDTO);
+                    break;
+                }
+            }
+        }
+        return isUpdated;
     }
 
     // Xóa chi tiết phiếu trả
     public boolean deleteCT_PhieuTra(String maPhieuTra, String maSach) {
-        return ctPhieuTraDAL.deleteCT_PhieuTra(maPhieuTra, maSach);
-    }
-
-    // Lấy tất cả chi tiết phiếu trả
-    public List<CT_PhieuTraDTO> getAllCT_PhieuTra() {
-        return ctPhieuTraDAL.getAllCT_PhieuTra();
-    }
-
-    // Lấy chi tiết phiếu trả theo mã phiếu trả và mã sách
-    public CT_PhieuTraDTO getCT_PhieuTraById(String maPhieuTra, String maSach) {
-        return ctPhieuTraDAL.getCT_PhieuTraById(maPhieuTra, maSach);
+        boolean isDeleted = ctPhieuTraDAL.deleteCT_PhieuTra(maPhieuTra, maSach);
+        if (isDeleted) {
+            // Xóa khỏi danh sách
+            ds.removeIf(ctpm -> ctpm.getMaPhieuTra().equals(maPhieuTra) &&
+                                ctpm.getMaSach().equals(maSach));
+        }
+        return isDeleted;
     }
 
     // Tìm kiếm chi tiết phiếu trả theo mã phiếu trả
-    public List<CT_PhieuTraDTO> searchCT_PhieuTraByMaPhieuTra(String maPhieuTra) {
-        return ctPhieuTraDAL.searchCT_PhieuTraByMaPhieuTra(maPhieuTra);
+    public ArrayList<CT_PhieuTraDTO> searchCT_PhieuTraByMaPhieuTra(String maPhieuTra) {
+        return (ArrayList<CT_PhieuTraDTO>) ds.stream()
+                .filter(ctpt -> ctpt.getMaPhieuTra().equals(maPhieuTra))
+                .toList();
     }
 }

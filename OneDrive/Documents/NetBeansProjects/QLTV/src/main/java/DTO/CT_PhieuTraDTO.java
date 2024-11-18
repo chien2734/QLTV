@@ -6,12 +6,12 @@ public class CT_PhieuTraDTO {
     private String maSach;
     private String tenSach;
     private int soLuong;
-    private String trangThai;
+    private int trangThai;
 
     public CT_PhieuTraDTO() {
     }
 
-    public CT_PhieuTraDTO(String maPhieuTra, String maSach, String tenSach, int soLuong, String trangThai) {
+    public CT_PhieuTraDTO(String maPhieuTra, String maSach, String tenSach, int soLuong, int trangThai) {
         this.maPhieuTra = maPhieuTra;
         this.maSach = maSach;
         this.tenSach = tenSach;
@@ -52,11 +52,11 @@ public class CT_PhieuTraDTO {
         this.tenSach = tenSach;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
     
