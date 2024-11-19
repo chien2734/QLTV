@@ -62,7 +62,7 @@ public class SachBUS {
     //Lay theo ten
     public ArrayList<SachDTO> searchSachByName(String name) {
         return (ArrayList<SachDTO>) ds.stream()
-                .filter(sach -> sach.getTenSach().contains(name))
+                .filter(sach -> sach.getTenSach().toLowerCase().contains(name.toLowerCase()))
                 .toList();
     }
 

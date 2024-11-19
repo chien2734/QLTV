@@ -13,17 +13,18 @@ public class ThanhVienDAL extends connectionDB {
 
     // Thêm thành viên mới
     public boolean addThanhVien(ThanhVienDTO thanhVien) {
-        String sql = "INSERT INTO ThanhVien (id, ten, CCCD, sdt, ngayDK, hanSD, phiDuyTri, trangThai) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ThanhVien (id, ten, CCCD, sdt, diaChi, ngayDK, hanSD, phiDuyTri, trangThai) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, thanhVien.getId());
-            pstmt.setString(2, thanhVien.getTen());
+            pstmt.setNString(2, thanhVien.getTen());
             pstmt.setString(3, thanhVien.getCCCD());
             pstmt.setString(4, thanhVien.getSdt());
-            pstmt.setDate(5, new java.sql.Date(thanhVien.getNgayDK().getTime()));
-            pstmt.setDate(6, new java.sql.Date(thanhVien.getHanSD().getTime()));
-            pstmt.setDouble(7, thanhVien.getPhiDuyTri());
-            pstmt.setString(8, thanhVien.getTrangThai());
+            pstmt.setNString(5, thanhVien.getDiaChi());
+            pstmt.setDate(6, new java.sql.Date(thanhVien.getNgayDK().getTime()));
+            pstmt.setDate(7, new java.sql.Date(thanhVien.getHanSD().getTime()));
+            pstmt.setDouble(8, thanhVien.getPhiDuyTri());
+            pstmt.setNString(9, thanhVien.getTrangThai());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error adding ThanhVien: " + e.getMessage());
@@ -33,19 +34,32 @@ public class ThanhVienDAL extends connectionDB {
 
     // Cập nhật thông tin thành viên
     public boolean updateThanhVien(ThanhVienDTO thanhVien) {
-        String sql = "UPDATE ThanhVien SET ten = ?, CCCD = ?, sdt = ?, ngayDK = ?, hanSD = ?, phiDuyTri = ?, trangThai = ? WHERE id = ?";
+        String sql = "UPDATE ThanhVien SET ten = ?, CCCD = ?, sdt = ?, diaChi =?, ngayDK = ?, hanSD = ?, phiDuyTri = ?, trangThai = ? WHERE id = ?";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, thanhVien.getTen());
+            pstmt.setNString(1, thanhVien.getTen());
             pstmt.setString(2, thanhVien.getCCCD());
             pstmt.setString(3, thanhVien.getSdt());
-            pstmt.setDate(4, new java.sql.Date(thanhVien.getNgayDK().getTime()));
-            pstmt.setDate(5, new java.sql.Date(thanhVien.getHanSD().getTime()));
-            pstmt.setDouble(6, thanhVien.getPhiDuyTri());
-            pstmt.setString(7, thanhVien.getTrangThai());
-            pstmt.setString(8, thanhVien.getId());
+            pstmt.setNString(4, thanhVien.getDiaChi());
+            pstmt.setDate(5, thanhVien.getNgayDK());
+            pstmt.setDate(6, thanhVien.getHanSD());
+            pstmt.setDouble(7, thanhVien.getPhiDuyTri());
+            pstmt.setNString(8, thanhVien.getTrangThai());
+            pstmt.setString(9, thanhVien.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating ThanhVien: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean updateTranhThaiThe(ThanhVienDTO thanhVien){
+        String sql = "UPDATE ThanhVien SET trangThai = ? WHERE id = ?";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setNString(1, thanhVien.getTrangThai());
+            pstmt.setString(2, thanhVien.getId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating status Card: " + e.getMessage());
             return false;
         }
     }
@@ -63,20 +77,21 @@ public class ThanhVienDAL extends connectionDB {
     }
 
     // Lấy danh sách tất cả thành viên
-    public ArrayList<ThanhVienDTO> getAllThanhVien() {
-        ArrayList<ThanhVienDTO> list = new ArrayList<>();
+    public ArrayList getAllThanhVien() {
+        ArrayList list = new ArrayList<>();
         String sql = "SELECT * FROM ThanhVien";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 ThanhVienDTO thanhVien = new ThanhVienDTO(
                         rs.getString("id"),
-                        rs.getString("ten"),
+                        rs.getNString("ten"),
                         rs.getString("CCCD"),
                         rs.getString("sdt"),
+                        rs.getNString("diaChi"),
                         rs.getDate("ngayDK"),
                         rs.getDate("hanSD"),
                         rs.getDouble("phiDuyTri"),
-                        rs.getString("trangThai")
+                        rs.getNString("trangThai")
                 );
                 list.add(thanhVien);
             }

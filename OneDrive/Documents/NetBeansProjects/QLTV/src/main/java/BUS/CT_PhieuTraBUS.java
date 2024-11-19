@@ -2,13 +2,14 @@ package BUS;
 
 import DAL.CT_PhieuTraDAL;
 import DTO.CT_PhieuTraDTO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CT_PhieuTraBUS {
 
     private CT_PhieuTraDAL ctPhieuTraDAL;
     private ArrayList<CT_PhieuTraDTO> ds;
-    public CT_PhieuTraBUS() {
+    public CT_PhieuTraBUS() throws SQLException {
         ctPhieuTraDAL = new CT_PhieuTraDAL();
         ds = ctPhieuTraDAL.getAllCT_PhieuTra();
     }

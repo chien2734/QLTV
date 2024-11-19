@@ -10,6 +10,7 @@ public class ThanhVienDTO {
     private String ten;
     private String CCCD;
     private String sdt;
+    private String diaChi;
     private Date ngayDK;
     private Date hanSD;
     private double phiDuyTri;
@@ -18,16 +19,38 @@ public class ThanhVienDTO {
     public ThanhVienDTO() {
     }
 
-    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, Date ngayDK, Date hanSD, double phiDuyTri, String trangThai) {
+    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, String diaChi, Date ngayDK, Date hanSD, String trangThai) {
         this.id = id;
         this.ten = ten;
         this.CCCD = CCCD;
         this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.ngayDK = ngayDK;
+        this.hanSD = hanSD;
+        this.trangThai = trangThai;
+    }
+
+    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, String diaChi, Date ngayDK, Date hanSD, double phiDuyTri, String trangThai) {
+        this.id = id;
+        this.ten = ten;
+        this.CCCD = CCCD;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
         this.ngayDK = ngayDK;
         this.hanSD = hanSD;
         this.phiDuyTri = phiDuyTri;
         this.trangThai = trangThai;
     }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    
 
     public String getCCCD() {
         return CCCD;
@@ -75,13 +98,8 @@ public class ThanhVienDTO {
         return hanSD;
     }
 
-    public void setHanSD(Date ngayDK) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(ngayDK);
-    calendar.add(Calendar.YEAR, 1);//han su dung la 1 nam
-    String hansd = dateFormat.format(calendar.getTimeInMillis());
-    this.hanSD = Date.valueOf(hansd);
+    public void setHanSD(Date hanSD) {
+    this.hanSD = hanSD;
     }
 
     public double getPhiDuyTri() {

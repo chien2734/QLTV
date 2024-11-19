@@ -45,6 +45,20 @@ public class ThanhVienBUS {
         return "Cập nhật không thành công!";
     }
     
+    public String updateTrangThaiThe(ThanhVienDTO thanhVien) {
+        boolean isUpdated = thanhVienDAL.updateTranhThaiThe(thanhVien);
+        if (isUpdated) {
+            for (int i = 0; i < ds.size(); i++) {
+                if (ds.get(i).getId().equals(thanhVien.getId())) {
+                    ds.set(i, thanhVien);
+                    break;
+                }
+            }
+            return "Cập nhật trạng thái thẻ "+thanhVien.getId()+"  thành công";
+        }
+        return "Cập nhật không thành công!";
+    }
+    
     // Xóa thành viên
     public String deleteThanhVien(String id) {
        boolean isDeleted = thanhVienDAL.deleteThanhVien(id);
@@ -62,13 +76,37 @@ public class ThanhVienBUS {
     
     // Tìm kiếm thành viên theo tên
     public ArrayList<ThanhVienDTO> searchThanhVienByName(String name) {
-        return (ArrayList<ThanhVienDTO>) ds.stream()
-                .filter(tv -> tv.getTen().toLowerCase().contains(name.toLowerCase()))
-                .toList();
+        ArrayList<ThanhVienDTO> result = new ArrayList<>();
+        for(ThanhVienDTO tv : ds){
+            if(tv.getTen().toLowerCase().contains(name.toLowerCase())){
+                result.add(tv) ;
+            }
+        }
+        return result;
+    }
+    
+    public ArrayList<ThanhVienDTO> searchThanhVienBySDT(String sdt) {
+        ArrayList<ThanhVienDTO> result = new ArrayList<>();
+        for(ThanhVienDTO tv : ds){
+            if(tv.getSdt().contains(sdt)){
+                result.add(tv) ;
+            }
+        }
+        return result;
+    }
+    
+    public ArrayList<ThanhVienDTO> searchThanhVienByCCCD(String cccd) {
+        ArrayList<ThanhVienDTO> result = new ArrayList<>();
+        for(ThanhVienDTO tv : ds){
+            if(tv.getCCCD().contains(cccd)){
+                result.add(tv) ;
+            }
+        }
+        return result;
     }
     
     // Lấy thành viên theo mã
-    public ThanhVienDTO getThanhVienById(String id) {
+    public ThanhVienDTO searchThanhVienById(String id) {
         for(ThanhVienDTO tv : ds){
             if(tv.getId().equals(id)){
                 return tv;

@@ -4,7 +4,6 @@ import DAL.TacGiaDAL;
 import DTO.TacGiaDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TacGiaBUS {
     
