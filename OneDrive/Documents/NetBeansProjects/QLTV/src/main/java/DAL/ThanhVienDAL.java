@@ -53,10 +53,11 @@ public class ThanhVienDAL extends connectionDB {
     }
     
     public boolean updateTranhThaiThe(ThanhVienDTO thanhVien){
-        String sql = "UPDATE ThanhVien SET trangThai = ? WHERE id = ?";
+        String sql = "UPDATE ThanhVien SET trangThai = ?, hanSD = ? WHERE id = ?";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, thanhVien.getTrangThai());
-            pstmt.setString(2, thanhVien.getId());
+            pstmt.setDate(2, thanhVien.getHanSD());
+            pstmt.setString(3, thanhVien.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating status Card: " + e.getMessage());

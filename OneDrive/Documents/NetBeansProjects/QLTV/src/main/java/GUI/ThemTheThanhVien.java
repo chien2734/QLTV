@@ -11,14 +11,14 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author Admin
  */
 public class ThemTheThanhVien extends javax.swing.JFrame {
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    private ThanhVienDTO tv;
+    private ThanhVienDTO tv, tvtemp;
+    private TrangChuGUI trangChuGUI;
     /**
      * Creates new form ThemTheThanhVien
      */
@@ -214,12 +214,12 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_kichHoatTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kichHoatTheActionPerformed
-        
         String ma, ten, cccd, sdt, diaChi;
         Date ngayDK = null, ngayHH = null;
         ten = txt_hoTen.getText();
         cccd = txt_cccd.getText();
         sdt = txt_sdt.getText();
+        RegexUtils.CheckRegex(cccd, sdt, jPanel2);
         diaChi = txt_diaChi.getText();
         try {
             ngayDK = formatter.parse(txt_ngayDK.getText());
@@ -231,12 +231,22 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
         java.sql.Date ngayHh = new java.sql.Date(ngayHH.getTime());
         ma = "TV"+cccd.substring(cccd.length() - 4)+sdt.substring(sdt.length() - 4);
         tv = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, 100000, "Đang hoạt động");
+        tvtemp = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, "Đang hoạt động");
         try {
             ThanhVienBUS tvBUS = new ThanhVienBUS();
             JOptionPane.showMessageDialog(rootPane, tvBUS.addThanhVien(tv), "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(ThemTheThanhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
+        trangChuGUI.AddRowToDSThe(tvtemp);
+        dispose();
+        txt_hoTen.setText("");
+        txt_cccd.setText("");
+        txt_sdt.setText("");
+        txt_diaChi.setText("");
+        txt_ngayDK.setText("");
+        txt_ngayHH.setText("");
+        txt_hoTen.hasFocus();   
     }//GEN-LAST:event_btn_kichHoatTheActionPerformed
 
     private void txt_ngayDKFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayDKFocusGained
@@ -250,6 +260,7 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
         txt_ngayHH.setText(formatter.format(calendar.getTime()));
     }//GEN-LAST:event_txt_ngayHHFocusGained
 
+    
     /**
      * @param args the command line arguments
      */

@@ -71,16 +71,24 @@ public class PhieuMuonBUS {
 
     // Tìm kiếm phiếu mượn theo mã thẻ
     public ArrayList<PhieuMuonDTO> searchPhieuMuonByMaThe(String maThe) {
-        return (ArrayList<PhieuMuonDTO>) ds.stream()
-                .filter(pm -> pm.getMaThe().equals(maThe))
-                .toList();
+        ArrayList<PhieuMuonDTO> result = new ArrayList<>();
+        for(PhieuMuonDTO pm : ds){
+            if(pm.getId().contains(maThe)){
+                result.add(pm);
+            }
+        }
+        return result;
     }
 
     // Tìm kiếm phiếu mượn theo ngày mượn
     public ArrayList<PhieuMuonDTO> searchPhieuMuonByNgayMuon(Date ngayMuon) {
-        return (ArrayList<PhieuMuonDTO>) ds.stream()
-                .filter(pm -> pm.getNgayMuon().equals(ngayMuon))
-                .toList();
+        ArrayList<PhieuMuonDTO> result = new ArrayList<>();
+        for(PhieuMuonDTO pm : ds){
+            if(pm.getNgayMuon().equals(ngayMuon)){
+                result.add(pm);
+            }
+        }
+        return result;
     }
 
     // Tìm kiếm phiếu mượn theo ngày trả
