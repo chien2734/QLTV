@@ -99,7 +99,7 @@ public class ThanhVienDTO {
     }
 
     public void setHanSD(Date hanSD) {
-    this.hanSD = hanSD;
+        this.hanSD = hanSD;
     }
 
     public double getPhiDuyTri() {

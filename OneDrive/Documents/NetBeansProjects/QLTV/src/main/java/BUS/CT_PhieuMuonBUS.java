@@ -10,59 +10,48 @@ public class CT_PhieuMuonBUS {
     private ArrayList<CT_PhieuMuonDTO> ds;
     public CT_PhieuMuonBUS() {
         ctPhieuMuonDAL = new CT_PhieuMuonDAL();
-        ds = ctPhieuMuonDAL.getAllCT_PhieuMuon();
     }
 
     // Thêm chi tiết phiếu mượn
-    public boolean addCT_PhieuMuon(CT_PhieuMuonDTO ctPhieuMuonDTO) {
-        boolean isAdded = ctPhieuMuonDAL.addCT_PhieuMuon(ctPhieuMuonDTO);
-        if (isAdded) {
-            ds.add(ctPhieuMuonDTO); // Đồng bộ danh sách
+    public boolean addCT_PhieuMuon(ArrayList<CT_PhieuMuonDTO> dsCTPM) {
+        boolean check = true;
+        for(CT_PhieuMuonDTO ctpm : dsCTPM){
+            if(!ctPhieuMuonDAL.addCT_PhieuMuon(ctpm)){
+                check = false;
+            }
         }
-        return isAdded;
+        return check;
     }
 
     
 
     // Cập nhật chi tiết phiếu mượn
     public boolean updateCT_PhieuMuon(CT_PhieuMuonDTO ctPhieuMuonDTO) {
-        boolean isUpdated = ctPhieuMuonDAL.updateCT_PhieuMuon(ctPhieuMuonDTO);
-        if (isUpdated) {
-            // Cập nhật danh sách
-            for (int i = 0; i < ds.size(); i++) {
-                if (ds.get(i).getMaPhieuMuon().equals(ctPhieuMuonDTO.getMaPhieuMuon()) &&
-                    ds.get(i).getMaSach().equals(ctPhieuMuonDTO.getMaSach())) {
-                    ds.set(i, ctPhieuMuonDTO);
-                    break;
-                }
-            }
-        }
-        return isUpdated;
-}
+        return ctPhieuMuonDAL.updateCT_PhieuMuon(ctPhieuMuonDTO);
+                
+    }
 
 
     // Xóa chi tiết phiếu mượn
     public boolean deleteCT_PhieuMuon(String maPhieuMuon, String maSach) {
-        boolean isDeleted = ctPhieuMuonDAL.deleteCT_PhieuMuon(maPhieuMuon, maSach);
-        if (isDeleted) {
-            // Xóa khỏi danh sách
-            ds.removeIf(ctpm -> ctpm.getMaPhieuMuon().equals(maPhieuMuon) &&
-                                ctpm.getMaSach().equals(maSach));
-        }
-        return isDeleted;
+        return ctPhieuMuonDAL.deleteCT_PhieuMuon(maPhieuMuon, maSach);
     }
 
 
     // Lấy tất cả chi tiết phiếu mượn
     public ArrayList<CT_PhieuMuonDTO> getAllCT_PhieuMuon() {
-        return ds;
+        return ctPhieuMuonDAL.getAllCT_PhieuMuon();
     }
 
     // Lấy chi tiết phiếu mượn theo mã phiếu mượn 
     public ArrayList<CT_PhieuMuonDTO> getCT_PhieuMuonByPhieuMuonId(String maPhieuMuon) {
-    return (ArrayList<CT_PhieuMuonDTO>) ds.stream()
-            .filter(ctpm -> ctpm.getMaPhieuMuon().equals(maPhieuMuon))
-            .toList();
+        ArrayList<CT_PhieuMuonDTO> result = new ArrayList<>();
+        for(CT_PhieuMuonDTO ctpm : ctPhieuMuonDAL.getAllCT_PhieuMuon()){
+            if(ctpm.getMaPhieuMuon().equals(maPhieuMuon)){
+                result.add(ctpm);
+            }
+        }
+        return result;
     }
 
     

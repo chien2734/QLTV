@@ -16,20 +16,16 @@ public class PhieuMuonBUS {
     }
 
     // Thêm phiếu mượn mới
-    public String addPhieuMuon(PhieuMuonDTO phieuMuonDTO) {
-       if(phieuMuonDAL.hasID(phieuMuonDTO.getId())){
-            return "Mã này đã tồn tại, vui lòng nhập mã khác!";
-        }
+    public boolean addPhieuMuon(PhieuMuonDTO phieuMuonDTO) {
         boolean isAdded = phieuMuonDAL.addPhieuMuon(phieuMuonDTO);
         if(isAdded){
             ds.add(phieuMuonDTO);
-            return "Tạo phiếu mượn " + phieuMuonDTO.getId() +" thành công!";
         }
-        return "Tạo phiếu mượn không thành công!";
+        return isAdded;
     }
 
     // Cập nhật phiếu mượn
-    public String updatePhieuMuon(PhieuMuonDTO phieuMuonDTO) {
+    public boolean updatePhieuMuon(PhieuMuonDTO phieuMuonDTO) {
         boolean isUpdated = phieuMuonDAL.updatePhieuMuon(phieuMuonDTO);
         if (isUpdated) {
             // Cập nhật danh sách
@@ -39,19 +35,17 @@ public class PhieuMuonBUS {
                     break;
                 }
             }
-            return "Cập nhật thông tin phiếu mượn "+phieuMuonDTO.getId()+" thành công!";
         }
-        return "Cập nhật không thành công!";
+        return isUpdated;
     }
 
     // Xóa phiếu mượn
-    public String deletePhieuMuon(String id) {
+    public boolean deletePhieuMuon(String id) {
         boolean isDeleted = phieuMuonDAL.deletePhieuMuon(id);
         if(isDeleted){
             ds.removeIf(pt -> pt.getId().equals(id));
-            return "Xóa mã phiếu mượn "+id+" thành công!";
         }
-        return "Xóa không thành công!";
+        return isDeleted;
     }
 
     // Lấy tất cả phiếu mượn
@@ -93,8 +87,12 @@ public class PhieuMuonBUS {
 
     // Tìm kiếm phiếu mượn theo ngày trả
     public ArrayList<PhieuMuonDTO> searchPhieuMuonByHanTra(Date hanTra) {
-        return (ArrayList<PhieuMuonDTO>) ds.stream()
-                .filter(pm -> pm.getHanTra().equals(hanTra))
-                .toList();
+        ArrayList<PhieuMuonDTO> result = new ArrayList<>();
+        for(PhieuMuonDTO pm : ds){
+            if(pm.getHanTra().equals(hanTra)){
+                result.add(pm);
+            }
+        }
+        return result;
     }
 }

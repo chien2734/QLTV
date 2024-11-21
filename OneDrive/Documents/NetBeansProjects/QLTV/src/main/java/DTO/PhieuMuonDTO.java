@@ -63,13 +63,8 @@ public class PhieuMuonDTO {
         this.tienCoc = tienCoc;
     }
     
-    public void setHanTra(Date ngayMuon) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(ngayMuon);
-        calendar.add(Calendar.DAY_OF_MONTH, 21); // Cộng thêm 21 ngày vào ngày mượn
-        String hantra = dateFormat.format(calendar.getTimeInMillis());
-        this.hanTra = Date.valueOf(hantra);
+    public void setHanTra(Date hanTra) {
+        this.hanTra = hanTra;
     }
 
     public String getTrangThai() {
