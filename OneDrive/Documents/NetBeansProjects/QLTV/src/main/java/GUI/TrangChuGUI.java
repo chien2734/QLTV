@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class TrangChuGUI extends javax.swing.JFrame {
+
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private CardLayout cardLayout1, cardLayout2;
     private ThanhVienBUS tvBUS;
@@ -27,13 +28,14 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private CT_PhieuMuonBUS ctpmBUS;
     private CT_PhieuTraBUS ctptBUS;
     private SachBUS sachBUS;
-    private DefaultTableModel TV_DSMuonMuon;
+    private DefaultTableModel TV_DSMuonMuon, ChuaCoThe_DSMuonMuon;
+
     public TrangChuGUI() throws SQLException {
         initComponents();
         addComponentTojPanel_QLMuonTra();
         addComponentTojPanel_Main();
         TV_DSMuonMuon = (DefaultTableModel) tbl_TVMuon_DSMuonMuon.getModel();
-
+        ChuaCoThe_DSMuonMuon = (DefaultTableModel) tbl_ChuaCoThe_DSMuonMuon.getModel();
     }
 
     /**
@@ -261,6 +263,8 @@ public class TrangChuGUI extends javax.swing.JFrame {
         txt_ChuaCoThe_NgayMuon = new javax.swing.JTextField();
         txt_ChuaCoThe_HanTra = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        txt_ChuaCoThe_TrangThai = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         tbl_ChuaCoThe_DSMuonMuon = new javax.swing.JTable();
@@ -875,11 +879,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "<html><center style='font-size: 16px'>Mã sách</html>", "<html><center style='font-size: 18px'>Tên sách</html>", "<html><center style='font-size: 18px; '>Thể loại</html>", "<html><center style='font-size: 18px; '>Tác giả</html>", "<html><center style='font-size: 18px; '>Nhà xuất bản</html>", "<html><center style='font-size: 18px; '>Năm xuất bản</html>"
+                "<html><center style='font-size: 16px'>Mã sách</html>", "<html><center style='font-size: 16px'>Tên sách</html>", "<html><center style='font-size: 16px; '>Thể loại</html>", "<html><center style='font-size: 16px; '>Tác giả</html>", "<html><center style='font-size: 16px; '>Nhà xuất bản</html>", "<html><center style='font-size: 16px; '>Số lượng</html>", "<html><center style='font-size: 16px; '>Năm xuất bản</html>"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2225,25 +2229,49 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel50.setText("Số lượng");
 
         spn_ChuaCoThe_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel());
+        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
 
         jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 51, 51));
         jLabel51.setText("Tìm sách:");
 
-        txt_ChuaCoThe_TimSach.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_ChuaCoThe_TimSach.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        txt_ChuaCoThe_TimSach.setText("Nhập mã  sách để tìm kiếm...");
+        txt_ChuaCoThe_TimSach.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_ChuaCoThe_TimSachFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_ChuaCoThe_TimSachFocusLost(evt);
+            }
+        });
 
         btn_ChuaCoThe_TimKiem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_ChuaCoThe_TimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         btn_ChuaCoThe_TimKiem.setText("Tìm kiếm");
+        btn_ChuaCoThe_TimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChuaCoThe_TimKiemActionPerformed(evt);
+            }
+        });
 
         btn_ChuaCoThe_ThemVaoPM.setBackground(new java.awt.Color(204, 255, 255));
         btn_ChuaCoThe_ThemVaoPM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_ChuaCoThe_ThemVaoPM.setText("Thêm vào PM");
+        btn_ChuaCoThe_ThemVaoPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChuaCoThe_ThemVaoPMActionPerformed(evt);
+            }
+        });
 
         btn_ChuaCoThe_XoaKhoiPM.setBackground(new java.awt.Color(255, 102, 102));
         btn_ChuaCoThe_XoaKhoiPM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_ChuaCoThe_XoaKhoiPM.setText("Xóa khỏi PM");
+        btn_ChuaCoThe_XoaKhoiPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChuaCoThe_XoaKhoiPMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -2323,6 +2351,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel55.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel55.setText("Hạn trả");
 
+        jLabel67.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel67.setText("Trạng thái");
+
+        txt_ChuaCoThe_TrangThai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -2333,19 +2366,21 @@ public class TrangChuGUI extends javax.swing.JFrame {
                     .addComponent(jLabel54)
                     .addComponent(jLabel53)
                     .addComponent(jLabel52)
-                    .addComponent(jLabel55))
+                    .addComponent(jLabel55)
+                    .addComponent(jLabel67))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txt_ChuaCoThe_NgayMuon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(txt_ChuaCoThe_PhiDatCoc, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_ChuaCoThe_idThe, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_ChuaCoThe_HanTra))
+                    .addComponent(txt_ChuaCoThe_HanTra)
+                    .addComponent(txt_ChuaCoThe_TrangThai))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ChuaCoThe_idThe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53))
@@ -2361,7 +2396,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
                     .addComponent(txt_ChuaCoThe_HanTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel67)
+                    .addComponent(txt_ChuaCoThe_TrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -2484,6 +2523,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
         btn_ChuaCoThe_XacNhanMuon.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_ChuaCoThe_XacNhanMuon.setForeground(new java.awt.Color(51, 153, 255));
         btn_ChuaCoThe_XacNhanMuon.setText("Xác nhận mượn sách");
+        btn_ChuaCoThe_XacNhanMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChuaCoThe_XacNhanMuonActionPerformed(evt);
+            }
+        });
 
         btn_ChuaCoThe_CapNhatPM.setBackground(new java.awt.Color(255, 255, 204));
         btn_ChuaCoThe_CapNhatPM.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -2517,17 +2561,17 @@ public class TrangChuGUI extends javax.swing.JFrame {
             jPanel_ChuaCoTheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ChuaCoTheLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel_ChuaCoTheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_ChuaCoTheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel_ChuaCoTheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_ChuaCoThe_XacNhanMuon, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                     .addComponent(btn_ChuaCoThe_CapNhatPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(1039, Short.MAX_VALUE))
+                .addContainerGap(1042, Short.MAX_VALUE))
         );
 
         jPanel_QLMuonTraMain.add(jPanel_ChuaCoThe, "card4");
@@ -3017,23 +3061,23 @@ public class TrangChuGUI extends javax.swing.JFrame {
         model_DSThe.setRowCount(0);
         ArrayList<ThanhVienDTO> dsThanhVien = new ArrayList<>();
         ThanhVienDTO tv = new ThanhVienDTO();
-        String serachText = txt_TimKiemThe.getText();
-        if (serachText.isEmpty()) {
+        String searchText = txt_TimKiemThe.getText();
+        if (searchText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin muốn tìm kiếm", "Error Message", JOptionPane.ERROR_MESSAGE);
         } else {
             int index = cbb_TimKiemThe.getSelectedIndex();
             switch (index) {
                 case 1 -> {
-                    dsThanhVien = tvBUS.searchThanhVienByName(serachText);
+                    dsThanhVien = tvBUS.searchThanhVienByName(searchText);
                 }
                 case 2 -> {
-                    dsThanhVien = tvBUS.searchThanhVienByCCCD(serachText);
+                    dsThanhVien = tvBUS.searchThanhVienByCCCD(searchText);
                 }
                 case 3 -> {
-                    dsThanhVien = tvBUS.searchThanhVienBySDT(serachText);
+                    dsThanhVien = tvBUS.searchThanhVienBySDT(searchText);
                 }
                 default -> {
-                    tv = tvBUS.searchThanhVienById(serachText);
+                    tv = tvBUS.searchThanhVienById(searchText);
                     dsThanhVien.add(tv);
                 }
             }
@@ -3184,29 +3228,24 @@ public class TrangChuGUI extends javax.swing.JFrame {
         TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), rowCount, 0);
         TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), rowCount, 1);
         int soLuong = (int) spn_TVMuon_SoLuong.getValue();
-        TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), rowCount, 2);
+        TV_DSMuonMuon.setValueAt(soLuong, rowCount, 2);
     }//GEN-LAST:event_btn_TVMuon_ThemVaoPMActionPerformed
 
     private void btn_TVMuon_TimSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TVMuon_TimSachActionPerformed
-        if(txt_TVMuon_TimKiemSach.getText().isEmpty()){
+        if (txt_TVMuon_TimKiemSach.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập mã sách muốn mượn!");
-        }else{
+        } else {
             SachDTO sach = sachBUS.getSachById(txt_TVMuon_TimKiemSach.getText());
             txt_TVMuon_idSach.setText(sach.getId());
             txt_TVMuon_TenSach.setText(sach.getTenSach());
         }
-        
+
     }//GEN-LAST:event_btn_TVMuon_TimSachActionPerformed
 
     private void btn_TVMuon_XoaKhoiPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TVMuon_XoaKhoiPMActionPerformed
-        if(txt_TVMuon_TimKiemSach.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập mã sách muốn xóa khỏi danh sách mượn!");
-        } else{
-            int selectedRow = tbl_TVMuon_DSMuonMuon.getSelectedRow();
-            if(selectedRow != -1){
-                TV_DSMuonMuon.removeRow(selectedRow);
-            }
-            
+        int selectedRow = tbl_TVMuon_DSMuonMuon.getSelectedRow();
+        if (selectedRow != -1) {
+            TV_DSMuonMuon.removeRow(selectedRow);
         }
     }//GEN-LAST:event_btn_TVMuon_XoaKhoiPMActionPerformed
 
@@ -3214,12 +3253,12 @@ public class TrangChuGUI extends javax.swing.JFrame {
         int column = 2;
         double sum = 0;
         for (int row = 0; row < TV_DSMuonMuon.getRowCount(); row++) {
-                Object value = TV_DSMuonMuon.getValueAt(row, column);
-                if (value instanceof Number number) {
-                    sum += number.doubleValue(); // Nếu là số, cộng dồn
-                } 
-                txt_TVMuon_PhiDatCoc.setText(sum+"");
+            Object value = TV_DSMuonMuon.getValueAt(row, column);
+            if (value instanceof Number number) {
+                sum += number.doubleValue(); // Nếu là số, cộng dồn
             }
+            txt_TVMuon_PhiDatCoc.setText(sum + "");
+        }
     }//GEN-LAST:event_txt_TVMuon_PhiDatCocActionPerformed
 
     private void btn_TVMuon_XacNhanMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TVMuon_XacNhanMuonActionPerformed
@@ -3235,16 +3274,16 @@ public class TrangChuGUI extends javax.swing.JFrame {
         java.sql.Date NgayMuon = new java.sql.Date(ngayMuon.getTime());
         java.sql.Date HanTra = new java.sql.Date(hanTra.getTime());
         String trangThai = txt_TVMuon_TrangThai.getText();
-        String maPM = "PM" + maThe.substring(maThe.length()-4) + txt_TVMuon_NgayMuon.getText();
+        String maPM = "PM" + maThe.substring(maThe.length() - 4) + txt_TVMuon_NgayMuon.getText();
         PhieuMuonDTO pmDTO = new PhieuMuonDTO(maPM, maThe, NgayMuon, HanTra, phiDatCoc, trangThai);
-        if(txt_TVMuon_idThe.getText().isEmpty()){
+        if (txt_TVMuon_idThe.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Chưa có thông tin người mượn", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
         int quantity = tbl_TVMuon_DSMuonMuon.getRowCount();
-        if(quantity == 0){
-            JOptionPane.showMessageDialog(rootPane, "Chưa có cuốn sách nào trong danh sách mượn", "Thông báo", JOptionPane.WARNING_MESSAGE);            
+        if (quantity == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Chưa có cuốn sách nào trong danh sách mượn", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
-        if(pmBUS.addPhieuMuon(pmDTO)){
+        if (pmBUS.addPhieuMuon(pmDTO)) {
             ArrayList<CT_PhieuMuonDTO> dsCTPM = new ArrayList<>();
             for (int row = 0; row < TV_DSMuonMuon.getRowCount(); row++) {
                 String idSach = TV_DSMuonMuon.getValueAt(row, 0).toString();
@@ -3253,17 +3292,56 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 int tinhTrang = Integer.parseInt(TV_DSMuonMuon.getValueAt(row, 3).toString());
                 dsCTPM.add(new CT_PhieuMuonDTO(maPM, idSach, tenSach, soLuong, tinhTrang));
             }
-            if(ctpmBUS.addCT_PhieuMuon(dsCTPM)){
-                JOptionPane.showMessageDialog(rootPane, "Tạo phiếu mượn "+maPM+" cho người dùng có mã thẻ là "+maThe+" thành công!");
+            if (ctpmBUS.addCT_PhieuMuon(dsCTPM)) {
+                JOptionPane.showMessageDialog(rootPane, "Tạo phiếu mượn " + maPM + " cho người dùng có mã thẻ là " + maThe + " thành công!");
                 tbl_TVMuon_DSMuonMuon.removeAll();
-                
+
             }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Tạo phiếu mượn "+maPM+" cho người dùng có mã thẻ là "+maThe+" thất bại!");
-            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Tạo phiếu mượn " + maPM + " cho người dùng có mã thẻ là " + maThe + " thất bại!");
+
         }
-        
+
     }//GEN-LAST:event_btn_TVMuon_XacNhanMuonActionPerformed
+
+    private void txt_ChuaCoThe_TimSachFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ChuaCoThe_TimSachFocusGained
+        txt_ChuaCoThe_TimSach.setText("");
+    }//GEN-LAST:event_txt_ChuaCoThe_TimSachFocusGained
+
+    private void txt_ChuaCoThe_TimSachFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ChuaCoThe_TimSachFocusLost
+        txt_ChuaCoThe_TimSach.setText("Nhập mã sách để tìm kiếm...");
+    }//GEN-LAST:event_txt_ChuaCoThe_TimSachFocusLost
+
+    private void btn_ChuaCoThe_ThemVaoPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChuaCoThe_ThemVaoPMActionPerformed
+        int rowCount = ChuaCoThe_DSMuonMuon.getRowCount();
+        ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), rowCount, 0);
+        ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), rowCount, 1);
+        int soLuong = (int) spn_ChuaCoThe_SoLuong.getValue();
+        ChuaCoThe_DSMuonMuon.setValueAt(soLuong, rowCount, 2);
+    }//GEN-LAST:event_btn_ChuaCoThe_ThemVaoPMActionPerformed
+
+    private void btn_ChuaCoThe_XoaKhoiPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChuaCoThe_XoaKhoiPMActionPerformed
+        int selectedRow = tbl_ChuaCoThe_DSMuonMuon.getSelectedRow();
+        if (selectedRow != -1) {
+            ChuaCoThe_DSMuonMuon.removeRow(selectedRow);
+        }
+
+     }//GEN-LAST:event_btn_ChuaCoThe_XoaKhoiPMActionPerformed
+
+    private void btn_ChuaCoThe_XacNhanMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChuaCoThe_XacNhanMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ChuaCoThe_XacNhanMuonActionPerformed
+
+    private void btn_ChuaCoThe_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChuaCoThe_TimKiemActionPerformed
+
+        if (txt_ChuaCoThe_TimSach.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập mã sách muốn mượn!");
+        } else {
+            SachDTO sach = sachBUS.getSachById(txt_ChuaCoThe_TimSach.getText());
+            txt_ChuaCoThe_idSach.setText(sach.getId());
+            txt_ChuaCoThe_TenSach.setText(sach.getTenSach());
+        }
+    }//GEN-LAST:event_btn_ChuaCoThe_TimKiemActionPerformed
 
     public void AddRowToDSThe(ThanhVienDTO tv) {
         DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
@@ -3325,7 +3403,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrangChuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -3471,6 +3549,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3575,6 +3654,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_ChuaCoThe_PhiDatCoc;
     private javax.swing.JTextField txt_ChuaCoThe_TenSach;
     private javax.swing.JTextField txt_ChuaCoThe_TimSach;
+    private javax.swing.JTextField txt_ChuaCoThe_TrangThai;
     private javax.swing.JTextField txt_ChuaCoThe_cccd;
     private javax.swing.JTextField txt_ChuaCoThe_idSach;
     private javax.swing.JTextField txt_ChuaCoThe_idThe;

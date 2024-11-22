@@ -1285,13 +1285,14 @@
                           <Font name="Segoe UI" size="16" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
+                          <Table columnCount="7" rowCount="0">
                             <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 18px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 18px; &apos;&gt;Th&#x1ec3; lo&#x1ea1;i&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 18px; &apos;&gt;T&#xe1;c gi&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 18px; &apos;&gt;Nh&#xe0; xu&#x1ea5;t b&#x1ea3;n&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 18px; &apos;&gt;N&#x103;m xu&#x1ea5;t b&#x1ea3;n&lt;/html&gt;" type="java.lang.Integer"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px; &apos;&gt;Th&#x1ec3; lo&#x1ea1;i&lt;/html&gt;" type="java.lang.String"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px; &apos;&gt;T&#xe1;c gi&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px; &apos;&gt;Nh&#xe0; xu&#x1ea5;t b&#x1ea3;n&lt;/html&gt;" type="java.lang.String"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px; &apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
+                            <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size: 16px; &apos;&gt;N&#x103;m xu&#x1ea5;t b&#x1ea3;n&lt;/html&gt;" type="java.lang.Integer"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -3740,19 +3741,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPanel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel19" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btn_ChuaCoThe_XacNhanMuon" pref="74" max="32767" attributes="0"/>
                                   <Component id="btn_ChuaCoThe_CapNhatPM" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1039" max="32767" attributes="0"/>
+                              <EmptySpace pref="1042" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3892,7 +3893,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -3910,9 +3911,14 @@
                         <Component class="javax.swing.JTextField" name="txt_ChuaCoThe_TimSach">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="18" style="0"/>
+                              <Font name="Segoe UI" size="18" style="2"/>
                             </Property>
+                            <Property name="text" type="java.lang.String" value="Nh&#x1ead;p m&#xe3;  s&#xe1;ch &#x111;&#x1ec3; t&#xec;m ki&#x1ebf;m..."/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ChuaCoThe_TimSachFocusGained"/>
+                            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_ChuaCoThe_TimSachFocusLost"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btn_ChuaCoThe_TimKiem">
                           <Properties>
@@ -3924,6 +3930,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ChuaCoThe_TimKiemActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btn_ChuaCoThe_ThemVaoPM">
                           <Properties>
@@ -3935,6 +3944,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Th&#xea;m v&#xe0;o PM"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ChuaCoThe_ThemVaoPMActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btn_ChuaCoThe_XoaKhoiPM">
                           <Properties>
@@ -3946,6 +3958,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="X&#xf3;a kh&#x1ecf;i PM"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ChuaCoThe_XoaKhoiPMActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -3979,6 +3994,7 @@
                                       <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel55" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel67" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -3986,6 +4002,7 @@
                                       <Component id="txt_ChuaCoThe_PhiDatCoc" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txt_ChuaCoThe_idThe" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txt_ChuaCoThe_HanTra" max="32767" attributes="0"/>
+                                      <Component id="txt_ChuaCoThe_TrangThai" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="22" max="32767" attributes="0"/>
                               </Group>
@@ -3994,7 +4011,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txt_ChuaCoThe_idThe" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -4014,7 +4031,12 @@
                                       <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_ChuaCoThe_HanTra" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_ChuaCoThe_TrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -4078,6 +4100,21 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="H&#x1ea1;n tr&#x1ea3;"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel67">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txt_ChuaCoThe_TrangThai">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI" size="18" style="0"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -4302,6 +4339,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n m&#x1b0;&#x1ee3;n s&#xe1;ch"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ChuaCoThe_XacNhanMuonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btn_ChuaCoThe_CapNhatPM">
                       <Properties>
