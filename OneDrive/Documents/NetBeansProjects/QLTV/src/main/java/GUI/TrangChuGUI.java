@@ -4595,3 +4595,4 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_TimKiemThe;
     // End of variables declaration//GEN-END:variables
 }
+
