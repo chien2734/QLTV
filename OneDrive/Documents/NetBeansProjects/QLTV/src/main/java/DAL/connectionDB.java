@@ -9,7 +9,7 @@ public class connectionDB {
     public static Connection openConnection() throws SQLException {
         String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=QLTVOOAD;encrypt=true;trustServerCertificate=true";
         String user = "sa";
-        String pass = "27032004";
+        String pass = "1";
         Connection connection;
             try {
                 connection = DriverManager.getConnection(connectionUrl, user, pass);
