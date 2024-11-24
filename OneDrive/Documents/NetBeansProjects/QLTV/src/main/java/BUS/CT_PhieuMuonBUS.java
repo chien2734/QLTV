@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class CT_PhieuMuonBUS {
 
     private CT_PhieuMuonDAL ctPhieuMuonDAL;
-    private ArrayList<CT_PhieuMuonDTO> ds;
     public CT_PhieuMuonBUS() {
         ctPhieuMuonDAL = new CT_PhieuMuonDAL();
     }
@@ -23,14 +22,11 @@ public class CT_PhieuMuonBUS {
         return check;
     }
 
-    
-
     // Cập nhật chi tiết phiếu mượn
     public boolean updateCT_PhieuMuon(CT_PhieuMuonDTO ctPhieuMuonDTO) {
         return ctPhieuMuonDAL.updateCT_PhieuMuon(ctPhieuMuonDTO);
                 
     }
-
 
     // Xóa chi tiết phiếu mượn
     public boolean deleteCT_PhieuMuon(String maPhieuMuon, String maSach) {
@@ -52,7 +48,5 @@ public class CT_PhieuMuonBUS {
             }
         }
         return result;
-    }
-
-    
+    }  
 }

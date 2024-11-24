@@ -59,6 +59,9 @@ public class ThanhVienBUS {
         return "Cập nhật không thành công!";
     }
     
+    public boolean hasID(String mathe){
+        return thanhVienDAL.hasID(mathe);
+    }
     // Xóa thành viên
     public String deleteThanhVien(String id) {
        boolean isDeleted = thanhVienDAL.deleteThanhVien(id);
