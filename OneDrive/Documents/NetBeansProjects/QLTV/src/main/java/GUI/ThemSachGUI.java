@@ -4,6 +4,18 @@
  */
 package GUI;
 
+import DTO.SachDTO;
+import DTO.TacGiaDTO;
+import DTO.NXBDTO;
+import DTO.TheLoaiDTO;
+import BUS.SachBUS;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -13,8 +25,11 @@ public class ThemSachGUI extends javax.swing.JFrame {
     /**
      * Creates new form ThemSachGUI
      */
-    public ThemSachGUI() {
+    SachBUS sachBUS;
+    public ThemSachGUI() throws SQLException {
         initComponents();
+        sachBUS = new SachBUS();
+        loadDataToComboBoxes();
     }
 
     /**
@@ -29,7 +44,7 @@ public class ThemSachGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton_ThemSach = new javax.swing.JButton();
+        jButtonThemSach = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,7 +70,7 @@ public class ThemSachGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GIAO DIỆN THÊM SÁCH");
+        jLabel1.setText("THÊM SÁCH");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,21 +88,26 @@ public class ThemSachGUI extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(700, 50));
 
-        jButton_ThemSach.setBackground(new java.awt.Color(204, 255, 255));
-        jButton_ThemSach.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton_ThemSach.setForeground(new java.awt.Color(255, 51, 51));
-        jButton_ThemSach.setText("THÊM SÁCH");
-        jButton_ThemSach.setPreferredSize(new java.awt.Dimension(700, 50));
+        jButtonThemSach.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonThemSach.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButtonThemSach.setForeground(new java.awt.Color(255, 51, 51));
+        jButtonThemSach.setText("THÊM SÁCH");
+        jButtonThemSach.setPreferredSize(new java.awt.Dimension(700, 50));
+        jButtonThemSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThemSachActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton_ThemSach, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+            .addComponent(jButtonThemSach, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton_ThemSach, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonThemSach, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -123,7 +143,7 @@ public class ThemSachGUI extends javax.swing.JFrame {
         jTextField_NamXB.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jSpinner_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jSpinner_SoLuong.setModel(new javax.swing.SpinnerNumberModel());
+        jSpinner_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -195,43 +215,104 @@ public class ThemSachGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThemSachActionPerformed
+String tenSach = jTextField_TenSach.getText().trim();
+        String namXBStr = jTextField_NamXB.getText().trim();
+        String theLoai = (String) jComboBox_TheLoai.getSelectedItem();
+        String tacGia = (String) jComboBox_TacGia.getSelectedItem();
+        String nhaXuatBan = (String) jComboBox_NXB.getSelectedItem();
+        int soLuong = (int) jSpinner_SoLuong.getValue();
+
+        if (tenSach.isEmpty() || namXBStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin sách!", "Lỗi nhập liệu", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int namXB;
+        try {
+            namXB = Integer.parseInt(namXBStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Năm xuất bản phải là một số nguyên!", "Lỗi nhập liệu", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String maSach = sachBUS.generateMaSach();
+        System.out.println(maSach);
+        
+        String theLoaiId = null;
+        String nhaXuatBanId = null;
+        String tacGiaId = null;
+        // Lấy id của thể loại
+        try {
+            theLoaiId = sachBUS.getIdByTenTheLoai(theLoai);
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        // Lấy id của nhà xuất bản
+        try {
+        nhaXuatBanId = sachBUS.getIdByTenNhaXuatBan(nhaXuatBan);
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Lấy id của tác giả
+        try {
+            tacGiaId = sachBUS.getIdByTenTacGia(tacGia);
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        SachDTO sachDTO = new SachDTO(maSach, tenSach, theLoaiId, tacGiaId, nhaXuatBanId, namXB, soLuong);
+
+        String message = sachBUS.addSach(sachDTO);
+        JOptionPane.showMessageDialog(this, message, "Kết quả", JOptionPane.INFORMATION_MESSAGE);
+
+        if (message.contains("thành công")) {
+            resetInputFields();
+        }
+    }//GEN-LAST:event_jButtonThemSachActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThemSachGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThemSachGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThemSachGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThemSachGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void loadDataToComboBoxes() {
+        // Lấy dữ liệu từ BUS
+        ArrayList<TheLoaiDTO> listTheLoai = sachBUS.getAllTheLoai(); // Lấy danh sách thể loại từ BUS
+        ArrayList<TacGiaDTO> listTacGia = sachBUS.getAllTacGia(); // Lấy danh sách tác giả từ BUS
+        ArrayList<NXBDTO> listNhaXuatBan = sachBUS.getAllNhaXuatBan(); // Lấy danh sách nhà xuất bản từ BUS
+        // Tạo danh sách kiểu String để gán vào JComboBox
+        ArrayList<String> theLoaiNames = new ArrayList<>();
+        for (TheLoaiDTO theLoai : listTheLoai) {
+            theLoaiNames.add(theLoai.getTen()); // Lấy tên thể loại
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ThemSachGUI().setVisible(true);
-            }
-        });
+        ArrayList<String> tacGiaNames = new ArrayList<>();
+        for (TacGiaDTO tacGia : listTacGia) {
+            tacGiaNames.add(tacGia.getTen()); // Lấy tên tác giả
+        }
+
+        ArrayList<String> nhaXuatBanNames = new ArrayList<>();
+        for (NXBDTO nhaXuatBan : listNhaXuatBan) {
+            nhaXuatBanNames.add(nhaXuatBan.getTen()); // Lấy tên nhà xuất bản
+        }
+        // Gán danh sách vào các JComboBox
+        jComboBox_TheLoai.setModel(new DefaultComboBoxModel<>(theLoaiNames.toArray(new String[0])));
+        jComboBox_TacGia.setModel(new DefaultComboBoxModel<>(tacGiaNames.toArray(new String[0])));
+        jComboBox_NXB.setModel(new DefaultComboBoxModel<>(nhaXuatBanNames.toArray(new String[0])));
     }
-
+   
+    private void resetInputFields() {
+        jTextField_TenSach.setText("");
+        jTextField_NamXB.setText("");
+        jComboBox_TheLoai.setSelectedIndex(-1);
+        jComboBox_TacGia.setSelectedIndex(-1);
+        jComboBox_NXB.setSelectedIndex(-1);
+        jSpinner_SoLuong.setValue(0);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_ThemSach;
+    private javax.swing.JButton jButtonThemSach;
     private javax.swing.JComboBox<String> jComboBox_NXB;
     private javax.swing.JComboBox<String> jComboBox_TacGia;
     private javax.swing.JComboBox<String> jComboBox_TheLoai;

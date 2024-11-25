@@ -62,9 +62,13 @@ public class TacGiaBUS {
     
     // Tìm kiếm tác giả theo tên
     public ArrayList<TacGiaDTO> searchTacGiaByName(String name) {
-        return (ArrayList<TacGiaDTO>) ds.stream()
-                .filter(tg -> tg.getTen().toLowerCase().contains(name.toLowerCase()))
-                .toList();
+        ArrayList<TacGiaDTO> result = new ArrayList<>();
+        for(TacGiaDTO tg:ds){
+            if(tg.getTen().toLowerCase().contains(name.toLowerCase())){
+                result.add(tg);
+            }
+        }
+        return result;               
     }
     
     // Lấy tác giả theo mã

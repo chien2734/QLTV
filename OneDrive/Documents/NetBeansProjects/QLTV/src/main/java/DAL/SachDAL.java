@@ -1,6 +1,9 @@
 package DAL;
 
+import DTO.NXBDTO;
 import DTO.SachDTO;
+import DTO.TacGiaDTO;
+import DTO.TheLoaiDTO;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -16,7 +19,7 @@ public class SachDAL {
         String sql = "INSERT INTO Sach (id, tenSach, theloai, tacGia, NXB, namXB, soLuong) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, sachDTO.getId());
-            pstmt.setString(2, sachDTO.getTenSach());
+            pstmt.setNString(2, sachDTO.getTenSach());
             pstmt.setString(3, sachDTO.getTheloai());
             pstmt.setString(4, sachDTO.getTacGia());
             pstmt.setString(5, sachDTO.getNXB());
@@ -33,7 +36,7 @@ public class SachDAL {
     public boolean updateSach(SachDTO sachDTO) {
         String sql = "UPDATE Sach SET tenSach = ?, theloai = ?, tacGia = ?, NXB = ?, namXB = ?, soLuong = ? WHERE id = ?";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, sachDTO.getTenSach());
+            pstmt.setNString(1, sachDTO.getTenSach());
             pstmt.setString(2, sachDTO.getTheloai());
             pstmt.setString(3, sachDTO.getTacGia());
             pstmt.setString(4, sachDTO.getNXB());
@@ -67,7 +70,7 @@ public class SachDAL {
             while (rs.next()) {
                 SachDTO sachDTO = new SachDTO(
                         rs.getString("id"), 
-                        rs.getString("tenSach"),
+                        rs.getNString("tenSach"),
                         rs.getString("theloai"),
                         rs.getString("tacGia"),
                         rs.getString("NXB"),
@@ -98,131 +101,71 @@ public class SachDAL {
         }
         return checked;
     }
-    // Tìm kiếm sách theo tên
-//    public List<SachDTO> searchSachByName(String name) {
-//        List<SachDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM Sach WHERE tenSach LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + name + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    SachDTO sachDTO = new SachDTO(
-//                            rs.getString("id"), 
-//                            rs.getString("tenSach"),
-//                            rs.getString("theloai"),
-//                            rs.getString("tacGia"),
-//                            rs.getString("NXB"),
-//                            rs.getInt("namXB"),
-//                            rs.getInt("soLuong")
-//                    );
-//                    list.add(sachDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching Sach by name: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Lấy sách theo mã
-//    public SachDTO getSachById(String id) {
-//        String sql = "SELECT * FROM Sach WHERE id = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, id);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-//                    return new SachDTO(
-//                            rs.getString("id"), 
-//                            rs.getString("tenSach"),
-//                            rs.getString("theloai"),
-//                            rs.getString("tacGia"),
-//                            rs.getString("NXB"),
-//                            rs.getInt("namXB"),
-//                            rs.getInt("soLuong")
-//                    );
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching Sach by id: " + e.getMessage());
-//        }
-//        return null;
-//    }
-//
-//    // Lấy sách theo thể loại
-//    public List<SachDTO> getSachByCategory(String categoryId) {
-//        List<SachDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM Sach WHERE theloai = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, categoryId);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    SachDTO sachDTO = new SachDTO(
-//                            rs.getString("id"), 
-//                            rs.getString("tenSach"),
-//                            rs.getString("theloai"),
-//                            rs.getString("tacGia"),
-//                            rs.getString("NXB"),
-//                            rs.getInt("namXB"),
-//                            rs.getInt("soLuong")
-//                    );
-//                    list.add(sachDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching Sach by category: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Lấy sách theo tác giả
-//    public List<SachDTO> getSachByAuthor(String authorId) {
-//        List<SachDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM Sach WHERE tacGia = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, authorId);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    SachDTO sachDTO = new SachDTO(
-//                            rs.getString("id"), 
-//                            rs.getString("tenSach"),
-//                            rs.getString("theloai"),
-//                            rs.getString("tacGia"),
-//                            rs.getString("NXB"),
-//                            rs.getInt("namXB"),
-//                            rs.getInt("soLuong")
-//                    );
-//                    list.add(sachDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching Sach by author: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Lấy sách theo nhà xuất bản
-//    public List<SachDTO> getSachByPublisher(String publisherId) {
-//        List<SachDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM Sach WHERE NXB = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, publisherId);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    SachDTO sachDTO = new SachDTO(
-//                            rs.getString("id"), 
-//                            rs.getString("tenSach"),
-//                            rs.getString("theloai"),
-//                            rs.getString("tacGia"),
-//                            rs.getString("NXB"),
-//                            rs.getInt("namXB"),
-//                            rs.getInt("soLuong")
-//                    );
-//                    list.add(sachDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching Sach by publisher: " + e.getMessage());
-//        }
-//        return list;
-//    }
+    
+    public ArrayList<TheLoaiDTO> getAllTheLoai() {
+        ArrayList<TheLoaiDTO> listTheLoai = new ArrayList<>();
+        String query = "SELECT * FROM TheLoai"; 
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                TheLoaiDTO theLoai = new TheLoaiDTO();
+                theLoai.setId(resultSet.getString("id"));
+                theLoai.setTen(resultSet.getNString("ten"));
+                listTheLoai.add(theLoai);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listTheLoai;
+    }
+
+    // Lấy tất cả tác giả
+    public ArrayList<TacGiaDTO> getAllTacGia() {
+        ArrayList<TacGiaDTO> listTacGia = new ArrayList<>();
+        String query = "SELECT * FROM TacGia";  // Câu lệnh SQL lấy tất cả tác giả
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                TacGiaDTO tacGia = new TacGiaDTO();
+                tacGia.setId(resultSet.getString("id"));
+                tacGia.setTen(resultSet.getNString("ten"));
+                listTacGia.add(tacGia);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listTacGia;
+    }
+
+    // Lấy tất cả nhà xuất bản
+    public ArrayList<NXBDTO> getAllNhaXuatBan() {
+        ArrayList<NXBDTO> listNhaXuatBan = new ArrayList<>();
+        String query = "SELECT * FROM NXB";  // Câu lệnh SQL lấy tất cả nhà xuất bản
+
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                NXBDTO nhaXuatBan = new NXBDTO();
+                nhaXuatBan.setId(resultSet.getString("id"));
+                nhaXuatBan.setTen(resultSet.getNString("ten"));
+                listNhaXuatBan.add(nhaXuatBan);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listNhaXuatBan;
+    }
+    
 }
+

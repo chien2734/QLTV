@@ -61,9 +61,13 @@ public class TheLoaiBUS {
     
     // Tìm kiếm thể loại theo tên
     public ArrayList<TheLoaiDTO> searchTheLoaiByName(String name) {
-        return (ArrayList<TheLoaiDTO>) ds.stream()
-                .filter(tl -> tl.getTen().toLowerCase().contains(name.toLowerCase()))
-                .toList();
+        ArrayList<TheLoaiDTO> result = new ArrayList<>();
+        for(TheLoaiDTO tl:ds){
+            if(tl.getTen().toLowerCase().contains(name.toLowerCase())){
+                result.add(tl);
+            }
+        }
+        return result;   
     }
     
     // Lấy thể loại theo mã

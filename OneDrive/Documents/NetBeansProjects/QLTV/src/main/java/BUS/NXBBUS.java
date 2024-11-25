@@ -60,9 +60,13 @@ public class NXBBUS {
 
     // Tìm kiếm nhà xuất bản theo tên
     public ArrayList<NXBDTO> searchNXBByName(String name) {
-        return (ArrayList<NXBDTO>) ds.stream()
-                .filter(nxb -> nxb.getTen().toLowerCase().contains(name.toLowerCase()))
-                .toList();
+        ArrayList<NXBDTO> result = new ArrayList<>();
+        for(NXBDTO nxb:ds){
+            if(nxb.getTen().toLowerCase().contains(name.toLowerCase())){
+                result.add(nxb);
+            }
+        }
+        return result;
     }
 
     // Lấy nhà xuất bản theo ID

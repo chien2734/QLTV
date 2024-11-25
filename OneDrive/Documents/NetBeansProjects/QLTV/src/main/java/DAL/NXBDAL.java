@@ -79,37 +79,4 @@ public class NXBDAL extends connectionDB {
         return checked;
     }
 
-    // Lấy nhà xuất bản theo ID
-//    public NXBDTO getNXBById(String id) {
-//        String sql = "SELECT * FROM NXB WHERE id = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, id);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-//                    return new NXBDTO(rs.getString("id"), rs.getString("ten"));
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching NXB by ID: " + e.getMessage());
-//        }
-//        return null;
-//    }
-//
-//    // Tìm kiếm nhà xuất bản theo tên
-//    public List<NXBDTO> searchNXBByName(String name) {
-//        List<NXBDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM NXB WHERE ten LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + name + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    NXBDTO nxb = new NXBDTO(rs.getString("id"), rs.getString("ten"));
-//                    list.add(nxb);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching NXB by name: " + e.getMessage());
-//        }
-//        return list;
-//    }
 }
