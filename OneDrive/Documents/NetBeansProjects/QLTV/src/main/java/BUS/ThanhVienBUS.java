@@ -117,4 +117,8 @@ public class ThanhVienBUS {
         }
         return null;
     }
+    
+    public int getSum(){
+        return ds == null ? 0 : ds.size();
+    }
 }

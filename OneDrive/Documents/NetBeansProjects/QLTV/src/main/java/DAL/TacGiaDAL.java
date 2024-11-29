@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TacGiaDAL extends connectionDB {
@@ -85,43 +86,5 @@ public class TacGiaDAL extends connectionDB {
         }
         return checked;
     }
-    // Lấy thông tin tác giả theo ID
-//    public TacGiaDTO getTacGiaById(String id) {
-//        String sql = "SELECT * FROM TacGia WHERE id = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, id);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-//                    return new TacGiaDTO(
-//                            rs.getString("id"),
-//                            rs.getString("ten")
-//                    );
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching TacGia by ID: " + e.getMessage());
-//        }
-//        return null;
-//    }
-//
-//    // Tìm kiếm tác giả theo tên
-//    public List<TacGiaDTO> searchTacGiaByName(String name) {
-//        List<TacGiaDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM TacGia WHERE ten LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + name + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    TacGiaDTO tacGiaDTO = new TacGiaDTO(
-//                        rs.getString("id"), 
-//                        rs.getString("ten")
-//                    );
-//                    list.add(tacGiaDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching TacGia by name: " + e.getMessage());
-//        }
-//        return list;
-//    }
+  
 }

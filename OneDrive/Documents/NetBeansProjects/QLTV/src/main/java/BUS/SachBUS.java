@@ -166,5 +166,19 @@ public class SachBUS {
 
         return newMaSach;
     }
-
+    
+    public int getSum(){
+        return ds == null ? 0 : ds.size();
+    }
+    
+    public ArrayList getSoLuongSachBYTacGia(){
+        return sachDAL.getSoLuongSachBYTacGia();
+    }
+    
+    public ArrayList getSoLuongSachBYTheLoai(){
+        return sachDAL.getSoLuongSachBYTheLoai();
+    }
+    public ArrayList getSoLuongSachBYNXB(){
+        return sachDAL.getSoLuongSachBYNXB();
+    }
 }

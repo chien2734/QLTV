@@ -39,6 +39,19 @@ public class PhieuMuonBUS {
         return isUpdated;
     }
 
+    public boolean updateTrangThaiPhieuMuon(String id, String trangThai) {
+        boolean isUpdated = phieuMuonDAL.updateTrangThaiPhieuMuon(id, trangThai);
+        if (isUpdated) {
+            for (int i = 0; i < ds.size(); i++) {
+                if (ds.get(i).getId().equals(id)) {
+                    ds.get(i).setTrangThai(trangThai);
+                    break;
+                }
+            }
+        }
+        return isUpdated;
+    }
+    
     // Xóa phiếu mượn
     public boolean deletePhieuMuon(String id) {
         boolean isDeleted = phieuMuonDAL.deletePhieuMuon(id);
@@ -94,5 +107,9 @@ public class PhieuMuonBUS {
             }
         }
         return result;
+    }
+    
+    public int getSum(){
+        return ds == null ? 0 : ds.size();
     }
 }

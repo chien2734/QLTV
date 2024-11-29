@@ -45,6 +45,18 @@ public class PhieuMuonDAL {
             return false;
         }
     }
+    
+    public boolean updateTrangThaiPhieuMuon(String id, String trangThai) {
+        String sql = "UPDATE PhieuMuon SET trangThai = ? WHERE id = ?";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setNString(1, trangThai);
+            pstmt.setString(2, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating status PhieuMuon: " + e.getMessage());
+            return false;
+        }
+    }
 
     // Xóa phiếu mượn
     public boolean deletePhieuMuon(String id) {

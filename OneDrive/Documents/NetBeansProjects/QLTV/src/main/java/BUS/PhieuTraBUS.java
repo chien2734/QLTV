@@ -15,16 +15,15 @@ public class PhieuTraBUS {
     }
 
     // Thêm phiếu trả mới
-    public String addPhieuTra(PhieuTraDTO phieuTraDTO) {
+    public boolean addPhieuTra(PhieuTraDTO phieuTraDTO) {
        if(phieuTraDAL.hasID(phieuTraDTO.getId())){
-            return "Mã này đã tồn tại, vui lòng nhập mã khác!";
-        }
+           return false;
+       }
         boolean isAdded = phieuTraDAL.addPhieuTra(phieuTraDTO);
         if(isAdded){
             ds.add(phieuTraDTO);
-            return "Tạo phiếu trả " + phieuTraDTO.getId() +" thành công!";
         }
-        return "Tạo phiếu trả không thành công!";
+        return isAdded;
     }
 
     // Cập nhật phiếu trả
@@ -58,27 +57,53 @@ public class PhieuTraBUS {
         return ds;
     }
 
+    public int getSum(){
+        return ds == null ? 0 : ds.size();
+    }
     // Tìm kiếm phiếu trả theo mã phiếu mượn
-    public PhieuTraDTO searchPhieuTraByMaPhieuMuon(String maPhieuMuon) {
+    public ArrayList<PhieuTraDTO> getPhieuTraByID(String id){
+        ArrayList<PhieuTraDTO> result = new ArrayList<>();
         for(PhieuTraDTO pt : ds){
-            if(pt.getId().equals(maPhieuMuon)){
-                return pt;
+            if(pt.getId().contains(id)){
+                result.add(pt);
             }
         }
-        return null;
+        return result;
+    }
+    
+    public ArrayList<PhieuTraDTO> searchPhieuTraByMaPhieuMuon(String maPhieuMuon) {
+        ArrayList<PhieuTraDTO> result = new ArrayList<>();
+        for(PhieuTraDTO pt : ds){
+            if(pt.getMaPhieuMuon().contains(maPhieuMuon)){
+                result.add(pt);
+            }
+        }
+        return result;
     }
 
     // Tìm kiếm phiếu trả theo mã thẻ
     public ArrayList<PhieuTraDTO> searchPhieuTraByMaThe(String maThe) {
-        return (ArrayList<PhieuTraDTO>) ds.stream()
-                .filter(pt -> pt.getMaThe().equals(maThe))
-                .toList();
+        ArrayList<PhieuTraDTO> result = new ArrayList<>();
+        for(PhieuTraDTO pt : ds){
+            if(pt.getMaThe().contains(maThe)){
+                result.add(pt);
+            }
+        }
+        return result;
     }
 
     // Tìm kiếm phiếu trả theo ngày trả
     public ArrayList<PhieuTraDTO> searchPhieuTraByNgayTra(java.sql.Date ngayTra) {
-        return (ArrayList<PhieuTraDTO>) ds.stream()
-                .filter(pt -> pt.getNgayTra().equals(ngayTra))
-                .toList();
+        ArrayList<PhieuTraDTO> result = new ArrayList<>();
+        for(PhieuTraDTO pt : ds){
+            if(pt.getNgayTra().equals(ngayTra)){
+                result.add(pt);
+            }
+        }
+        return result;
+    }
+    
+    public int TinhSoNgay(java.sql.Date ngayTra, java.sql.Date hanTra){
+        return phieuTraDAL.TinhSoNgay(ngayTra, hanTra);
     }
 }
