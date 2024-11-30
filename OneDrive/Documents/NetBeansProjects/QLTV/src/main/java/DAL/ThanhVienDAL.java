@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ThanhVienDAL extends connectionDB {
 
     private final Connection conn;
+
     public ThanhVienDAL() throws SQLException {
         conn = connectionDB.openConnection();
     }
@@ -14,8 +15,8 @@ public class ThanhVienDAL extends connectionDB {
     // Thêm thành viên mới
     public boolean addThanhVien(ThanhVienDTO thanhVien) {
         String sql = "INSERT INTO ThanhVien (id, ten, CCCD, sdt, diaChi, ngayDK, hanSD, phiDuyTri, trangThai) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, thanhVien.getId());
             pstmt.setNString(2, thanhVien.getTen());
             pstmt.setString(3, thanhVien.getCCCD());
@@ -35,7 +36,7 @@ public class ThanhVienDAL extends connectionDB {
     // Cập nhật thông tin thành viên
     public boolean updateThanhVien(ThanhVienDTO thanhVien) {
         String sql = "UPDATE ThanhVien SET ten = ?, CCCD = ?, sdt = ?, diaChi =?, ngayDK = ?, hanSD = ?, phiDuyTri = ?, trangThai = ? WHERE id = ?";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, thanhVien.getTen());
             pstmt.setString(2, thanhVien.getCCCD());
             pstmt.setString(3, thanhVien.getSdt());
@@ -51,10 +52,10 @@ public class ThanhVienDAL extends connectionDB {
             return false;
         }
     }
-    
-    public boolean updateTranhThaiThe(ThanhVienDTO thanhVien){
+
+    public boolean updateTrangThaiThe(ThanhVienDTO thanhVien) {
         String sql = "UPDATE ThanhVien SET trangThai = ?, hanSD = ? WHERE id = ?";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, thanhVien.getTrangThai());
             pstmt.setDate(2, thanhVien.getHanSD());
             pstmt.setString(3, thanhVien.getId());
@@ -68,7 +69,7 @@ public class ThanhVienDAL extends connectionDB {
     // Xóa thành viên
     public boolean deleteThanhVien(String id) {
         String sql = "DELETE FROM ThanhVien WHERE id = ?";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, id);
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -81,7 +82,7 @@ public class ThanhVienDAL extends connectionDB {
     public ArrayList getAllThanhVien() {
         ArrayList list = new ArrayList<>();
         String sql = "SELECT * FROM ThanhVien";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 ThanhVienDTO thanhVien = new ThanhVienDTO(
                         rs.getString("id"),
@@ -102,70 +103,111 @@ public class ThanhVienDAL extends connectionDB {
         return list;
     }
 
-    public boolean hasID(String id){
+    public boolean hasID(String id) {
         boolean checked = false;
         String sql = "select * from ThanhVien where id = ?";
-        try{
+        try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return checked;
     }
-    // Lấy thông tin thành viên theo ID
-//    public ThanhVienDTO getThanhVienById(String id) {
-//        String sql = "SELECT * FROM ThanhVien WHERE id = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, id);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-//                    return new ThanhVienDTO(
-//                            rs.getString("id"),
-//                            rs.getString("ten"),
-//                            rs.getString("CCCD"),
-//                            rs.getString("sdt"),
-//                            rs.getDate("ngayDK"),
-//                            rs.getDate("hanSD"),
-//                            rs.getDouble("phiDuyTri"),
-//                            rs.getString("trangThai")
-//                    );
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching ThanhVien by ID: " + e.getMessage());
-//        }
-//        return null;
-//    }
-//    
-//    // Tìm kiếm thành viên theo tên
-//    public List<ThanhVienDTO> searchThanhVienByName(String name) {
-//        List<ThanhVienDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM ThanhVien WHERE ten LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + name + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    ThanhVienDTO thanhVienDTO = new ThanhVienDTO(
-//                        rs.getString("id"), 
-//                        rs.getString("ten"), 
-//                        rs.getString("CCCD"), 
-//                        rs.getString("sdt"), 
-//                        rs.getDate("ngayDK"),
-//                        rs.getDate("hanSD"),
-//                        rs.getDouble("phiDuyTri"),
-//                        rs.getString("trangThai")
-//                    );
-//                    list.add(thanhVienDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching ThanhVien by name: " + e.getMessage());
-//        }
-//        return list;
-//    }
+
+    public ArrayList<Object[]> getDocGiaByNgayDK(int month, int year) {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT id , ten , ngayDK "
+                + "FROM ThanhVien "
+                + "WHERE MONTH(ngayDK) = ? AND YEAR(ngayDK) = ?;";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, month);
+            stmt.setInt(2, year);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getDate(3)
+                };
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi: " + e.getMessage());
+        }
+        return result;
+    }
+
+    public ArrayList<Object[]> getDocGiaKhoaThe() {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT id , ten , ngayDK "
+                + "FROM ThanhVien "
+                + "WHERE  trangThai like N'Bị khóa' ";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getDate(3)
+                };
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi: " + e.getMessage());
+        }
+        return result;
+    }
+
+    public ArrayList<Object[]> getDocGiaQuaHan() {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT id , ten , hanSD "
+                + "FROM ThanhVien "
+                + "WHERE  trangThai like N'Quá hạn' ";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getDate(3)
+                };
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi: " + e.getMessage());
+        }
+        return result;
+    }
+
+    public ArrayList<Object[]> getTop5() {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT TOP 5 tv.id, tv.ten, COUNT(pm.id) AS SoLuotMuon "
+                + "FROM ThanhVien tv "
+                + "INNER JOIN PhieuMuon pm ON tv.id = pm.maThe "
+                + "GROUP BY dg.id, dg.tenDocGia "
+                + "ORDER BY SoLuotMuon DESC;";
+        try{
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Object[] row = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getInt(3)
+                };
+                result.add(row);
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return result;
+    }
 }

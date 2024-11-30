@@ -167,11 +167,11 @@ public class SachDAL {
         return listNhaXuatBan;
     }
 
-    public ArrayList getSoLuongSachBYTacGia() {
-        ArrayList result = new ArrayList<>();
+    public ArrayList<Object[]> getSoLuongSachBYTacGia() {
+        ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT s.tacGia, tg.Ten, SUM(s.SoLuong) AS SoLuongSach "
-                + "FROM Sach s, TacGia tg "
-                + "where s.tacGia = tg.id "
+                + "FROM Sach s "
+                + "INNER JOIN TacGia tg ON s.tacGia = tg.id "
                 + "GROUP BY s.tacGia, tg.Ten";
         try {
             Statement stmt = conn.createStatement();
@@ -186,11 +186,11 @@ public class SachDAL {
         return result;
     }
     
-    public ArrayList getSoLuongSachBYTheLoai() {
-        ArrayList result = new ArrayList<>();
+    public ArrayList<Object[]> getSoLuongSachBYTheLoai() {
+        ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT s.theloai, tl.Ten, SUM(s.SoLuong) AS SoLuongSach "
-                + "FROM Sach s, TheLoai tl "
-                + "where s.theloai = tl.id "
+                + "FROM Sach s "
+                + "INNER JOIN TheLoai tl ON s.theloai = tl.id "
                 + "GROUP BY s.theloai, tl.Ten";
         try {
             Statement stmt = conn.createStatement();
@@ -205,17 +205,41 @@ public class SachDAL {
         return result;
     }
     
-    public ArrayList getSoLuongSachBYNXB() {
-        ArrayList result = new ArrayList<>();
+    public ArrayList<Object[]> getSoLuongSachBYNXB() {
+        ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT s.NXB, nxb.Ten, SUM(s.SoLuong) AS SoLuongSach "
-                + "FROM Sach s, NXB nxb "
-                + "where s.NXB = nxb.id "
+                + "FROM Sach s "
+                + "INNER JOIN NXB nxb ON s.NXB = nxb.id "
                 + "GROUP BY s.NXB, nxb.Ten";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+                result.add(e);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return result;
+    }
+    
+    public ArrayList<Object[]> getSachKhongNguyenVen() {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT s.id, s.tenSach, SUM(ctpt.soLuong) AS SoLuongSach, ctpt.trangThai "
+                + "FROM Sach s "
+                + "INNER JOIN CT_PhieuTra ctpt ON s.id = ctpt.maSach "
+                + "WHERE ctpt.trangThai <> N'Nguyên vẹn' "
+                + "GROUP BY s.id, s.tenSach, ctpt.trangThai";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Object[] e = {
+                    rs.getString(1), 
+                    rs.getNString(2), 
+                    rs.getInt(3), 
+                    rs.getNString(4)};
                 result.add(e);
             }
         }catch(SQLException e){

@@ -194,8 +194,8 @@
                         <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                         <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                         <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
-                        <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xec;nh tr&#x1ea1;ng m&#x1b0;&#x1ee3;n(%)&lt;/html&gt;" type="java.lang.Integer"/>
-                        <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xec;nh tr&#x1ea1;ng tr&#x1ea3;(%)&lt;/html&gt;" type="java.lang.Integer"/>
+                        <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xec;nh tr&#x1ea1;ng m&#x1b0;&#x1ee3;n&lt;/html&gt;" type="java.lang.String"/>
+                        <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xec;nh tr&#x1ea1;ng tr&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="rowHeight" type="int" value="25"/>
@@ -239,12 +239,10 @@
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btn_TinhPhiTreHan" pref="240" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txt_NgayMuon" pref="240" max="32767" attributes="0"/>
-                              <Component id="txt_HanTra" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_NgayTra" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_PhiTreHan" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txt_NgayMuon" pref="240" max="32767" attributes="0"/>
+                          <Component id="txt_HanTra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txt_NgayTra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txt_PhiTreHan" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>

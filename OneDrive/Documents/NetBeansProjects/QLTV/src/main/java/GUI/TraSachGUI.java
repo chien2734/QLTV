@@ -16,8 +16,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 public class TraSachGUI extends javax.swing.JFrame {
 
     /**
@@ -126,11 +128,11 @@ public class TraSachGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "<html><center style='font-size:16px'>Mã sách</html>", "<html><center style='font-size:16px'>Tên sách</html>", "<html><center style='font-size:16px'>Số lượng</html>", "<html><center style='font-size:16px'>Tình trạng mượn(%)</html>", "<html><center style='font-size:16px'>Tình trạng trả(%)</html>"
+                "<html><center style='font-size:16px'>Mã sách</html>", "<html><center style='font-size:16px'>Tên sách</html>", "<html><center style='font-size:16px'>Số lượng</html>", "<html><center style='font-size:16px'>Tình trạng mượn</html>", "<html><center style='font-size:16px'>Tình trạng trả</html>"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, true
@@ -210,11 +212,10 @@ public class TraSachGUI extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_TinhPhiTreHan, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_NgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                        .addComponent(txt_HanTra)
-                        .addComponent(txt_NgayTra)
-                        .addComponent(txt_PhiTreHan)))
+                    .addComponent(txt_NgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txt_HanTra)
+                    .addComponent(txt_NgayTra)
+                    .addComponent(txt_PhiTreHan))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -435,7 +436,7 @@ public class TraSachGUI extends javax.swing.JFrame {
                 String idSach = tbl_TinhTrangSach.getValueAt(row, 0).toString();
                 String tenSach = tbl_TinhTrangSach.getValueAt(row, 1).toString();
                 int soLuong = Integer.parseInt(tbl_TinhTrangSach.getValueAt(row, 2).toString());
-                int tinhTrang = Integer.parseInt(tbl_TinhTrangSach.getValueAt(row, 4).toString());
+                String tinhTrang = tbl_TinhTrangSach.getValueAt(row, 4).toString();
                 dsCTPT.add(new CT_PhieuTraDTO(id, idSach, tenSach, soLuong, tinhTrang));
             }
             if (ctptBUS.addCT_PhieuTra(dsCTPT)) {
@@ -492,6 +493,10 @@ public class TraSachGUI extends javax.swing.JFrame {
             Object[] row = {ctpm.getMaSach(), ctpm.getTenSach(), ctpm.getSoLuong(), ctpm.getTrangThai()};
             tinhtrangNhanSach.addRow(row);
         }
+        String[] options = {"Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"};
+        JComboBox<String> cbb = new JComboBox<>(options);
+        TableColumn column = tbl_TinhTrangSach.getColumnModel().getColumn(4);
+        column.setCellEditor(new javax.swing.DefaultCellEditor(cbb));  
     }
     
 

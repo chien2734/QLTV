@@ -46,7 +46,7 @@ public class ThanhVienBUS {
     }
     
     public String updateTrangThaiThe(ThanhVienDTO thanhVien) {
-        boolean isUpdated = thanhVienDAL.updateTranhThaiThe(thanhVien);
+        boolean isUpdated = thanhVienDAL.updateTrangThaiThe(thanhVien);
         if (isUpdated) {
             for (int i = 0; i < ds.size(); i++) {
                 if (ds.get(i).getId().equals(thanhVien.getId())) {
@@ -120,5 +120,21 @@ public class ThanhVienBUS {
     
     public int getSum(){
         return ds == null ? 0 : ds.size();
+    }
+    
+    public ArrayList<Object[]> getDocGiaBYNgayDK(int month, int year){
+        return thanhVienDAL.getDocGiaByNgayDK(month, year);
+    }
+    
+    public ArrayList<Object[]> getDocGiaQuaHan(){
+        return thanhVienDAL.getDocGiaQuaHan();
+    }
+    
+    public ArrayList<Object[]> getDocGiaKhoaThe(){
+        return thanhVienDAL.getDocGiaKhoaThe();
+    }
+    
+    public ArrayList<Object[]> getTop5(){
+        return thanhVienDAL.getTop5();
     }
 }

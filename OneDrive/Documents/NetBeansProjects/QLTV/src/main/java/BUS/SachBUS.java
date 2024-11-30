@@ -119,7 +119,7 @@ public class SachBUS {
     // Lấy sách theo mã
     public SachDTO getSachById(String id) {
         for (SachDTO sach : ds) {
-            if (sach.getTenSach().equals(id)) {
+            if (sach.getId().equals(id)) {
                 return sach;
             }
         }
@@ -171,14 +171,18 @@ public class SachBUS {
         return ds == null ? 0 : ds.size();
     }
     
-    public ArrayList getSoLuongSachBYTacGia(){
+    public ArrayList<Object[]> getSoLuongSachBYTacGia(){
         return sachDAL.getSoLuongSachBYTacGia();
     }
     
-    public ArrayList getSoLuongSachBYTheLoai(){
+    public ArrayList<Object[]> getSoLuongSachBYTheLoai(){
         return sachDAL.getSoLuongSachBYTheLoai();
     }
-    public ArrayList getSoLuongSachBYNXB(){
+    public ArrayList<Object[]> getSoLuongSachBYNXB(){
         return sachDAL.getSoLuongSachBYNXB();
+    }
+    
+    public ArrayList<Object[]> getSachKhongNguyenVen(){
+        return sachDAL.getSachKhongNguyenVen();
     }
 }
