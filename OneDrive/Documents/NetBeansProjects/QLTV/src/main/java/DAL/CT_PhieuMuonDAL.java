@@ -40,11 +40,11 @@ public class CT_PhieuMuonDAL extends connectionDB {
     }
 
     // Xóa chi tiết phiếu mượn
-    public boolean deleteCT_PhieuMuon(String maPhieuMuon, String maSach) {
+    public boolean deleteCT_PhieuMuon(CT_PhieuMuonDTO ctpm) {
         String sql = "DELETE FROM CT_PhieuMuon WHERE maPhieuMuon = ? AND maSach = ?";
         try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, maPhieuMuon);
-            pstmt.setString(2, maSach);
+            pstmt.setString(1, ctpm.getMaPhieuMuon());
+            pstmt.setString(2, ctpm.getMaSach());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error deleting CT_PhieuMuon: " + e.getMessage());

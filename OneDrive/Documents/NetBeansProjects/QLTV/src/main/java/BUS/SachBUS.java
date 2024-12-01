@@ -193,4 +193,7 @@ public class SachBUS {
     public ArrayList<Object[]> getSachTheoLuotMuon(){
         return sachDAL.getSachTheoLuotMuon();
     }
+    public int getSoSachConLai(String id){
+        return sachDAL.getSoSachConLai(id);
+    }
 }

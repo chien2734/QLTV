@@ -29,8 +29,14 @@ public class CT_PhieuMuonBUS {
     }
 
     // Xóa chi tiết phiếu mượn
-    public boolean deleteCT_PhieuMuon(String maPhieuMuon, String maSach) {
-        return ctPhieuMuonDAL.deleteCT_PhieuMuon(maPhieuMuon, maSach);
+    public boolean deleteCT_PhieuMuon(ArrayList<CT_PhieuMuonDTO> dsCTPM) {
+        boolean check = true;
+        for(CT_PhieuMuonDTO ctpm : dsCTPM){
+            if(!ctPhieuMuonDAL.deleteCT_PhieuMuon(ctpm)){
+                check = false;
+            }
+        }
+        return check;
     }
 
 
