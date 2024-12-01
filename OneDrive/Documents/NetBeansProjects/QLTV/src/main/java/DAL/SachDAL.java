@@ -17,7 +17,7 @@ public class SachDAL {
 
     // Thêm sách mới
     public boolean addSach(SachDTO sachDTO) {
-        String sql = "INSERT INTO Sach (id, tenSach, theloai, tacGia, NXB, namXB, soLuong) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Sach (id, tenSach, theloai, tacGia, NXB, namXB, soLuong, giaSach) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, sachDTO.getId());
             pstmt.setNString(2, sachDTO.getTenSach());
@@ -26,6 +26,7 @@ public class SachDAL {
             pstmt.setString(5, sachDTO.getNXB());
             pstmt.setInt(6, sachDTO.getNamXB());
             pstmt.setInt(7, sachDTO.getSoLuong());
+            pstmt.setDouble(8, sachDTO.getGiaSach());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error adding Sach: " + e.getMessage());
@@ -35,7 +36,7 @@ public class SachDAL {
 
     // Cập nhật sách
     public boolean updateSach(SachDTO sachDTO) {
-        String sql = "UPDATE Sach SET tenSach = ?, theloai = ?, tacGia = ?, NXB = ?, namXB = ?, soLuong = ? WHERE id = ?";
+        String sql = "UPDATE Sach SET tenSach = ?, theloai = ?, tacGia = ?, NXB = ?, namXB = ?, soLuong = ?, giaSach = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, sachDTO.getTenSach());
             pstmt.setString(2, sachDTO.getTheloai());
@@ -43,7 +44,8 @@ public class SachDAL {
             pstmt.setString(4, sachDTO.getNXB());
             pstmt.setInt(5, sachDTO.getNamXB());
             pstmt.setInt(6, sachDTO.getSoLuong());
-            pstmt.setString(7, sachDTO.getId());
+            pstmt.setDouble(7, sachDTO.getGiaSach());
+            pstmt.setString(8, sachDTO.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating Sach: " + e.getMessage());
@@ -76,7 +78,8 @@ public class SachDAL {
                         rs.getString("tacGia"),
                         rs.getString("NXB"),
                         rs.getInt("namXB"),
-                        rs.getInt("soLuong")
+                        rs.getInt("soLuong"),
+                        rs.getDouble("giaSach")
                 );
                 list.add(sachDTO);
             }
@@ -167,6 +170,26 @@ public class SachDAL {
         return listNhaXuatBan;
     }
 
+    public ArrayList<Object[]> getSachTheoLuotMuon(){
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "select s.id, s.tenSach, count(ctpm.id) as soLanMuon "
+                + "from Sach s "
+                + "join CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
+                + "group by s.id, s.tenSach "
+                + "order by soLanMuon desc;";
+         try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+                result.add(e);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return result;
+    }
+    
     public ArrayList<Object[]> getSoLuongSachBYTacGia() {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT s.tacGia, tg.Ten, SUM(s.SoLuong) AS SoLuongSach "

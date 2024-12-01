@@ -106,4 +106,8 @@ public class PhieuTraBUS {
     public int TinhSoNgay(java.sql.Date ngayTra, java.sql.Date hanTra){
         return phieuTraDAL.TinhSoNgay(ngayTra, hanTra);
     }
+    
+    public ArrayList<Object[]> CacLoaiPhi(int month, int year){
+        return phieuTraDAL.CacLoaiPhi(month, year);
+    }
 }

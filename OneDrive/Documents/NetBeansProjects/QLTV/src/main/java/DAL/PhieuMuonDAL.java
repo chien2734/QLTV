@@ -13,8 +13,8 @@ public class PhieuMuonDAL {
 
     // Thêm phiếu mượn mới
     public boolean addPhieuMuon(PhieuMuonDTO phieuMuon) {
-        String sql = "INSERT INTO PhieuMuon (id, maThe, ngayMuon, hanTra, tienCoc, trangThai) "
-                   + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PhieuMuon (id, maThe, ngayMuon, hanTra, tienCoc, trangThai, soLan) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, phieuMuon.getId());
             pstmt.setString(2, phieuMuon.getMaThe());
@@ -22,6 +22,7 @@ public class PhieuMuonDAL {
             pstmt.setDate(4, new java.sql.Date(phieuMuon.getHanTra().getTime()));
             pstmt.setDouble(5, phieuMuon.getTienCoc());
             pstmt.setString(6, phieuMuon.getTrangThai());
+            pstmt.setInt(7, phieuMuon.getSoLanGiaHan());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error adding PhieuMuon: " + e.getMessage());
@@ -46,11 +47,12 @@ public class PhieuMuonDAL {
         }
     }
     
-    public boolean updateTrangThaiPhieuMuon(String id, String trangThai) {
-        String sql = "UPDATE PhieuMuon SET trangThai = ? WHERE id = ?";
+    public boolean updateTrangThaiPhieuMuon(PhieuMuonDTO pm) {
+        String sql = "UPDATE PhieuMuon SET trangThai = ?, soLan = ? WHERE id = ?";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setNString(1, trangThai);
-            pstmt.setString(2, id);
+            pstmt.setNString(1, pm.getTrangThai());
+            pstmt.setInt(2, pm.getSoLanGiaHan());
+            pstmt.setString(3, pm.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating status PhieuMuon: " + e.getMessage());
@@ -83,7 +85,8 @@ public class PhieuMuonDAL {
                         rs.getDate("ngayMuon"),
                         rs.getDate("hanTra"),
                         rs.getDouble("tienCoc"),
-                        rs.getString("trangThai")
+                        rs.getString("trangThai"),
+                        rs.getInt("soLan")
                 );
                 list.add(phieuMuon);
             }
@@ -108,103 +111,5 @@ public class PhieuMuonDAL {
         }
         return checked;
     }
-    // Tìm kiếm phiếu mượn theo mã phiếu mượn
-//    public List<PhieuMuonDTO> searchPhieuMuonByMaPhieuMuon(String maPhieuMuon) {
-//        List<PhieuMuonDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM PhieuMuon WHERE id LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + maPhieuMuon + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    PhieuMuonDTO phieuMuon = new PhieuMuonDTO(
-//                            rs.getString("id"),
-//                            rs.getString("maThe"),
-//                            rs.getDate("ngayMuon"),
-//                            rs.getDate("hanTra"),
-//                            rs.getDouble("tienCoc"),
-//                            rs.getString("trangThai")
-//                    );
-//                    list.add(phieuMuon);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching PhieuMuon by maPhieuMuon: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Tìm kiếm phiếu mượn theo mã thẻ
-//    public List<PhieuMuonDTO> searchPhieuMuonByMaThe(String maThe) {
-//        List<PhieuMuonDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM PhieuMuon WHERE maThe LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + maThe + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    PhieuMuonDTO phieuMuon = new PhieuMuonDTO(
-//                            rs.getString("id"),
-//                            rs.getString("maThe"),
-//                            rs.getDate("ngayMuon"),
-//                            rs.getDate("hanTra"),
-//                            rs.getDouble("tienCoc"),
-//                            rs.getString("trangThai")
-//                    );
-//                    list.add(phieuMuon);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching PhieuMuon by maThe: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Tìm kiếm phiếu mượn theo ngày mượn
-//    public List<PhieuMuonDTO> searchPhieuMuonByNgayMuon(Date ngayMuon) {
-//        List<PhieuMuonDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM PhieuMuon WHERE ngayMuon = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setDate(1, ngayMuon);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    PhieuMuonDTO phieuMuon = new PhieuMuonDTO(
-//                            rs.getString("id"),
-//                            rs.getString("maThe"),
-//                            rs.getDate("ngayMuon"),
-//                            rs.getDate("hanTra"),
-//                            rs.getDouble("tienCoc"),
-//                            rs.getString("trangThai")
-//                    );
-//                    list.add(phieuMuon);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching PhieuMuon by ngayMuon: " + e.getMessage());
-//        }
-//        return list;
-//    }
-//
-//    // Tìm kiếm phiếu mượn theo ngày trả
-//    public List<PhieuMuonDTO> searchPhieuMuonByHanTra(Date hanTra) {
-//        List<PhieuMuonDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM PhieuMuon WHERE hanTra = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setDate(1, hanTra);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    PhieuMuonDTO phieuMuon = new PhieuMuonDTO(
-//                            rs.getString("id"),
-//                            rs.getString("maThe"),
-//                            rs.getDate("ngayMuon"),
-//                            rs.getDate("hanTra"),
-//                            rs.getDouble("tienCoc"),
-//                            rs.getString("trangThai")
-//                    );
-//                    list.add(phieuMuon);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching PhieuMuon by hanTra: " + e.getMessage());
-//        }
-//        return list;
-//    }
+   
 }

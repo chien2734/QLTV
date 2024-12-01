@@ -2,8 +2,7 @@
 package DTO;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 
 public class ThanhVienDTO {
     private String id;
@@ -15,8 +14,22 @@ public class ThanhVienDTO {
     private Date hanSD;
     private double phiDuyTri;
     private String trangThai;
+    private int soLan;
 
     public ThanhVienDTO() {
+    }
+
+    public ThanhVienDTO(String id, String ten, String CCCD, String sdt, String diaChi, Date ngayDK, Date hanSD, double phiDuyTri, String trangThai, int soLan) {
+        this.id = id;
+        this.ten = ten;
+        this.CCCD = CCCD;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.ngayDK = ngayDK;
+        this.hanSD = hanSD;
+        this.phiDuyTri = phiDuyTri;
+        this.trangThai = trangThai;
+        this.soLan = soLan;
     }
 
     public ThanhVienDTO(String id, String ten, String CCCD, String sdt, String diaChi, Date ngayDK, Date hanSD, String trangThai) {
@@ -117,6 +130,13 @@ public class ThanhVienDTO {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
+
+    public int getSoLan() {
+        return soLan;
+    }
+
+    public void setSoLan(int soLan) {
+        this.soLan = soLan;
+    }
+  
 }

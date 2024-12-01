@@ -14,8 +14,8 @@ public class ThanhVienDAL extends connectionDB {
 
     // Thêm thành viên mới
     public boolean addThanhVien(ThanhVienDTO thanhVien) {
-        String sql = "INSERT INTO ThanhVien (id, ten, CCCD, sdt, diaChi, ngayDK, hanSD, phiDuyTri, trangThai) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ThanhVien (id, ten, CCCD, sdt, diaChi, ngayDK, hanSD, phiDuyTri, trangThai, soLan) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, thanhVien.getId());
             pstmt.setNString(2, thanhVien.getTen());
@@ -26,6 +26,7 @@ public class ThanhVienDAL extends connectionDB {
             pstmt.setDate(7, new java.sql.Date(thanhVien.getHanSD().getTime()));
             pstmt.setDouble(8, thanhVien.getPhiDuyTri());
             pstmt.setNString(9, thanhVien.getTrangThai());
+            pstmt.setInt(10, thanhVien.getSoLan());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error adding ThanhVien: " + e.getMessage());
@@ -35,17 +36,13 @@ public class ThanhVienDAL extends connectionDB {
 
     // Cập nhật thông tin thành viên
     public boolean updateThanhVien(ThanhVienDTO thanhVien) {
-        String sql = "UPDATE ThanhVien SET ten = ?, CCCD = ?, sdt = ?, diaChi =?, ngayDK = ?, hanSD = ?, phiDuyTri = ?, trangThai = ? WHERE id = ?";
+        String sql = "UPDATE ThanhVien SET ten = ?, CCCD = ?, sdt = ?, diaChi =? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, thanhVien.getTen());
             pstmt.setString(2, thanhVien.getCCCD());
             pstmt.setString(3, thanhVien.getSdt());
             pstmt.setNString(4, thanhVien.getDiaChi());
-            pstmt.setDate(5, thanhVien.getNgayDK());
-            pstmt.setDate(6, thanhVien.getHanSD());
-            pstmt.setDouble(7, thanhVien.getPhiDuyTri());
-            pstmt.setNString(8, thanhVien.getTrangThai());
-            pstmt.setString(9, thanhVien.getId());
+            pstmt.setString(5, thanhVien.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating ThanhVien: " + e.getMessage());
@@ -54,11 +51,12 @@ public class ThanhVienDAL extends connectionDB {
     }
 
     public boolean updateTrangThaiThe(ThanhVienDTO thanhVien) {
-        String sql = "UPDATE ThanhVien SET trangThai = ?, hanSD = ? WHERE id = ?";
+        String sql = "UPDATE ThanhVien SET trangThai = ?, hanSD = ?, soLan = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setNString(1, thanhVien.getTrangThai());
             pstmt.setDate(2, thanhVien.getHanSD());
-            pstmt.setString(3, thanhVien.getId());
+            pstmt.setInt(3, thanhVien.getSoLan());
+            pstmt.setString(4, thanhVien.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating status Card: " + e.getMessage());
@@ -93,7 +91,8 @@ public class ThanhVienDAL extends connectionDB {
                         rs.getDate("ngayDK"),
                         rs.getDate("hanSD"),
                         rs.getDouble("phiDuyTri"),
-                        rs.getNString("trangThai")
+                        rs.getNString("trangThai"),
+                        rs.getInt("soLan")                       
                 );
                 list.add(thanhVien);
             }

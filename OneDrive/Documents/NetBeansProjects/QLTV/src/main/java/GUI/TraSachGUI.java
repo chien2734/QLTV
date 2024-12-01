@@ -4,9 +4,9 @@ import BUS.CT_PhieuMuonBUS;
 import BUS.CT_PhieuTraBUS;
 import BUS.PhieuMuonBUS;
 import BUS.PhieuTraBUS;
+import BUS.SachBUS;
 import DTO.CT_PhieuMuonDTO;
 import DTO.CT_PhieuTraDTO;
-import DTO.PhieuMuonDTO;
 import DTO.PhieuTraDTO;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -29,15 +30,16 @@ public class TraSachGUI extends javax.swing.JFrame {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private final String maPM;
     PhieuTraBUS ptBUS;
-    PhieuMuonBUS pmBUS;
+    SachBUS sachBUS;
     CT_PhieuTraBUS ctptBUS ;
     CT_PhieuMuonBUS ctpmBUS;
+    ArrayList<String> tinhTrangSach =new ArrayList<>(List.of("Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"));
     public TraSachGUI(String maPM, String mathe, String tienCoc, String ngayMuon, String hanTra) throws SQLException {
         initComponents();
         ptBUS = new PhieuTraBUS();
         ctptBUS = new CT_PhieuTraBUS();
         ctpmBUS = new CT_PhieuMuonBUS();
-        pmBUS = new PhieuMuonBUS();
+        sachBUS = new SachBUS();
         this.maPM = maPM;
         txt_MaPM.setText(maPM);
         txt_MaThe.setText(mathe);
@@ -79,7 +81,6 @@ public class TraSachGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txt_TongTien = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        btn_MucDoHuHai = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txt_PhiDenBu = new javax.swing.JTextField();
@@ -191,7 +192,7 @@ public class TraSachGUI extends javax.swing.JFrame {
 
         btn_TinhPhiTreHan.setBackground(new java.awt.Color(204, 255, 255));
         btn_TinhPhiTreHan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_TinhPhiTreHan.setText("Tính phí đền bù");
+        btn_TinhPhiTreHan.setText("Tính phí trễ hạn");
         btn_TinhPhiTreHan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TinhPhiTreHanActionPerformed(evt);
@@ -221,7 +222,7 @@ public class TraSachGUI extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txt_NgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,7 +240,7 @@ public class TraSachGUI extends javax.swing.JFrame {
                     .addComponent(txt_PhiTreHan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_TinhPhiTreHan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         btn_TraSach.setBackground(new java.awt.Color(204, 255, 255));
@@ -265,16 +266,6 @@ public class TraSachGUI extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setText("VND");
-
-        btn_MucDoHuHai.setBackground(new java.awt.Color(204, 255, 255));
-        btn_MucDoHuHai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_MucDoHuHai.setForeground(new java.awt.Color(255, 51, 51));
-        btn_MucDoHuHai.setText("Thông tin tình trạng sách");
-        btn_MucDoHuHai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_MucDoHuHaiActionPerformed(evt);
-            }
-        });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin phiếu trả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
@@ -312,56 +303,55 @@ public class TraSachGUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_MaPM, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_TienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_MaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_PhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addGap(84, 84, 84)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btn_TinhPhiDenBu, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                .addComponent(txt_PhiDenBu)))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(108, 108, 108)
-                                .addComponent(txt_TienCoc, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14))
-                                .addGap(45, 45, 45)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_MaThe, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(txt_MaPM)))))
+                    .addGap(175, 175, 175)
+                    .addComponent(btn_TinhPhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(80, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_MaPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txt_MaThe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_TienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txt_PhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel15)
-                        .addComponent(txt_MaPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(45, 45, 45)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel14)
-                        .addComponent(txt_MaThe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(45, 45, 45)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(txt_TienCoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(45, 45, 45)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(txt_PhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(274, 274, 274)
                     .addComponent(btn_TinhPhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(25, Short.MAX_VALUE)))
+                    .addContainerGap(32, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -371,22 +361,21 @@ public class TraSachGUI extends javax.swing.JFrame {
             .addComponent(btn_TraSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addGap(105, 105, 105)
-                        .addComponent(btn_MucDoHuHai))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(133, 133, 133)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addGap(158, 158, 158))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,14 +384,12 @@ public class TraSachGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel11))
-                    .addComponent(btn_MucDoHuHai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_TraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -414,7 +401,7 @@ public class TraSachGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TraSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraSachActionPerformed
-        String id = maPM.replace("PT", "PM");
+        String id = maPM.replace("PM", "PT");
         String maThe = txt_MaThe.getText();
         String ngayMuon = txt_NgayMuon.getText();
         String ngayTra = txt_NgayTra.getText();
@@ -449,10 +436,6 @@ public class TraSachGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_TraSachActionPerformed
 
-    private void btn_MucDoHuHaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MucDoHuHaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_MucDoHuHaiActionPerformed
-
     private void txt_TongTienFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_TongTienFocusGained
         double tongTien = 0.0;
         double phiTreHan = Double.parseDouble(txt_PhiTreHan.getText());
@@ -462,12 +445,46 @@ public class TraSachGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_TongTienFocusGained
 
     private void btn_TinhPhiDenBuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiDenBuActionPerformed
-        // TODO add your handling code here:
+        double tongPhi = 0;
+        int quantityRow = tbl_TinhTrangSach.getRowCount();
+        for(int i = 0;i < quantityRow; i++){
+            String truoc = tbl_TinhTrangSach.getValueAt(i, 3).toString();
+            String sau = tbl_TinhTrangSach.getValueAt(i, 4).toString();
+            double gia = sachBUS.getSachById(tbl_TinhTrangSach.getValueAt(i, 0).toString()).getGiaSach();
+            int muon = 0, tra = 0;
+            for(int x = 0; x < tinhTrangSach.size(); x++){
+                String temp = tinhTrangSach.get(x);
+                if(temp.equals(truoc)){
+                    muon = x;
+                }
+                if(temp.equals(sau)){
+                    tra = x;
+                }
+            }
+            double tong;
+            if(tra - muon == 0){
+                tong = 0;
+                tongPhi += tong;
+            }
+            if(tra - muon == 1){
+                tong = gia*0.25;
+                tongPhi+=tong;
+            }
+            if(tra - muon == 2){
+                tong = gia*0.75;
+                tongPhi+=tong;
+            }else{
+                tong = gia;
+                tongPhi+=tong;
+            }
+        }
+        txt_PhiDenBu.setText(tongPhi+"");
     }//GEN-LAST:event_btn_TinhPhiDenBuActionPerformed
 
     private void btn_TinhPhiTreHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiTreHanActionPerformed
         String ngayTra = txt_NgayTra.getText();
         String hanTra = txt_HanTra.getText();
+        int soLuong = tbl_TinhTrangSach.getRowCount();
         Date nt = null, ht = null;
         try {
             ht = formatter.parse(hanTra);
@@ -479,7 +496,7 @@ public class TraSachGUI extends javax.swing.JFrame {
         java.sql.Date hantra = new java.sql.Date(ht.getTime());
         java.sql.Date ngaytra = new java.sql.Date(nt.getTime());
         int soNgay = ptBUS.TinhSoNgay(ngaytra, hantra);
-        double tienTreHan = soNgay * 1000;
+        double tienTreHan = soNgay * 1000 * soLuong;
         txt_PhiTreHan.setText(tienTreHan+"");
     }//GEN-LAST:event_btn_TinhPhiTreHanActionPerformed
     
@@ -501,7 +518,6 @@ public class TraSachGUI extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_MucDoHuHai;
     private javax.swing.JButton btn_TinhPhiDenBu;
     private javax.swing.JButton btn_TinhPhiTreHan;
     private javax.swing.JButton btn_TraSach;

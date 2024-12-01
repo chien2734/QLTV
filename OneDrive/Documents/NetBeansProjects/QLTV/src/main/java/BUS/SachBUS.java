@@ -168,7 +168,11 @@ public class SachBUS {
     }
     
     public int getSum(){
-        return ds == null ? 0 : ds.size();
+        int tong = 0;
+        for(SachDTO s : ds){
+            tong+=s.getSoLuong();
+        }
+        return tong;
     }
     
     public ArrayList<Object[]> getSoLuongSachBYTacGia(){
@@ -184,5 +188,9 @@ public class SachBUS {
     
     public ArrayList<Object[]> getSachKhongNguyenVen(){
         return sachDAL.getSachKhongNguyenVen();
+    }
+    
+    public ArrayList<Object[]> getSachTheoLuotMuon(){
+        return sachDAL.getSachTheoLuotMuon();
     }
 }

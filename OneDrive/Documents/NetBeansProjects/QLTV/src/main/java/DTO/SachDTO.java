@@ -9,6 +9,7 @@ public class SachDTO {
     private String NXB;
     private int namXB;
     private int soLuong;
+    private double giaSach;
     private String trangthai;
     public SachDTO() {
     }
@@ -21,6 +22,25 @@ public class SachDTO {
         this.NXB = NXB;
         this.namXB = namXB;
         this.soLuong = soLuong;
+    }
+
+    public double getGiaSach() {
+        return giaSach;
+    }
+
+    public void setGiaSach(double giaSach) {
+        this.giaSach = giaSach;
+    }
+
+    public SachDTO(String id, String tenSach, String theloai, String tacGia, String NXB, int namXB, int soLuong, double giaSach) {
+        this.id = id;
+        this.tenSach = tenSach;
+        this.theloai = theloai;
+        this.tacGia = tacGia;
+        this.NXB = NXB;
+        this.namXB = namXB;
+        this.soLuong = soLuong;
+        this.giaSach = giaSach;
     }
 
     public int getNamXB() {

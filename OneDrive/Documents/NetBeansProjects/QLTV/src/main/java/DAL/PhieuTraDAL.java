@@ -114,6 +114,32 @@ public class PhieuTraDAL {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        
         return soNgay;
+    }
+    
+    public ArrayList<Object[]> CacLoaiPhi(int month, int year){
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT "
+                + "(select SUM(tienCoc) from PhieuMuon where MONTH(ngayMuon) = ? and YEAR(ngayMuon) = ? ) =  as TienCoc, "
+                + "(select SUM(phiDenBu) from PhieuTra where MONTH(ngayTra) = ? and YEAR(ngayTra) = ? ) as PhiDenBu, "
+                + "(select SUM(phiTreHan) from PhieuTra where MONTH(ngayTra) = ? and YEAR(ngayTra) = ? ) as PhiTreHan ";               
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, month);
+            pstmt.setInt(2, year);
+            pstmt.setInt(3, month);
+            pstmt.setInt(4, year);
+            pstmt.setInt(5, month);
+            pstmt.setInt(6, year);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Object[] row = {rs.getDouble(1), rs.getDouble(2), rs.getDouble(3)};
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return result;
     }
 }

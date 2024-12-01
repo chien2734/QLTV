@@ -231,7 +231,7 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
         java.sql.Date ngayDk = new java.sql.Date(ngayDK.getTime());
         java.sql.Date ngayHh = new java.sql.Date(ngayHH.getTime());
         ma = "TV"+cccd.substring(cccd.length() - 4)+sdt.substring(sdt.length() - 4);
-        tv = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, 100000, "Đang hoạt động");
+        tv = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, 100000, "Đang hoạt động", 0);
         tvtemp = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, "Đang hoạt động");
         try {
             ThanhVienBUS tvBUS = new ThanhVienBUS();
@@ -239,15 +239,15 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(ThemTheThanhVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-        trangChuGUI.AddRowToDSThe(tvtemp);
-        dispose();
+//        trangChuGUI.AddRowToDSThe(tvtemp);
+//        dispose();
         txt_hoTen.setText("");
         txt_cccd.setText("");
         txt_sdt.setText("");
         txt_diaChi.setText("");
         txt_ngayDK.setText("");
         txt_ngayHH.setText("");
-        txt_hoTen.hasFocus();   
+        txt_hoTen.requestFocus();   
     }//GEN-LAST:event_btn_kichHoatTheActionPerformed
 
     private void txt_ngayDKFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ngayDKFocusGained

@@ -39,12 +39,13 @@ public class PhieuMuonBUS {
         return isUpdated;
     }
 
-    public boolean updateTrangThaiPhieuMuon(String id, String trangThai) {
-        boolean isUpdated = phieuMuonDAL.updateTrangThaiPhieuMuon(id, trangThai);
+    public boolean updateTrangThaiPhieuMuon(PhieuMuonDTO pm) {
+        boolean isUpdated = phieuMuonDAL.updateTrangThaiPhieuMuon(pm);
         if (isUpdated) {
             for (int i = 0; i < ds.size(); i++) {
-                if (ds.get(i).getId().equals(id)) {
-                    ds.get(i).setTrangThai(trangThai);
+                if (ds.get(i).getId().equals(pm.getId())) {
+                    ds.get(i).setTrangThai(pm.getTrangThai());
+                    ds.get(i).setSoLanGiaHan(pm.getSoLanGiaHan());
                     break;
                 }
             }
