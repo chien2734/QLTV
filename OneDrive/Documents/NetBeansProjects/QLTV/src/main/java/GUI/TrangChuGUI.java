@@ -28,7 +28,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author Admin
  */
-public class TrangChuGUI extends javax.swing.JFrame {
+public final class TrangChuGUI extends javax.swing.JFrame {
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private CardLayout cardLayout1, cardLayout2;
@@ -62,59 +62,57 @@ public class TrangChuGUI extends javax.swing.JFrame {
         ctptBUS = new CT_PhieuTraBUS();
         ctpmBUS = new CT_PhieuMuonBUS();
         pmBUS = new PhieuMuonBUS();
+        ptBUS = new PhieuTraBUS();
         tvBUS = new ThanhVienBUS();
+        QuyDinhVaChinhSach();
+
     }
 
-    private void QuyDinhVaChinhSach() {
-        String text = "<html> <h1>Quy định và Chính sách Mượn Trả Thư viện</h1>\n"
-                + "    <h2>1. Đối tượng được mượn sách</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Chỉ các bạn đọc đã đăng ký thẻ thư viện và còn thời hạn sử dụng thẻ mới được phép mượn sách.</li>\n"
-                + "        <li>Mỗi thẻ thư viện chỉ được sử dụng bởi chủ thẻ, không được cho người khác mượn hoặc sử dụng thay.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>2. Số lượng và thời hạn mượn sách</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Mỗi bạn đọc được phép mượn tối đa <strong>5 cuốn sách/lần/ngày</strong>.</li>\n"
-                + "        <li>Thời hạn mượn sách là <strong>21 ngày</strong> kể từ ngày mượn.</li>\n"
-                + "        <li>Sách mượn quá hạn phải được trả ngay và có thể áp dụng các khoản phạt hành chính theo quy định.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>3. Quy định về trả sách</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Sách phải được trả đúng hạn và ở tình trạng nguyên vẹn như khi mượn.</li>\n"
-                + "        <li>Nếu sách bị hư hỏng hoặc mất, bạn đọc phải bồi thường theo giá trị hiện tại của sách cộng với phí xử lý (nếu có).</li>\n"
-                + "        <li>Đối với sách bị mất không còn tái bản, bạn đọc phải bồi thường bằng sách có nội dung tương đương do thư viện yêu cầu.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>4. Chính sách gia hạn</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Mỗi cuốn sách chỉ được gia hạn <strong>2 lần</strong> và thêm tối đa <strong>14 ngày</strong>.</li>\n"
-                + "        <li>Yêu cầu gia hạn phải được thực hiện trước ngày hết hạn.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>5. Quy định về phạt</h2>\n"
-                + "    <ul>\n"
-                + "        <li><strong>Trả sách quá hạn</strong>: Phạt <strong>1.000 đồng/ngày/cuốn</strong>.</li>\n"
-                + "        <li><strong>Làm hư hỏng sách</strong>: Bồi thường giá trị sách theo mức độ.</li>\n"
-                + "        <li><strong>Mất sách</strong>: Bồi thường 150% giá trị sách hoặc thay thế bằng sách tương đương do thư viện quy định.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>6. Thời gian hoạt động của thư viện</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Thư viện mở cửa từ <strong>8:00 - 17:30</strong> từ thứ Hai đến thứ Bảy.</li>\n"
-                + "        <li>Ngày lễ, Tết hoặc sự kiện đặc biệt, thư viện có thể đóng cửa, thông báo sẽ được cập nhật trên bảng tin hoặc website thư viện.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <h2>7. Các quy định khác</h2>\n"
-                + "    <ul>\n"
-                + "        <li>Bạn đọc phải giữ yên tĩnh và tôn trọng không gian chung khi sử dụng thư viện.</li>\n"
-                + "        <li>Không mang đồ ăn, thức uống vào khu vực sách.</li>\n"
-                + "        <li>Tuân thủ các hướng dẫn của nhân viên thư viện trong quá trình mượn trả và sử dụng dịch vụ.</li>\n"
-                + "    </ul>\n"
-                + "\n"
-                + "    <p>Lưu ý: Quy định có thể được thay đổi và cập nhật định kỳ. Vui lòng liên hệ thư viện để biết thêm chi tiết.</p></html>";
-                
+    public void QuyDinhVaChinhSach() {
+        String text = "<html>"
+                + "    <h1>Quy định và Chính sách Mượn Trả Thư viện</h1>"
+                + "    <h3>1. Đối tượng được mượn sách</h3>"
+                + "    <ul>"
+                + "        <li>Chỉ các bạn đọc đã đăng ký thẻ thư viện và còn thời hạn sử dụng thẻ mới được phép mượn sách.</li>"
+                + "        <li>Mỗi thẻ thư viện chỉ được sử dụng bởi chủ thẻ, không được cho người khác mượn hoặc sử dụng thay.</li>"
+                + "    </ul>"
+                + "    <h2>2. Số lượng và thời hạn mượn sách</h2>"
+                + "    <ul>"
+                + "        <li>Mỗi bạn đọc được phép mượn tối đa <strong>5 cuốn sách/lần</strong>.</li>"
+                + "        <li>Thời hạn mượn sách là <strong>21 ngày</strong> kể từ ngày mượn.</li>"
+                + "        <li>Sách mượn quá hạn phải được trả ngay và có thể áp dụng các khoản phạt hành chính theo quy định.</li>"
+                + "    </ul>"
+                + "    <h2>3. Quy định về trả sách</h2>"
+                + "    <ul>"
+                + "        <li>Sách phải được trả đúng hạn và ở tình trạng nguyên vẹn như khi mượn.</li>"
+                + "        <li>Nếu sách bị hư hỏng hoặc mất, bạn đọc phải bồi thường theo giá trị hiện tại của sách cộng với phí xử lý (nếu có).</li>"
+                + "        <li>Đối với sách bị mất không còn tái bản, bạn đọc phải bồi thường bằng sách có nội dung tương đương do thư viện yêu cầu.</li>"
+                + "    </ul>"
+                + "    <h2>4. Chính sách gia hạn</h2>"
+                + "    <ul>"
+                + "        <li>Mỗi cuốn sách chỉ được gia hạn <strong>02 lần</strong> và thêm tối đa <strong>14 ngày</strong>.</li>"
+                + "        <li>Yêu cầu gia hạn phải được thực hiện trước ngày hết hạn.</li>"
+                + "        <li>Sách đã có người khác đặt trước hoặc đã quá hạn không được gia hạn.</li>"
+                + "    </ul>"
+                + "    <h2>5. Quy định về phạt</h2>"
+                + "    <ul>"
+                + "        <li><strong>Trả sách quá hạn</strong>: Phạt <strong>1.000 đồng/ngày/cuốn</strong>.</li>"
+                + "        <li><strong>Làm hư hỏng sách</strong>: Bồi thường giá trị sách cộng phí xử lý 20%.</li>"
+                + "        <li><strong>Mất sách</strong>: Bồi thường 150% giá trị sách hoặc thay thế bằng sách tương đương do thư viện quy định.</li>"
+                + "    </ul>"
+                + "    <h2>6. Thời gian hoạt động của thư viện</h2>"
+                + "    <ul>"
+                + "        <li>Thư viện mở cửa từ <strong>8:00 - 17:30</strong> từ thứ Hai đến thứ Bảy.</li>"
+                + "        <li>Ngày lễ, Tết hoặc sự kiện đặc biệt, thư viện có thể đóng cửa, thông báo sẽ được cập nhật trên bảng tin hoặc website thư viện.</li>"
+                + "    </ul>"
+                + "    <h2>7. Các quy định khác</h2>"
+                + "    <ul>"
+                + "        <li>Bạn đọc phải giữ yên tĩnh và tôn trọng không gian chung khi sử dụng thư viện.</li>"
+                + "        <li>Không mang đồ ăn, thức uống vào khu vực sách.</li>"
+                + "        <li>Tuân thủ các hướng dẫn của nhân viên thư viện trong quá trình mượn trả và sử dụng dịch vụ.</li>"
+                + "    </ul>"
+                + "    <p>Lưu ý: Quy định có thể được thay đổi và cập nhật định kỳ. Vui lòng liên hệ thư viện để biết thêm chi tiết.</p>"
+                + "</html>";
         lb_QuyDinhVaChinhSach.setText(text);
     }
 
@@ -270,9 +268,10 @@ public class TrangChuGUI extends javax.swing.JFrame {
         txt_QLThe_cccd = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        txt_QLThe_diaChi = new javax.swing.JTextField();
         txt_QLThe_sdt = new javax.swing.JTextField();
         btn_QLthe_Update = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_QLThe_DiaChi = new javax.swing.JTextArea();
         jPanel12 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         txt_GHT_idThe = new javax.swing.JTextField();
@@ -569,7 +568,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 51, 51));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("CHÀO MỪNG ĐẾN VỚI THƯ VIỆN CỦA JACK(J97)");
+        jLabel13.setText("THƯ VIỆN NGUYỄN VĂN CỪ");
 
         javax.swing.GroupLayout jPanel_TrangChuLayout = new javax.swing.GroupLayout(jPanel_TrangChu);
         jPanel_TrangChu.setLayout(jPanel_TrangChuLayout);
@@ -581,19 +580,22 @@ public class TrangChuGUI extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 1601, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_TrangChuLayout.createSequentialGroup()
                         .addComponent(lb_QuyDinhVaChinhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1066, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(1464, 1464, 1464))
         );
         jPanel_TrangChuLayout.setVerticalGroup(
             jPanel_TrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_TrangChuLayout.createSequentialGroup()
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel_TrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_QuyDinhVaChinhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(805, Short.MAX_VALUE))
+                    .addGroup(jPanel_TrangChuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_QuyDinhVaChinhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_TrangChuLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(944, Short.MAX_VALUE))
         );
 
         jPanel_Main.add(jPanel_TrangChu, "card2");
@@ -602,7 +604,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jPanel_QLloaisach.setPreferredSize(new java.awt.Dimension(1780, 1010));
 
         SLSach_TheLoai.setBackground(new java.awt.Color(255, 255, 255));
-        SLSach_TheLoai.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin loại sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        SLSach_TheLoai.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin loại sách", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
         SLSach_TheLoai.setPreferredSize(new java.awt.Dimension(300, 732));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -784,7 +786,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm loại sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm loại sách", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jButton_ThemTheLoai.setBackground(new java.awt.Color(204, 255, 255));
         jButton_ThemTheLoai.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -924,7 +926,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin sách", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Mã sách");
@@ -1156,9 +1158,9 @@ public class TrangChuGUI extends javax.swing.JFrame {
                         .addComponent(jComboBoxSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1069, Short.MAX_VALUE))
+                .addContainerGap(1057, Short.MAX_VALUE))
         );
 
         jPanel_Main.add(jPanel_QLsach, "card4");
@@ -1189,7 +1191,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin NXB", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin NXB", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
         jPanel5.setPreferredSize(new java.awt.Dimension(300, 732));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -1349,7 +1351,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm nhà xuất bản", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm nhà xuất bản", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jLabel62.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel62.setText("Mã NXB");
@@ -1476,7 +1478,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin tác giả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin tác giả", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
         jPanel6.setPreferredSize(new java.awt.Dimension(300, 732));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -1586,7 +1588,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Danh sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(0, 102, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Danh sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jTable_TacGia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTable_TacGia.setModel(new javax.swing.table.DefaultTableModel(
@@ -1636,7 +1638,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm tác giả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thêm tác giả", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jButton_ThemTacGia.setBackground(new java.awt.Color(204, 255, 255));
         jButton_ThemTacGia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1741,9 +1743,10 @@ public class TrangChuGUI extends javax.swing.JFrame {
 
         jPanel_Main.add(jPanel_QLTacGia, "card6");
 
-        jPanel_QLThe.setLayout(new java.awt.BorderLayout());
+        jPanel_QLThe.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_QLThe.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanel_QLTheHeader.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel_QLTheHeader.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_QLTheHeader.setPreferredSize(new java.awt.Dimension(2153, 50));
 
         jButton_DangKyThe.setBackground(new java.awt.Color(242, 242, 242));
@@ -1858,7 +1861,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin cá nhân", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin cá nhân", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setText("Họ và tên");
@@ -1876,8 +1879,6 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel31.setText("Địa chỉ");
 
-        txt_QLThe_diaChi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
         txt_QLThe_sdt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btn_QLthe_Update.setBackground(new java.awt.Color(255, 255, 153));
@@ -1889,6 +1890,10 @@ public class TrangChuGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_QLThe_DiaChi.setColumns(20);
+        txt_QLThe_DiaChi.setRows(5);
+        jScrollPane1.setViewportView(txt_QLThe_DiaChi);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -1896,7 +1901,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(108, 108, 108)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
@@ -1908,11 +1913,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
                                 .addComponent(txt_QLThe_name, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                                 .addComponent(txt_QLThe_cccd)
                                 .addComponent(txt_QLThe_sdt))
-                            .addComponent(txt_QLThe_diaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
+                        .addGap(303, 303, 303)
                         .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1929,17 +1934,21 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(txt_QLThe_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(txt_QLThe_diaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin thẻ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Thông tin thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel33.setText("Mã thẻ");
@@ -2015,7 +2024,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                             .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
+                                .addGap(39, 39, 39)
                                 .addComponent(txt_GHT_idThe, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
@@ -2024,7 +2033,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(7, 7, 7)
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_GHT_ngayHH)
                             .addComponent(txt_GHT_trangThai))))
@@ -2068,7 +2077,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                     .addComponent(btn_QLThe_giaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_QLThe_khoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_QLThe_moKhoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         cbb_TimKiemThe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -2113,16 +2122,16 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_DSTheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
-                .addContainerGap(1027, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1005, Short.MAX_VALUE))
         );
 
         jPanel_QLThe.add(jPanel_DSThe, java.awt.BorderLayout.CENTER);
 
         jPanel_Main.add(jPanel_QLThe, "card7");
 
-        jPanel_QLMuon.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_QLMuon.setBackground(new java.awt.Color(51, 153, 255));
         jPanel_QLMuon.setLayout(new java.awt.BorderLayout(0, 5));
 
         jPanel_QLMuonHeader.setBackground(new java.awt.Color(255, 255, 255));
@@ -2309,9 +2318,9 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel44.setText("Mã thẻ");
 
         txt_TVMuon_PhiDatCoc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_TVMuon_PhiDatCoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_TVMuon_PhiDatCocActionPerformed(evt);
+        txt_TVMuon_PhiDatCoc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_TVMuon_PhiDatCocFocusGained(evt);
             }
         });
 
@@ -2381,7 +2390,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel47)
                     .addComponent(txt_TVMuon_TrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -2390,11 +2399,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         tbl_TVMuon_DSMuonMuon.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbl_TVMuon_DSMuonMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "<html><center style='font-size:16px'>Mã sách</html>", "<html><center style='font-size:16px'>Tên sách</html>", "<html><center style='font-size:16px'>Số lượng</html>", "<html><center style='font-size:16px'>Trạng thái</html>"
@@ -2404,7 +2409,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2494,7 +2499,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel_TVMuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                .addGap(49, 49, 49)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel_TVMuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2731,7 +2736,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2970,7 +2975,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Danh sách mượn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Chi tiết phiếu mượn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         tbl_DSMuon_DSM.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbl_DSMuon_DSM.setModel(new javax.swing.table.DefaultTableModel(
@@ -3200,7 +3205,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         );
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Danh sách trả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255), 2), "Chi tiết phiếu trả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(51, 153, 255))); // NOI18N
 
         tbl_DSTra_DST.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbl_DSTra_DST.setModel(new javax.swing.table.DefaultTableModel(
@@ -3355,7 +3360,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jLabel66.setText("Thống kê:");
 
         cbb_ThongKe_LuaChon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cbb_ThongKe_LuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Sách", "Đọc giả", "Mượn trả" }));
+        cbb_ThongKe_LuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sách", "Đọc giả", "Mượn trả" }));
         cbb_ThongKe_LuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbb_ThongKe_LuaChonActionPerformed(evt);
@@ -3420,9 +3425,8 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pn_ThongKeLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cbb_ThongKe_LuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbb_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3439,19 +3443,17 @@ public class TrangChuGUI extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_SoPhieuMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_SoDocGia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_SoPhieuTra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txt_SoLuongSach))))
+                            .addComponent(txt_SoDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_SoPhieuTra, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_SoLuongSach, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pn_ThongKeLayout.createSequentialGroup()
                         .addComponent(cbb_CacLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(90, 90, 90)
+                .addGap(34, 34, 34)
                 .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lb_HienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn_ThongKeLayout.setVerticalGroup(
@@ -3491,7 +3493,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
                         .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_SoPhieuTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel74))))
-                .addContainerGap(527, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel27.add(pn_ThongKe);
@@ -3844,6 +3846,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         int quantityRow = tbl_DSMuon_DSM.getRowCount();
         if (index != -1) {
             cardLayout2.show(jPanel_QLMuonTraMain, "ThanhVienMuonSach");
+            jButton_QLMuon_TVMuon.setText("Chỉnh sửa phiếu mượn");
             btn_TVMuon_XacNhanMuon.setEnabled(false);
             txt_TVMuon_idThe.setText(tbl_DSMuon_DSPM.getValueAt(index, 1).toString());
             txt_TVMuon_NgayMuon.setText(tbl_DSMuon_DSPM.getValueAt(index, 2).toString());
@@ -3980,20 +3983,20 @@ public class TrangChuGUI extends javax.swing.JFrame {
                 }
             }
             for (SachDTO sach : listSach) {
-            TheLoaiDTO tl = tlBUS.getTheLoaiById(sach.getTheloai());
-            TacGiaDTO tg = tgBUS.getTacGiaById(sach.getTacGia());
-            NXBDTO nxb = nxbBUS.getNXBById(sach.getNXB());
-            model.addRow(new Object[]{
-                sach.getId(),
-                sach.getTenSach(),
-                tl.getTen(),
-                tg.getTen(),
-                nxb.getTen(),
-                sach.getNamXB(),
-                sach.getSoLuong(),
-                sach.getGiaSach()
-            });
-        }
+                TheLoaiDTO tl = tlBUS.getTheLoaiById(sach.getTheloai());
+                TacGiaDTO tg = tgBUS.getTacGiaById(sach.getTacGia());
+                NXBDTO nxb = nxbBUS.getNXBById(sach.getNXB());
+                model.addRow(new Object[]{
+                    sach.getId(),
+                    sach.getTenSach(),
+                    tl.getTen(),
+                    tg.getTen(),
+                    nxb.getTen(),
+                    sach.getNamXB(),
+                    sach.getSoLuong(),
+                    sach.getGiaSach()
+                });
+            }
         }
     }//GEN-LAST:event_jButtonTimSachActionPerformed
 
@@ -4058,8 +4061,8 @@ public class TrangChuGUI extends javax.swing.JFrame {
         jTextFieldMaSach.setText(maSach);
         jTextFieldTenSach.setText(tenSach);
         jTextFieldNamXuatBan.setText(namXuatBan);
-        jTextFieldSoLuong.setText(soLuong+"");
-        jTextFieldGiaSach.setText(gia+"");
+        jTextFieldSoLuong.setText(soLuong + "");
+        jTextFieldGiaSach.setText(gia + "");
         jComboBoxTheLoai.setSelectedItem(theLoai);
         jComboBoxTacGia.setSelectedItem(tacGia);
         jComboBoxNhaXuatBan.setSelectedItem(nhaXuatBan);
@@ -4160,55 +4163,82 @@ public class TrangChuGUI extends javax.swing.JFrame {
 
     private void btn_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThongKeActionPerformed
         int thongKeType = cbb_ThongKe_LuaChon.getSelectedIndex();
-        int options = cbb_CacLuaChon.getSelectedIndex();
+
         ArrayList<Object[]> result = new ArrayList<>();
         switch (thongKeType) {
-            case 1 -> {
-                if (options == 0) {
-                    TaoBangCase1("Thể loại");
+            case 0 -> {
+                int option0 = cbb_CacLuaChon.getSelectedIndex();
+                if (option0 == 0) {
+                    TaoBangThreeColumn("Mã thể loại", "Thể loại", "Số lượng sách");
                     result = sachBUS.getSoLuongSachBYTheLoai();
                     lb_HienThi.setText("Sách theo thể loại");
                 }
-                if (options == 1) {
-                    TaoBangCase1("Tác giả");
+                if (option0 == 1) {
+                    TaoBangThreeColumn("Mã tác giả", "Tác giả", "Số lượng sách");
                     result = sachBUS.getSoLuongSachBYTacGia();
                     lb_HienThi.setText("Sách theo tác giả");
                 }
-                if (options == 2) {
-                    TaoBangCase1("Nhà xuất bản");
+                if (option0 == 2) {
+                    TaoBangThreeColumn("Mã nhà xuất bản", "Nhà xuất bản", "Số lượng sách");
                     result = sachBUS.getSoLuongSachBYNXB();
                     lb_HienThi.setText("Sách theo nhà xuất bản");
-                } else {
-                    TaoBangCase1("Tên sách", "Trạng thái");
+                }
+                if (option0 == 3) {
+                    TaoBangFourColumn("Mã sách", "tên sách", "Số lượng", "Trạng thái");
                     result = sachBUS.getSachKhongNguyenVen();
                     lb_HienThi.setText("Danh sách Sách bị mất hoặc hỏng");
                 }
             }
-            case 2 -> {
-                if (options == 0) {
-                    int month = (int) cbb_Thang.getSelectedItem();
-                    int year = (int) cbb_Nam.getSelectedItem();
+            case 1 -> {
+                int option1 = cbb_CacLuaChon.getSelectedIndex();
+                if (option1 == 0) {
+                    int month = cbb_Thang.getSelectedIndex() + 1;
+                    int year = (int) cbb_Nam.getSelectedIndex() + 2020;
                     result = tvBUS.getDocGiaBYNgayDK(month, year);
-                    TaoBangCase2("Ngày đăng ký");
+                    TaoBangThreeColumn("Mã thẻ", "Họ tên đọc giả", "Ngày đăng ký");
                     lb_HienThi.setText("Danh sách đăng ký " + month + "/" + year);
                 }
-                if (options == 1) {
+                if (option1 == 1) {
                     result = tvBUS.getDocGiaKhoaThe();
-                    TaoBangCase2("Ngày đăng ký");
+                    TaoBangThreeColumn("Mã thẻ", "Họ tên đọc giả", "Ngày đăng ký");
                     lb_HienThi.setText("Danh sách thẻ bị khóa");
                 }
-                if (options == 2) {
+                if (option1 == 2) {
                     result = tvBUS.getDocGiaQuaHan();
-                    TaoBangCase2("Hạn sử dụng");
+                    TaoBangThreeColumn("Mã thẻ", "Họ tên đọc giả", "Hạn sử dụng");
                     lb_HienThi.setText("Danh sách thẻ quá hạn");
                 } else {
                     result = tvBUS.getTop5();
-                    TaoBangCase2("Số lượng");
+                    TaoBangThreeColumn("Mã thẻ", "Họ tên đọc giả", "Số lượt mượn");
                     lb_HienThi.setText("Danh sách đọc giả mượn nhiều nhất");
                 }
             }
+            default -> {
+                int option2 = cbb_CacLuaChon.getSelectedIndex();
+                if (option2 == 0) {
+                    int month = cbb_Thang.getSelectedIndex() + 1;
+                    int year = (int) cbb_Nam.getSelectedIndex() + 2020;
+                    result = tvBUS.getDocGiaBYNgayDK(month, year);
+                    TaoBangThreeColumn("Mã phiếu mượn", "Mã thẻ", "Ngày mượn");
+                    lb_HienThi.setText("Danh sách mượn " + month + "/" + year);
+                }
+                if (option2 == 1) {
+                    result = tvBUS.getDocGiaKhoaThe();
+                    TaoBangFourColumn("Mã phiếu trả", "Mã phiếu mượn", "Hạn trả", "Ngày trả");
+                    lb_HienThi.setText("Danh sách phiếu trả trễ hạn");
+                }
+//                if (option2 == 2) {
+//                    result = tvBUS.getDocGiaQuaHan();
+//                    TaoBangCase2("Hạn sử dụng");
+//                    lb_HienThi.setText("Danh sách thẻ quá hạn");
+//                } else {
+//                    result = tvBUS.getTop5();
+//                    TaoBangCase2("Số lượng");
+//                    lb_HienThi.setText("Danh sách đọc giả mượn nhiều nhất");
+//                }
+            }
         }
-        for(Object[] row : result){
+        for (Object[] row : result) {
             bangTK.addRow(row);
         }
     }//GEN-LAST:event_btn_ThongKeActionPerformed
@@ -4243,72 +4273,77 @@ public class TrangChuGUI extends javax.swing.JFrame {
         pm.setHanTra(HanTra);
         ArrayList<CT_PhieuMuonDTO> dsTruoc = ctpmBUS.getCT_PhieuMuonByPhieuMuonId(maPM);
         ArrayList<CT_PhieuMuonDTO> dsSau = new ArrayList<>();
-        ArrayList<CT_PhieuMuonDTO> them, xoa;     
-        for(int i = 0; i < TV_DSMuonMuon.getRowCount(); i++){
+        ArrayList<CT_PhieuMuonDTO> them, xoa;
+        for (int i = 0; i < TV_DSMuonMuon.getRowCount(); i++) {
             dsSau.add(new CT_PhieuMuonDTO(
-                maPM,
-                TV_DSMuonMuon.getValueAt(i, 0).toString(),
-                TV_DSMuonMuon.getValueAt(i, 1).toString(),
-                Integer.parseInt(TV_DSMuonMuon.getValueAt(i, 2).toString()),
-                TV_DSMuonMuon.getValueAt(i, 3).toString()
+                    maPM,
+                    TV_DSMuonMuon.getValueAt(i, 0).toString(),
+                    TV_DSMuonMuon.getValueAt(i, 1).toString(),
+                    Integer.parseInt(TV_DSMuonMuon.getValueAt(i, 2).toString()),
+                    TV_DSMuonMuon.getValueAt(i, 3).toString()
             ));
         }
-        if(pmBUS.updatePhieuMuon(pm)){
+        if (pmBUS.updatePhieuMuon(pm)) {
             them = new ArrayList<>(dsSau);
             them.removeAll(dsTruoc);
             xoa = new ArrayList<>(dsTruoc);
             xoa.removeAll(dsSau);
             ctpmBUS.addCT_PhieuMuon(them);
             ctpmBUS.deleteCT_PhieuMuon(xoa);
-            JOptionPane.showMessageDialog(rootPane, "Cập nhật phiếu mượn "+maPM+" thành công");
-        } else{
-            JOptionPane.showMessageDialog(rootPane, "Cập nhật phiếu mượn "+maPM+" không thành công");
+            JOptionPane.showMessageDialog(rootPane, "Cập nhật phiếu mượn " + maPM + " thành công");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Cập nhật phiếu mượn " + maPM + " không thành công");
         }
     }//GEN-LAST:event_btn_TVMuon_CapNhatPMActionPerformed
 
     private void tbl_TVMuon_DSMuonMuonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_TVMuon_DSMuonMuonMouseClicked
         int selectedRow = tbl_TVMuon_DSMuonMuon.getSelectedRow();
-        if(selectedRow != -1){
+        if (selectedRow != -1) {
             txt_TVMuon_idSach.setText(TV_DSMuonMuon.getValueAt(selectedRow, 0).toString());
             txt_TVMuon_TenSach.setText(TV_DSMuonMuon.getValueAt(selectedRow, 1).toString());
-        }else{
+        } else {
             System.out.println(selectedRow);
         }
     }//GEN-LAST:event_tbl_TVMuon_DSMuonMuonMouseClicked
 
     private void tbl_ChuaCoThe_DSMuonMuonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ChuaCoThe_DSMuonMuonMouseClicked
         int selectedRow = tbl_ChuaCoThe_DSMuonMuon.getSelectedRow();
-        if(selectedRow != -1){
+        if (selectedRow != -1) {
             txt_ChuaCoThe_idSach.setText(ChuaCoThe_DSMuonMuon.getValueAt(selectedRow, 0).toString());
             txt_ChuaCoThe_TenSach.setText(ChuaCoThe_DSMuonMuon.getValueAt(selectedRow, 1).toString());
-        } else{
+        } else {
             System.out.println(selectedRow);
         }
     }//GEN-LAST:event_tbl_ChuaCoThe_DSMuonMuonMouseClicked
 
-    private void TaoBangCase2(String column3) {
+    private void txt_TVMuon_PhiDatCocFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_TVMuon_PhiDatCocFocusGained
+        int column = 2;
+        double sum = 0;
+        for (int row = 0; row < TV_DSMuonMuon.getRowCount(); row++) {
+            Object value = TV_DSMuonMuon.getValueAt(row, column);
+            if (value instanceof Number number) {
+                sum += number.doubleValue(); // Nếu là số, cộng dồn
+            }
+            txt_TVMuon_PhiDatCoc.setText(sum * 15000 + "");
+        }
+        
+    }//GEN-LAST:event_txt_TVMuon_PhiDatCocFocusGained
+
+    private void TaoBangThreeColumn(String column1, String column2, String column3) {
         bangTK.setRowCount(0);
         bangTK.setColumnCount(0);
-        bangTK.addColumn("Mã thẻ");
-        bangTK.addColumn("Tên đọc giả");
-        bangTK.addColumn(column3);
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column1 + "</html>");
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column2 + "</html>");
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column3 + "</html>");
     }
 
-    private void TaoBangCase1(String column2) {
+    private void TaoBangFourColumn(String column1, String column2, String column3, String column4) {
         bangTK.setRowCount(0);
         bangTK.setColumnCount(0);
-        bangTK.addColumn("Mã sách");
-        bangTK.addColumn(column2);
-        bangTK.addColumn("Số lượng");
-    }
-
-    private void TaoBangCase1(String column2, String column4) {
-        bangTK.setRowCount(0);
-        bangTK.setColumnCount(0);
-        bangTK.addColumn("Mã sách");
-        bangTK.addColumn(column2);
-        bangTK.addColumn("Số lượng");
-        bangTK.addColumn(column4);
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column1 + "</html>");
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column2 + "</html>");
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column3 + "</html>");
+        bangTK.addColumn("<html><center style='font-size:16px'>" + column4 + "</html>");
     }
 
     private void btn_QLThe_khoaTheActionPerformed(java.awt.event.ActionEvent evt) {
@@ -4353,7 +4388,12 @@ public class TrangChuGUI extends javax.swing.JFrame {
         data = new HashMap<>();
         data.put("Sách", new String[]{"Số lượng sách theo thể loại", "Số lượng sách theo tác giả", "Số lượng sách theo nhà xuất bản", "Danh sách bị mất hoặc bị hỏng"});
         data.put("Đọc giả", new String[]{"Danh sách đăng ký mới", "Danh sách thẻ bị khóa", "Danh sách thẻ quá hạn", "Đọc giả mượn nhiều nhất", "Đọc giả mượn sách quá hạn và chưa trả"});
-        data.put("Mượn trả", new String[]{"Số phiếu mượn theo tháng", "Phiếu trả trễ hạn", "Sách chưa được trả", "Sách được trả cao nhất"});
+        data.put("Mượn trả", new String[]{"Danh sách phiếu mượn theo tháng", "Phiếu trả trễ hạn", "Sách chưa được trả", "Sách được trả cao nhất"});
+        String selectedCategory = (String) cbb_ThongKe_LuaChon.getSelectedItem();
+        if (selectedCategory != null) {
+            String[] options = data.get(selectedCategory);
+            cbb_CacLuaChon.setModel(new DefaultComboBoxModel<>(options));
+        }
         txt_SoLuongSach.setText(sachBUS.getSum() + "");
         txt_SoDocGia.setText(tvBUS.getSum() + "");
         txt_SoPhieuMuon.setText(pmBUS.getSum() + "");
@@ -4386,6 +4426,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private void jButton_QLMuon_DanhSachMuonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton_QLMuon_DanhSachMuonActionPerformed
         cardLayout2.show(jPanel_QLMuonTraMain, "DanhSachMuon");
         dsPM.setRowCount(0);
+        jButton_QLMuon_TVMuon.setText("Thành viên mượn sách");
         loadDataTrangThaiPhieuMuon(pmBUS.getAllPhieuMuon());
     }
 
@@ -4407,6 +4448,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
 
     private void jButton_QLMuon_ChuaCoTheActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton_QLMuon_ChuaCoTheActionPerformed
         cardLayout2.show(jPanel_QLMuonTraMain, "ChuaCoThe");
+        jButton_QLMuon_TVMuon.setText("Thành viên mượn sách");
         Calendar calendar = Calendar.getInstance();
         String currentTime = formatter.format(calendar.getTime());
         txt_ChuaCoThe_NgayMuon.setText(currentTime);
@@ -4428,7 +4470,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
             txt_QLThe_name.setText(tbl_DanhSachThe.getValueAt(selected, 1).toString());
             txt_QLThe_cccd.setText(tbl_DanhSachThe.getValueAt(selected, 2).toString());
             txt_QLThe_sdt.setText(tbl_DanhSachThe.getValueAt(selected, 3).toString());
-            txt_QLThe_diaChi.setText(tbl_DanhSachThe.getValueAt(selected, 4).toString());
+            txt_QLThe_DiaChi.setText(tbl_DanhSachThe.getValueAt(selected, 4).toString());
             // Gia han the
             txt_GHT_idThe.setText(tbl_DanhSachThe.getValueAt(selected, 0).toString());
             txt_GHT_trangThai.setText(tbl_DanhSachThe.getValueAt(selected, 7).toString());
@@ -4438,7 +4480,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
             txt_QLThe_name.setText("");
             txt_QLThe_cccd.setText("");
             txt_QLThe_sdt.setText("");
-            txt_QLThe_diaChi.setText("");
+            txt_QLThe_DiaChi.setText("");
             txt_GHT_idThe.setText("");
             txt_GHT_trangThai.setText("");
             txt_GHT_ngayDK.setText("");
@@ -4503,7 +4545,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         cccd = txt_QLThe_cccd.getText();
         sdt = txt_QLThe_sdt.getText();
         RegexUtils.CheckRegex(cccd, sdt, jPanel_DSThe);
-        diaChi = txt_QLThe_diaChi.getText();
+        diaChi = txt_QLThe_DiaChi.getText();
         ThanhVienDTO tv = tvBUS.searchThanhVienById(ma);
         tv.setCCCD(cccd);
         tv.setDiaChi(diaChi);
@@ -4613,7 +4655,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         for (int i = 0; i < dsPhieuMuon.size(); i++) {
             pm = dsPhieuMuon.get(i);
             Object[] row = {pm.getId(), pm.getMaThe(), pm.getNgayMuon(), pm.getHanTra(), pm.getTienCoc(), pm.getTrangThai()};
-            dsPM.addRow(row);;
+            dsPM.addRow(row);
         }
     }
 
@@ -4639,7 +4681,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
         CT_PhieuMuonDTO ctpm = new CT_PhieuMuonDTO();
         for (int i = 0; i < ds.size(); i++) {
             ctpm = ds.get(i);
-            Object[] row = {ctpm.getMaPhieuMuon(), ctpm.getMaSach(), ctpm.getTenSach(), ctpm.getSoLuong(), ctpm.getTrangThai()};
+            Object[] row = {ctpm.getMaSach(),ctpm.getTenSach(), ctpm.getSoLuong(), ctpm.getTrangThai()};
             dsMuon.addRow(row);
         }
     }
@@ -4655,6 +4697,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
             if (TVMuon_quantityBook > 5) {
                 JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa 5 cuốn sách cho mỗi lần mượn!");
             } else {
+                TV_DSMuonMuon.setRowCount(TVMuon_quantityBook);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), TVMuon_quantityBook - 1, 0);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), TVMuon_quantityBook - 1, 1);
                 TV_DSMuonMuon.setValueAt(soLuong, TVMuon_quantityBook - 1, 2);
@@ -4662,6 +4705,8 @@ public class TrangChuGUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể chỉnh sửa phiếu đã trả!");
         }
+        txt_TVMuon_idSach.setText("");
+        txt_TVMuon_TenSach.setText("");
     }
 
     private void btn_TVMuon_TimSachActionPerformed(java.awt.event.ActionEvent evt) {
@@ -4670,18 +4715,19 @@ public class TrangChuGUI extends javax.swing.JFrame {
         } else {
             SachDTO sach = sachBUS.getSachById(txt_TVMuon_TimKiemSach.getText());
             int slcl = sachBUS.getSoSachConLai(sach.getId());
-            if(slcl == 0){
-                JOptionPane.showMessageDialog(rootPane, "Mã sách này đã hết!");
+            if (slcl == 0 || sach == null) {
+                JOptionPane.showMessageDialog(rootPane, "Không có!");
             }
-            int rowCount = TV_DSMuonMuon.getRowCount();
-            for(int i = 0; i< rowCount ; i++){
-                if(sach.getId().equals(TV_DSMuonMuon.getValueAt(i, 0).toString())){
-                    JOptionPane.showMessageDialog(rootPane, "Mã sách này đã có trong danh sách muốn mượn!");
-                    break;
+            if (TV_DSMuonMuon.getRowCount() > 0) {
+                for (int i = 0; i < TV_DSMuonMuon.getRowCount(); i++) {
+                    if (sach.getId().equals(TV_DSMuonMuon.getValueAt(i, 0).toString())) {
+                        JOptionPane.showMessageDialog(rootPane, "Mã sách này đã có trong danh sách muốn mượn!");
+                        break;
+                    }
                 }
             }
             txt_TVMuon_idSach.setText(sach.getId());
-            txt_TVMuon_TenSach.setText(sach.getTenSach());           
+            txt_TVMuon_TenSach.setText(sach.getTenSach());
         }
     }
 
@@ -4693,18 +4739,6 @@ public class TrangChuGUI extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể chỉnh sửa phiếu đã trả!");
-        }
-    }
-
-    private void txt_TVMuon_PhiDatCocActionPerformed(java.awt.event.ActionEvent evt) {
-        int column = 2;
-        double sum = 0;
-        for (int row = 0; row < TV_DSMuonMuon.getRowCount(); row++) {
-            Object value = TV_DSMuonMuon.getValueAt(row, column);
-            if (value instanceof Number number) {
-                sum += number.doubleValue(); // Nếu là số, cộng dồn
-            }
-            txt_TVMuon_PhiDatCoc.setText(sum + "");
         }
     }
 
@@ -4760,10 +4794,13 @@ public class TrangChuGUI extends javax.swing.JFrame {
         if (ChuaCothe_quantityBook > 5) {
             JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa 5 cuốn sách cho mỗi lần mượn!");
         } else {
+            ChuaCoThe_DSMuonMuon.setRowCount(ChuaCothe_quantityBook);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), ChuaCothe_quantityBook - 1, 0);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), ChuaCothe_quantityBook - 1, 1);
             ChuaCoThe_DSMuonMuon.setValueAt(soLuong, ChuaCothe_quantityBook - 1, 2);
         }
+        txt_ChuaCoThe_idSach.setText("");
+        txt_ChuaCoThe_TenSach.setText("");
     }
 
     private void btn_ChuaCoThe_XoaKhoiPMActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_ChuaCoThe_XoaKhoiPMActionPerformed
@@ -4834,12 +4871,12 @@ public class TrangChuGUI extends javax.swing.JFrame {
         } else {
             SachDTO sach = sachBUS.getSachById(txt_ChuaCoThe_TimSach.getText());
             int slcl = sachBUS.getSoSachConLai(sach.getId());
-            if(slcl == 0){
-                JOptionPane.showMessageDialog(rootPane, "Mã sách này đã hết!");                
+            if (slcl == 0 || sach == null) {
+                JOptionPane.showMessageDialog(rootPane, "Không có!");
             }
             int rowCount = tbl_ChuaCoThe_DSMuonMuon.getRowCount();
-            for(int i = 0; i< rowCount ; i++){
-                if(sach.getId().equals(tbl_ChuaCoThe_DSMuonMuon.getValueAt(i, 0).toString())){
+            for (int i = 0; i < rowCount; i++) {
+                if (sach.getId().equals(tbl_ChuaCoThe_DSMuonMuon.getValueAt(i, 0).toString())) {
                     JOptionPane.showMessageDialog(rootPane, "Mã sách này đã có trong danh sách muốn mượn!");
                     break;
                 }
@@ -4849,11 +4886,11 @@ public class TrangChuGUI extends javax.swing.JFrame {
         }
     }
 
-//    public void AddRowToDSThe(ThanhVienDTO tv) {
-//        DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
-//        model_DSThe.addRow(new Object[]{tv.getId(), tv.getTen(), tv.getCCCD(), tv.getSdt(), tv.getDiaChi(),
-//            tv.getNgayDK(), tv.getHanSD(), tv.getTrangThai()});
-//    }
+    public void AddRowToDSThe(ThanhVienDTO tv) {
+        DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
+        model_DSThe.addRow(new Object[]{tv.getId(), tv.getTen(), tv.getCCCD(), tv.getSdt(), tv.getDiaChi(),
+            tv.getNgayDK(), tv.getHanSD(), tv.getTrangThai()});
+    }
     private void jButton_QLLoaiSachActionPerformed(java.awt.event.ActionEvent evt) {
         cardLayout1.show(jPanel_Main, "LoaiSach");
         try {
@@ -5332,6 +5369,7 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_TVMuon;
     private javax.swing.JPanel jPanel_ThongKevaBaoCao;
     private javax.swing.JPanel jPanel_TrangChu;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
@@ -5407,8 +5445,8 @@ public class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_GHT_ngayDK;
     private javax.swing.JTextField txt_GHT_ngayHH;
     private javax.swing.JTextField txt_GHT_trangThai;
+    private javax.swing.JTextArea txt_QLThe_DiaChi;
     private javax.swing.JTextField txt_QLThe_cccd;
-    private javax.swing.JTextField txt_QLThe_diaChi;
     private javax.swing.JTextField txt_QLThe_name;
     private javax.swing.JTextField txt_QLThe_sdt;
     private javax.swing.JTextField txt_SoDocGia;

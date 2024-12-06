@@ -4,6 +4,7 @@ package GUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,12 +12,14 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class LoginGUI extends javax.swing.JFrame {
-
+    ImageIcon icon;
     /**
      * Creates new form LoginGUI
      */
     public LoginGUI() {
         initComponents();
+        this.setTitle("Đăng nhập");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -29,12 +32,14 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txt_tenDangNhap = new javax.swing.JTextField();
-        txt_passWord = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btn_dangNhap = new javax.swing.JButton();
+        txt_passWord = new javax.swing.JPasswordField();
+        btn_XemPassWord = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setForeground(new java.awt.Color(102, 153, 255));
 
@@ -51,19 +56,11 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Mật khẩu");
 
-        txt_tenDangNhap.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        txt_tenDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_tenDangNhap.setText("Nhập tên đăng nhập...");
         txt_tenDangNhap.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txt_tenDangNhapFocusGained(evt);
-            }
-        });
-
-        txt_passWord.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        txt_passWord.setText("Nhập mật khẩu...");
-        txt_passWord.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_passWordFocusGained(evt);
             }
         });
 
@@ -84,6 +81,22 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_passWord.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_passWord.setText("gfdse");
+        txt_passWord.setPreferredSize(new java.awt.Dimension(120, 40));
+        txt_passWord.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_passWordFocusGained(evt);
+            }
+        });
+
+        btn_XemPassWord.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\NetBeansProjects\\QLTV\\src\\main\\resources\\images\\xemmk.png")); // NOI18N
+        btn_XemPassWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XemPassWordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,17 +105,6 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_tenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_passWord, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +114,23 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(191, 191, 191))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_passWord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_tenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_XemPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,8 +143,10 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_passWord, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_XemPassWord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_passWord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,14 +169,17 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangNhapActionPerformed
         String ten = txt_tenDangNhap.getText();
-        String mk = txt_passWord.getText();
-        if(ten.isEmpty() || mk.isEmpty()){
+        char[] mk = txt_passWord.getPassword();
+        String pass = new String(mk);
+        if(ten.isEmpty() || pass.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Không được để trống thông tin nào!");
         }
         if(ten.equals("Admin") && mk.equals("Admin")){
             JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công!");
             try {
-                new TrangChuGUI();
+                TrangChuGUI trangChuGUI = new TrangChuGUI();
+                trangChuGUI.setVisible(true);
+                trangChuGUI.setLocationRelativeTo(null);
             } catch (SQLException ex) {
                 Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -170,13 +189,25 @@ public class LoginGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_dangNhapActionPerformed
 
-    private void txt_passWordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_passWordFocusGained
-        txt_passWord.setText("");
-    }//GEN-LAST:event_txt_passWordFocusGained
-
     private void txt_tenDangNhapFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_tenDangNhapFocusGained
         txt_tenDangNhap.setText("");
     }//GEN-LAST:event_txt_tenDangNhapFocusGained
+
+    private void btn_XemPassWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XemPassWordActionPerformed
+        if (txt_passWord.getEchoChar() == '\u2022') {
+            icon = new ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\NetBeansProjects\\QLTV\\src\\main\\\\resources\\images\\anmk.png");
+            btn_XemPassWord.setIcon(icon);
+            txt_passWord.setEchoChar((char) 0); 
+        } else {
+            icon = new ImageIcon("C:\\Users\\Admin\\OneDrive\\Documents\\NetBeansProjects\\QLTV\\src\\main\\\\resources\\images\\xemmk.png");
+            btn_XemPassWord.setIcon(icon);
+            txt_passWord.setEchoChar('\u2022'); 
+        }
+    }//GEN-LAST:event_btn_XemPassWordActionPerformed
+
+    private void txt_passWordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_passWordFocusGained
+        txt_passWord.setText("");
+    }//GEN-LAST:event_txt_passWordFocusGained
 
     /**
      * @param args the command line arguments
@@ -214,6 +245,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_XemPassWord;
     private javax.swing.JButton btn_dangNhap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -222,7 +254,7 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txt_passWord;
+    private javax.swing.JPasswordField txt_passWord;
     private javax.swing.JTextField txt_tenDangNhap;
     // End of variables declaration//GEN-END:variables
 }

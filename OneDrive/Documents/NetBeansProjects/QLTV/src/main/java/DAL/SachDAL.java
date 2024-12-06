@@ -273,11 +273,11 @@ public class SachDAL {
 
     public int getSoSachConLai(String id) {
     int soLuong = 0;
-    String sql = "SELECT s.soLuongNhap - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai " +
+    String sql = "SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai " +
                  "FROM Sach s " +
                  "LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach " +
                  "WHERE s.id = ? " +
-                 "GROUP BY s.soLuongNhap;";
+                 "GROUP BY s.id, s.soLuong ";
 
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setString(1, id); 
