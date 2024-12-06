@@ -39,6 +39,10 @@ public class PhieuMuonBUS {
         return isUpdated;
     }
 
+    public boolean hasID(String id){
+        return phieuMuonDAL.hasID(id);
+    }
+    
     public boolean updateTrangThaiPhieuMuon(PhieuMuonDTO pm) {
         boolean isUpdated = phieuMuonDAL.updateTrangThaiPhieuMuon(pm);
         if (isUpdated) {

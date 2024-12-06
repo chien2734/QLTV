@@ -519,7 +519,10 @@ public class TraSachGUI extends javax.swing.JFrame {
         column.setCellEditor(new javax.swing.DefaultCellEditor(cbb));  
     }
     
-
+    public void updateButtonName(String name){
+        btn_TraSach.setText(name);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_TinhPhiDenBu;
     private javax.swing.JButton btn_TinhPhiTreHan;
