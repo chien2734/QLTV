@@ -134,7 +134,7 @@ public class ThanhVienBUS {
         return thanhVienDAL.getDocGiaKhoaThe();
     }
     
-    public ArrayList<Object[]> getTop5(){
-        return thanhVienDAL.getTop5();
+    public ArrayList<Object[]> getTop10(){
+        return thanhVienDAL.getTop10();
     }
 }

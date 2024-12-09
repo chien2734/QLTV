@@ -336,7 +336,7 @@
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="TH&#x1af; VI&#x1ec6;N NGUY&#x1ec4;N V&#x102;N C&#x1eea;"/>
+                <Property name="text" type="java.lang.String" value="CH&#xc0;O M&#x1eea;NG &#x110;&#x1ebe;N V&#x1eda;I TH&#x1af; VI&#x1ec6;N C&#x1ee6;A CH&#xda;NG T&#xd4;I"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -2324,7 +2324,7 @@
                           <Table columnCount="3" rowCount="0">
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; t&#xe1;c gi&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n t&#xe1;c gi&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
-                            <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;n s&#xe1;ch&lt;/html&gt;" type="java.lang.Integer"/>
+                            <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng s&#xe1;ch&lt;/html&gt;" type="java.lang.Integer"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -3831,7 +3831,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="0" red="cc" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Clear"/>
+                        <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TVMuon_ClearActionPerformed"/>
@@ -3870,7 +3870,9 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="710" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="462" max="-2" attributes="0"/>
+                                      <Component id="btn_ChuaCoThe_Clear" min="-2" pref="303" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                                       <Component id="btn_ChuaCoThe_XacNhanMuon" min="-2" pref="295" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3890,7 +3892,10 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btn_ChuaCoThe_XacNhanMuon" min="-2" pref="74" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btn_ChuaCoThe_XacNhanMuon" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Component id="btn_ChuaCoThe_Clear" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace pref="1033" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -4497,6 +4502,20 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ChuaCoThe_XacNhanMuonActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_ChuaCoThe_Clear">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="24" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

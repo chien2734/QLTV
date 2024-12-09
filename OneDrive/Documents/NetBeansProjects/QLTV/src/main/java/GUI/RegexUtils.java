@@ -1,5 +1,8 @@
 package GUI;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -41,6 +44,15 @@ public class RegexUtils {
             return false;
         }
         return input.matches(regex);
+    }
+    public static boolean isValidDate(String dateStr) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate.parse(dateStr, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }
 

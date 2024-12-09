@@ -175,16 +175,16 @@ public class SachBUS {
         return tong;
     }
     
-    public ArrayList<Object[]> getSoLuongSachBYTacGia(){
-        return sachDAL.getSoLuongSachBYTacGia();
-    }
-    
-    public ArrayList<Object[]> getSoLuongSachBYTheLoai(){
-        return sachDAL.getSoLuongSachBYTheLoai();
-    }
-    public ArrayList<Object[]> getSoLuongSachBYNXB(){
-        return sachDAL.getSoLuongSachBYNXB();
-    }
+//    public ArrayList<Object[]> getSoLuongSachBYTacGia(){
+//        return sachDAL.getSoLuongSachBYTacGia();
+//    }
+//    
+//    public ArrayList<Object[]> getSoLuongSachBYTheLoai(){
+//        return sachDAL.getSoLuongSachBYTheLoai();
+//    }
+//    public ArrayList<Object[]> getSoLuongSachBYNXB(){
+//        return sachDAL.getSoLuongSachBYNXB();
+//    }
     
     public ArrayList<Object[]> getSachKhongNguyenVen(){
         return sachDAL.getSachKhongNguyenVen();
@@ -192,6 +192,14 @@ public class SachBUS {
     
     public ArrayList<Object[]> getSachTheoLuotMuon(){
         return sachDAL.getSachTheoLuotMuon();
+    }
+    
+    public ArrayList<Object[]> getTop10SachMuonNhieuNhat(){
+        return sachDAL.getTop10SachMuonNhieuNhat();
+    }
+    
+    public ArrayList<Object[]> getTop10SachMuonItNhat(){
+        return sachDAL.getTop10SachMuonItNhat();
     }
     public int getSoSachConLai(String id){
         return sachDAL.getSoSachConLai(id);

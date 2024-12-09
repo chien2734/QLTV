@@ -78,4 +78,12 @@ public class NXBBUS {
         }
         return null;
     }
+    
+    public int getSoLuongSachofNXB(String id){
+        return nxbDAL.getSoLuongSachofNXB(id);
+    }
+    
+    public int getSoLuongSachConLai(String id){
+        return nxbDAL.getSoLuongSachConlai(id);
+    }
 }

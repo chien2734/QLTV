@@ -14,8 +14,8 @@ public class PhieuTraDAL {
 
     // Thêm phiếu trả mới
     public boolean addPhieuTra(PhieuTraDTO phieuTra) {
-        String sql = "INSERT INTO PhieuTra (id, maPhieuMuon, maThe, ngayMuon, ngayTra, phiDenBu, phiTreHan) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PhieuTra (id, maPhieuMuon, maThe, ngayMuon, ngayTra, phiDenBu, phiTreHan, trangthai) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, phieuTra.getId());
             pstmt.setString(2, phieuTra.getMaPhieuMuon());
@@ -24,6 +24,7 @@ public class PhieuTraDAL {
             pstmt.setDate(5, new java.sql.Date(phieuTra.getNgayTra().getTime()));
             pstmt.setDouble(6, phieuTra.getPhiDenBu());
             pstmt.setDouble(7, phieuTra.getPhiTreHan());
+            pstmt.setNString(8, phieuTra.getTrangThai());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error adding PhieuTra: " + e.getMessage());
@@ -33,7 +34,7 @@ public class PhieuTraDAL {
 
     // Cập nhật phiếu trả
     public boolean updatePhieuTra(PhieuTraDTO phieuTra) {
-        String sql = "UPDATE PhieuTra SET maPhieuMuon = ?, maThe = ?, ngayMuon = ?, ngayTra = ?, phiDenBu = ?, phiTreHan = ? WHERE id = ?";
+        String sql = "UPDATE PhieuTra SET maPhieuMuon = ?, maThe = ?, ngayMuon = ?, ngayTra = ?, phiDenBu = ?, phiTreHan = ?, trangThai = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, phieuTra.getMaPhieuMuon());
             pstmt.setString(2, phieuTra.getMaThe());
@@ -41,7 +42,8 @@ public class PhieuTraDAL {
             pstmt.setDate(4, new java.sql.Date(phieuTra.getNgayTra().getTime()));
             pstmt.setDouble(5, phieuTra.getPhiDenBu());
             pstmt.setDouble(6, phieuTra.getPhiTreHan());
-            pstmt.setString(7, phieuTra.getId());
+            pstmt.setNString(7, phieuTra.getTrangThai());
+            pstmt.setString(8, phieuTra.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Error updating PhieuTra: " + e.getMessage());
@@ -65,7 +67,8 @@ public class PhieuTraDAL {
     public ArrayList<PhieuTraDTO> getAllPhieuTra() {
         ArrayList<PhieuTraDTO> list = new ArrayList<>();
         String sql = "SELECT * FROM PhieuTra";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); 
+                ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 PhieuTraDTO phieuTra = new PhieuTraDTO(
                         rs.getString("id"),
@@ -74,7 +77,8 @@ public class PhieuTraDAL {
                         rs.getDate("ngayMuon"),
                         rs.getDate("ngayTra"),
                         rs.getDouble("phiDenBu"),
-                        rs.getDouble("phiTreHan")
+                        rs.getDouble("phiTreHan"),
+                        rs.getNString("trangThai")
                 );
                 list.add(phieuTra);
             }

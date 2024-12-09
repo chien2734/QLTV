@@ -186,7 +186,7 @@ public class ThanhVienDAL extends connectionDB {
         return result;
     }
 
-    public ArrayList<Object[]> getTop5() {
+    public ArrayList<Object[]> getTop10() {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT TOP 5 tv.id, tv.ten, COUNT(pm.id) AS SoLuotMuon "
                 + "FROM ThanhVien tv "

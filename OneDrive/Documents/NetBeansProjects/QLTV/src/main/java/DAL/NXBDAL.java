@@ -78,5 +78,45 @@ public class NXBDAL extends connectionDB {
         }
         return checked;
     }
+    public int getSoLuongSachofNXB(String id){
+        int soLuong = 0;
+        String sql = "SELECT nxb.id, nxb.ten, SUM(s.SoLuong) AS SoLuongSach "
+                + "FROM NXB nxb "
+                + "INNER JOIN Sach s ON s.NXB = nxb.id "
+                + "WHERE nxb.id = ? "
+                + "GROUP BY nxb.id, nxb.ten";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString( 1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
 
+    public int getSoLuongSachConlai(String id) {
+        int soLuong = 0;
+        String sql = """
+                     SELECT ncb.id, nxb.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
+                     FROM NXB nxb 
+                     JOIN Sach sach ON sach.NXB = nxb.id 
+                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     GROUP BY nxb.id, nxb.ten  
+                     """;
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
 }

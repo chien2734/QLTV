@@ -5,12 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TacGiaDAL extends connectionDB {
 
     private final Connection conn;
+
     public TacGiaDAL() throws SQLException {
         conn = connectionDB.openConnection();
     }
@@ -18,7 +18,7 @@ public class TacGiaDAL extends connectionDB {
     // Thêm tác giả mới
     public boolean addTacGia(TacGiaDTO tacGia) {
         String sql = "INSERT INTO TacGia (id, ten) VALUES (?, ?)";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, tacGia.getId());
             pstmt.setString(2, tacGia.getTen());
             return pstmt.executeUpdate() > 0;
@@ -31,7 +31,7 @@ public class TacGiaDAL extends connectionDB {
     // Cập nhật thông tin tác giả
     public boolean updateTacGia(TacGiaDTO tacGia) {
         String sql = "UPDATE TacGia SET ten = ? WHERE id = ?";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, tacGia.getTen());
             pstmt.setString(2, tacGia.getId());
             return pstmt.executeUpdate() > 0;
@@ -61,7 +61,7 @@ public class TacGiaDAL extends connectionDB {
             while (rs.next()) {
                 TacGiaDTO tacGia = new TacGiaDTO(
                         rs.getString("id"),
-                        rs.getString("ten")
+                        rs.getNString("ten")
                 );
                 list.add(tacGia);
             }
@@ -71,20 +71,61 @@ public class TacGiaDAL extends connectionDB {
         return list;
     }
 
-    public boolean hasID(String id){
+    public boolean hasID(String id) {
         boolean checked = false;
         String sql = "select * from TacGia where id = ?";
-        try{
+        try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return true;
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return checked;
     }
-  
+
+    public int getSoLuongSachofTacGia(String id) {
+        int soLuong = 0;
+        String sql = "SELECT tg.id, tg.ten, SUM(s.SoLuong) AS SoLuongSach "
+                + "FROM TacGia tg "
+                + "INNER JOIN Sach s ON s.tacGia = tg.id "
+                + "WHERE tg.id = ? "
+                + "GROUP BY tg.id, tg.ten";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
+
+    public int getSoLuongSachConlai(String id) {
+        int soLuong = 0;
+        String sql = """
+                     SELECT tg.id, tg.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
+                     FROM TacGia tg 
+                     JOIN Sach sach ON sach.tacGia = tacgia.id 
+                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     GROUP BY tg.id, tg.ten 
+                     """;
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
 }

@@ -117,4 +117,20 @@ public class PhieuMuonBUS {
     public int getSum(){
         return ds == null ? 0 : ds.size();
     }
+    
+    public ArrayList<Object[]> sachChuaDuocTra(){
+        return phieuMuonDAL.sachChuaDuocTra();
+    }
+    
+     public ArrayList<Object[]> sachDuocTraNhieuNhat(){
+        return phieuMuonDAL.sachDuocTraNhieuNhat();
+    }
+     
+     public ArrayList<Object[]> danhSachPhieuMuon(int month, int year){
+        return phieuMuonDAL.DanhSachPhieuMuonTheoThang(month, year);
+    }
+     
+     public ArrayList<Object[]> danhSachPhieuTra(int month, int year){
+        return phieuMuonDAL.DanhSachPhieuTraTheoThang(month, year);
+    }
 }

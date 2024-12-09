@@ -194,9 +194,9 @@ public class SachDAL {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "SELECT s.tacGia, tg.Ten, SUM(s.SoLuong) AS SoLuongSach "
                 + "FROM Sach s "
-                + "INNER JOIN TacGia tg ON s.tacGia = tg.id "
-                + "GROUP BY s.tacGia, tg.Ten";
-        try {
+               + "INNER JOIN TacGia tg ON s.tacGia = tg.id "
+               + "GROUP BY s.tacGia, tg.Ten";
+    try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -204,22 +204,63 @@ public class SachDAL {
                 result.add(e);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+          System.out.println(e);
+       }
+        return result  ;  
         }
-        return result;
-    }
-
-    public ArrayList<Object[]> getSoLuongSachBYTheLoai() {
+//
+////    public ArrayList<Object[]> getSoLuongSachBYTheLoai() {
+////        ArrayList<Object[]> result = new ArrayList<>();
+////        String sql = "SELECT s.theloai, tl.Ten, SUM(s.SoLuong) AS SoLuongSach "
+////                + "FROM Sach s "
+////                + "INNER JOIN TheLoai tl ON s.theloai = tl.id "
+////                + "GROUP BY s.theloai, tl.Ten";
+////        try {
+////            Statement stmt = conn.createStatement();
+////            ResultSet rs = stmt.executeQuery(sql);
+////            while (rs.next()) {
+////                Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+////                result.add(e);
+////            }
+////        } catch (SQLException e) {
+////            System.out.println(e);
+////        }
+////        return result;
+////    }
+//
+//    public ArrayList<Object[]> getSoLuongSachBYNXB() {
+//        ArrayList<Object[]> result = new ArrayList<>();
+//        String sql = "SELECT s.NXB, nxb.Ten, SUM(s.SoLuong) AS SoLuongSach "
+//                + "FROM Sach s "
+//                + "INNER JOIN NXB nxb ON s.NXB = nxb.id "
+//                + "GROUP BY s.NXB, nxb.Ten";
+//        try {
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//            while (rs.next()) {
+//                Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+//                result.add(e);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//        return result;
+//    }
+    public ArrayList<Object[]> getTop10SachMuonNhieuNhat() {
         ArrayList<Object[]> result = new ArrayList<>();
-        String sql = "SELECT s.theloai, tl.Ten, SUM(s.SoLuong) AS SoLuongSach "
-                + "FROM Sach s "
-                + "INNER JOIN TheLoai tl ON s.theloai = tl.id "
-                + "GROUP BY s.theloai, tl.Ten";
+        String sql = "SELECT TOP 10 s.id, s.tenSach, SUM(ctpm.soLuong) AS TongSoLuongMuon "
+                + "FROM  Sach s "
+                + "JOIN  CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
+                + "GROUP BY s.id, s.tenSach "
+                + "ORDER BY TongSoLuongMuon DESC;";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+                Object[] e = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getInt(3)};
                 result.add(e);
             }
         } catch (SQLException e) {
@@ -227,18 +268,22 @@ public class SachDAL {
         }
         return result;
     }
-
-    public ArrayList<Object[]> getSoLuongSachBYNXB() {
+    
+    public ArrayList<Object[]> getTop10SachMuonItNhat() {
         ArrayList<Object[]> result = new ArrayList<>();
-        String sql = "SELECT s.NXB, nxb.Ten, SUM(s.SoLuong) AS SoLuongSach "
-                + "FROM Sach s "
-                + "INNER JOIN NXB nxb ON s.NXB = nxb.id "
-                + "GROUP BY s.NXB, nxb.Ten";
+        String sql = "SELECT TOP 10 s.id, s.tenSach, SUM(ctpm.soLuong) AS TongSoLuongMuon "
+                + "FROM  Sach s "
+                + "JOIN  CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
+                + "GROUP BY s.id, s.tenSach "
+                + "ORDER BY TongSoLuongMuon;";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Object[] e = {rs.getString(1), rs.getNString(2), rs.getInt(3)};
+                Object[] e = {
+                    rs.getString(1),
+                    rs.getNString(2),
+                    rs.getInt(3)};
                 result.add(e);
             }
         } catch (SQLException e) {
@@ -272,24 +317,24 @@ public class SachDAL {
     }
 
     public int getSoSachConLai(String id) {
-    int soLuong = 0;
-    String sql = "SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai " +
-                 "FROM Sach s " +
-                 "LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach " +
-                 "WHERE s.id = ? " +
-                 "GROUP BY s.id, s.soLuong ";
+        int soLuong = 0;
+        String sql = "SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai "
+                + "FROM Sach s "
+                + "LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
+                + "WHERE s.id = ? "
+                + "GROUP BY s.id, s.soLuong ";
 
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, id); 
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                soLuong = rs.getInt("SoLuongConLai"); 
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    soLuong = rs.getInt("SoLuongConLai");
+                }
             }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Error: " + e.getMessage());
+        return soLuong;
     }
-    return soLuong;
-}
 
 }

@@ -81,4 +81,11 @@ public class TacGiaBUS {
         return null;
     }
     
+    public int getSoLuongSachofTacGia(String id){
+        return tacGiaDAL.getSoLuongSachofTacGia(id);
+    }
+    
+    public int getSoLuongSachConLai(String id){
+        return tacGiaDAL.getSoLuongSachConlai(id);
+    }
 }

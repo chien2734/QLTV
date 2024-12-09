@@ -44,6 +44,9 @@ public class TheLoaiBUS {
         return "Cập nhật không thành công!";
     }
     
+    public int getSoLuongSachofTheLoai(String id){
+        return theLoaiDAL.getSoLuongSachofTheLoai(id);
+    }
     // Xóa thể loại
     public String deleteTheLoai(String id) {
          boolean isDeleted = theLoaiDAL.deleteTheLoai(id);
@@ -78,5 +81,9 @@ public class TheLoaiBUS {
             }
         }
         return null;
+    }
+    
+    public int getSoLuongSachConLai(String id){
+        return theLoaiDAL.getSoLuongSachConlai(id);
     }
 }

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TheLoaiDAL extends connectionDB {
@@ -86,37 +87,46 @@ public class TheLoaiDAL extends connectionDB {
         }
         return checked;
     }
-    // Lấy thể loại theo ID
-//    public TheLoaiDTO getTheLoaiById(String id) {
-//        String sql = "SELECT * FROM TheLoai WHERE id = ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, id);
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-//                    return new TheLoaiDTO(rs.getString("id"), rs.getString("ten"));
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error fetching TheLoai by ID: " + e.getMessage());
-//        }
-//        return null;
-//    }
+
+    public int getSoLuongSachofTheLoai(String id){
+        int soLuong = 0;
+        String sql = "SELECT tl.id, tl.ten, SUM(s.SoLuong) AS SoLuongSach "
+                + "FROM TheLoai tl "
+                + "INNER JOIN Sach s ON s.theloai = tl.id "
+                + "WHERE tl.id = ? "
+                + "GROUP BY tl.id, tl.Ten";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString( 1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
     
-    // Tìm kiếm thể loại theo tên
-//    public List<TheLoaiDTO> searchTheLoaiByName(String name) {
-//        List<TheLoaiDTO> list = new ArrayList<>();
-//        String sql = "SELECT * FROM TheLoai WHERE ten LIKE ?";
-//        try (Connection conn = openConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            pstmt.setString(1, "%" + name + "%");
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    TheLoaiDTO theLoaiDTO = new TheLoaiDTO(rs.getString("id"), rs.getString("ten"));
-//                    list.add(theLoaiDTO);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Error searching TheLoai by name: " + e.getMessage());
-//        }
-//        return list;
-//    }
+    public int getSoLuongSachConlai(String id) {
+        int soLuong = 0;
+        String sql = """
+                     SELECT tl.id, tl.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
+                     FROM TheLoai tl 
+                     JOIN Sach sach ON sach.theloai = tl.id 
+                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     GROUP BY tl.id, tl.ten 
+                     """;
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                soLuong = rs.getInt(3);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return soLuong;
+    }
 }
