@@ -1052,14 +1052,14 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldTenSach" min="-2" pref="494" max="-2" attributes="0"/>
                               <Component id="jTextFieldMaSach" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jTextFieldSoLuong" alignment="0" pref="250" max="32767" attributes="0"/>
                                   <Component id="jTextFieldNamXuatBan" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jTextFieldTenSach" min="-2" pref="359" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -1270,6 +1270,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a s&#xe1;ch"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldSoLuong">
                   <Properties>
@@ -3485,7 +3488,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="0" type="number"/>
+                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -3772,7 +3775,7 @@
                                   <Table columnCount="4" rowCount="0">
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                                    <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
+                                    <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
                                     <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Tr&#x1ea1;ng th&#xe1;i&lt;/html&gt;" type="java.lang.String"/>
                                   </Table>
                                 </Property>
@@ -4040,7 +4043,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="0" type="number"/>
+                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -4324,7 +4327,7 @@
                                   <Table columnCount="4" rowCount="5">
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                                    <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
+                                    <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
                                     <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Tr&#x1ea1;ng th&#xe1;i&lt;/html&gt;" type="java.lang.String"/>
                                   </Table>
                                 </Property>

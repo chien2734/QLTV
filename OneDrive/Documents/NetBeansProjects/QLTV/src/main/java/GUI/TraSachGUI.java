@@ -1,5 +1,5 @@
-
 package GUI;
+
 import BUS.CT_PhieuMuonBUS;
 import BUS.CT_PhieuTraBUS;
 import BUS.PhieuTraBUS;
@@ -9,6 +9,7 @@ import DTO.CT_PhieuTraDTO;
 import DTO.PhieuTraDTO;
 import BUS.PhieuMuonBUS;
 import DTO.PhieuMuonDTO;
+import DTO.SachDTO;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,20 +23,22 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
 public class TraSachGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form TraSachGUI
-     * 
+     *
      */
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     private final String maPM;
     PhieuTraBUS ptBUS;
     SachBUS sachBUS;
     PhieuMuonBUS pmBUS;
-    CT_PhieuTraBUS ctptBUS ;
+    CT_PhieuTraBUS ctptBUS;
     CT_PhieuMuonBUS ctpmBUS;
-    ArrayList<String> tinhTrangSach =new ArrayList<>(List.of("Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"));
+    ArrayList<String> tinhTrangSach = new ArrayList<>(List.of("Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"));
+
     public TraSachGUI(String maPM) throws SQLException {
         initComponents();
         this.setTitle("Giao diện trả sách");
@@ -47,7 +50,7 @@ public class TraSachGUI extends javax.swing.JFrame {
         this.maPM = maPM;
         Calendar calendar = Calendar.getInstance();
         String ngaytra = formatter.format(calendar.getTime());
-        txt_NgayTra.setText(ngaytra);       
+        txt_NgayTra.setText(ngaytra);
         display(maPM);
     }
 
@@ -403,10 +406,10 @@ public class TraSachGUI extends javax.swing.JFrame {
         double phiDenBu = Double.parseDouble(txt_PhiDenBu.getText());
         double phiTreHan = Double.parseDouble(txt_PhiTreHan.getText());
         String trangThai = "";
-        if(phiTreHan > 0){
+        if (phiTreHan > 0) {
             trangThai = "Trễ hạn";
         } else {
-            trangThai = "Đúng hạn"; 
+            trangThai = "Đúng hạn";
         }
         Date nt = null, nm = null;
         try {
@@ -414,11 +417,11 @@ public class TraSachGUI extends javax.swing.JFrame {
             nt = formatter.parse(ngayTra);
         } catch (ParseException ex) {
             Logger.getLogger(TraSachGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }      
+        }
         java.sql.Date ngaymuon = new java.sql.Date(nm.getTime());
         java.sql.Date ngaytra = new java.sql.Date(nt.getTime());
         PhieuTraDTO ptDTO = new PhieuTraDTO(id, maPM, maThe, ngaymuon, ngaytra, phiDenBu, phiTreHan, trangThai);
-        if(ptBUS.addPhieuTra(ptDTO)){
+        if (ptBUS.addPhieuTra(ptDTO)) {
             ArrayList<CT_PhieuTraDTO> dsCTPT = new ArrayList<>();
             for (int row = 0; row < tbl_TinhTrangSach.getRowCount(); row++) {
                 String idSach = tbl_TinhTrangSach.getValueAt(row, 0).toString();
@@ -430,48 +433,53 @@ public class TraSachGUI extends javax.swing.JFrame {
             if (ctptBUS.addCT_PhieuTra(dsCTPT)) {
                 JOptionPane.showMessageDialog(rootPane,
                         "Tạo phiếu trả " + maPM + " cho người dùng có mã thẻ là " + maThe + " thành công!");
-            }        
-        }else{
+            }
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Tạo phiếu trả thất bại!", id, HEIGHT);
         }
-        
+
     }//GEN-LAST:event_btn_TraSachActionPerformed
 
     private void btn_TinhPhiDenBuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiDenBuActionPerformed
         double tongPhi = 0;
         int quantityRow = tbl_TinhTrangSach.getRowCount();
-        for(int i = 0;i < quantityRow; i++){
+        for (int i = 0; i < quantityRow; i++) {
+            String idSach = tbl_TinhTrangSach.getValueAt(i, 0).toString();
             String truoc = tbl_TinhTrangSach.getValueAt(i, 3).toString();
             String sau = tbl_TinhTrangSach.getValueAt(i, 4).toString();
             double gia = sachBUS.getSachById(tbl_TinhTrangSach.getValueAt(i, 0).toString()).getGiaSach();
             int muon = 0, tra = 0;
-            for(int x = 0; x < tinhTrangSach.size(); x++){
+            for (int x = 0; x < tinhTrangSach.size(); x++) {
                 String temp = tinhTrangSach.get(x);
-                if(temp.equals(truoc)){
+                if (temp.equals(truoc)) {
                     muon = x;
                 }
-                if(temp.equals(sau)){
+                if (temp.equals(sau)) {
                     tra = x;
                 }
+                double tong;
+                if (tra - muon == 0) {
+                    tong = 0;
+                    tongPhi += tong;
+                }
+                if (tra - muon == 1) {
+                    tong = gia * 0.5;
+                    tongPhi += tong;
+                }
+                if (tra - muon == 2) {
+                    tong = gia;
+                    tongPhi += tong;
+                } else {
+                    tong = gia * 1.0;
+                    tongPhi += tong;
+                    SachDTO sach = sachBUS.getSachById(idSach);
+                    sach.setSoLuong(sach.getSoLuong()-1);
+                    sachBUS.updateSach(sach);
+                }
             }
-            double tong;
-            if(tra - muon == 0){
-                tong = 0;
-                tongPhi += tong;
-            }
-            if(tra - muon == 1){
-                tong = gia*0.5;
-                tongPhi+=tong;
-            }
-            if(tra - muon == 2){
-                tong = gia;
-                tongPhi+=tong;
-            }else{
-                tong = gia*1.5;
-                tongPhi+=tong;
-            }
+
         }
-        txt_PhiDenBu.setText(tongPhi+"");
+        txt_PhiDenBu.setText(tongPhi + "");
     }//GEN-LAST:event_btn_TinhPhiDenBuActionPerformed
 
     private void btn_TinhPhiTreHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiTreHanActionPerformed
@@ -483,27 +491,27 @@ public class TraSachGUI extends javax.swing.JFrame {
         double phiTreHan = Double.parseDouble(txt_PhiTreHan.getText());
         double phiDenBu = Double.parseDouble(txt_PhiDenBu.getText());
         int solan = Integer.parseInt(txt_SoLanGiaHan.getText());
-        tongTien = phiTreHan + phiDenBu;
-        txt_TongTien.setText(tongTien+"");
+        tongTien = phiTreHan + phiDenBu + 15000 * solan;
+        txt_TongTien.setText(tongTien + "");
     }//GEN-LAST:event_btn_TinhTongTienActionPerformed
 
     private void btn_CapNhatPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatPhieuTraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_CapNhatPhieuTraActionPerformed
-    
-    private void display(String maPM){
+
+    private void display(String maPM) {
         PhieuMuonDTO pmDTO = pmBUS.searchPhieuMuonByMaPhieuMuon(maPM);
         txt_MaPM.setText(maPM);
         txt_MaThe.setText(pmDTO.getMaThe());
-        txt_TienCoc.setText(pmDTO.getTienCoc()+"");
-        txt_NgayMuon.setText(pmDTO.getNgayMuon()+"");
-        txt_HanTra.setText(pmDTO.getHanTra()+"");
-        txt_SoLanGiaHan.setText(pmDTO.getSoLanGiaHan()+"");
+        txt_TienCoc.setText(pmDTO.getTienCoc() + "");
+        txt_NgayMuon.setText(pmDTO.getNgayMuon() + "");
+        txt_HanTra.setText(pmDTO.getHanTra() + "");
+        txt_SoLanGiaHan.setText(pmDTO.getSoLanGiaHan() + "");
         DefaultTableModel tinhtrangNhanSach = (DefaultTableModel) tbl_TinhTrangSach.getModel();
         tinhtrangNhanSach.setRowCount(0);
         CT_PhieuMuonDTO ctpm;
         ArrayList<CT_PhieuMuonDTO> ds = ctpmBUS.getCT_PhieuMuonByPhieuMuonId(maPM);
-        for(int i =0 ; i<ds.size();i++){
+        for (int i = 0; i < ds.size(); i++) {
             ctpm = ds.get(i);
             Object[] row = {ctpm.getMaSach(), ctpm.getTenSach(), ctpm.getSoLuong(), ctpm.getTrangThai()};
             tinhtrangNhanSach.addRow(row);
@@ -512,14 +520,14 @@ public class TraSachGUI extends javax.swing.JFrame {
         JComboBox<String> cbb = new JComboBox<>(options);
         cbb.setFont(new java.awt.Font("Segoe", java.awt.Font.PLAIN, 16));
         TableColumn column = tbl_TinhTrangSach.getColumnModel().getColumn(4);
-        column.setCellEditor(new javax.swing.DefaultCellEditor(cbb));  
+        column.setCellEditor(new javax.swing.DefaultCellEditor(cbb));
     }
-    
-    public void updateButtonStatus(boolean trasach, boolean capnhat){
+
+    public void updateButtonStatus(boolean trasach, boolean capnhat) {
         btn_TraSach.setEnabled(trasach);
         btn_CapNhatPhieuTra.setEnabled(capnhat);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CapNhatPhieuTra;
     private javax.swing.JButton btn_TinhPhiDenBu;

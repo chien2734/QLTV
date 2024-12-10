@@ -115,6 +115,7 @@ public class TheLoaiDAL extends connectionDB {
                      FROM TheLoai tl 
                      JOIN Sach sach ON sach.theloai = tl.id 
                      LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     WHERE tl.id = ? and ctpm.trangThai = 'Đang mượn'
                      GROUP BY tl.id, tl.ten 
                      """;
         try {

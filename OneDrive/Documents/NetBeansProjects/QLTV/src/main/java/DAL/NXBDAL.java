@@ -83,7 +83,7 @@ public class NXBDAL extends connectionDB {
         String sql = "SELECT nxb.id, nxb.ten, SUM(s.SoLuong) AS SoLuongSach "
                 + "FROM NXB nxb "
                 + "INNER JOIN Sach s ON s.NXB = nxb.id "
-                + "WHERE nxb.id = ? "
+                + "WHERE nxb.id "
                 + "GROUP BY nxb.id, nxb.ten";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -101,10 +101,11 @@ public class NXBDAL extends connectionDB {
     public int getSoLuongSachConlai(String id) {
         int soLuong = 0;
         String sql = """
-                     SELECT ncb.id, nxb.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
+                     SELECT nxb.id, nxb.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
                      FROM NXB nxb 
                      JOIN Sach sach ON sach.NXB = nxb.id 
-                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach
+                     WHERE nxb.id = ? and ctpm.trangThai = 'Đang mượn'
                      GROUP BY nxb.id, nxb.ten  
                      """;
         try {

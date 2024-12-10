@@ -114,6 +114,7 @@ public class TacGiaDAL extends connectionDB {
                      FROM TacGia tg 
                      JOIN Sach sach ON sach.tacGia = tacgia.id 
                      LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
+                     WHERE tg.id = ? and ctpm.trangThai = 'Đang mượn'
                      GROUP BY tg.id, tg.ten 
                      """;
         try {

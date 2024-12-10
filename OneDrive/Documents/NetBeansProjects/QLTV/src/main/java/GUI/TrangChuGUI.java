@@ -78,7 +78,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 + "    </ul>"
                 + "    <h2>2. Số lượng và thời hạn mượn sách</h2>"
                 + "    <ul>"
-                + "        <li>Mỗi bạn đọc được phép mượn tối đa <strong>5 cuốn sách/lần</strong>.</li>"
+                + "        <li>Mỗi bạn đọc được phép mượn tối đa <strong>5 cuốn sách/lần/ngày</strong>.</li>"
                 + "        <li>Thời hạn mượn sách là <strong>21 ngày</strong> kể từ ngày mượn.</li>"
                 + "        <li>Sách mượn quá hạn phải được trả ngay và có thể áp dụng các khoản phạt hành chính theo quy định.</li>"
                 + "    </ul>"
@@ -97,8 +97,8 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 + "    <h2>5. Quy định về phạt</h2>"
                 + "    <ul>"
                 + "        <li><strong>Trả sách quá hạn</strong>: Phạt <strong>1.000 đồng/ngày/cuốn</strong>.</li>"
-                + "        <li><strong>Làm hư hỏng sách</strong>: Bồi thường giá trị sách cộng phí xử lý 20%.</li>"
-                + "        <li><strong>Mất sách</strong>: Bồi thường 150% giá trị sách hoặc thay thế bằng sách tương đương do thư viện quy định.</li>"
+                + "        <li><strong>Làm hư hỏng sách</strong>: Bồi thường theo % giá trị sách.</li>"
+                + "        <li><strong>Mất sách</strong>: Bồi thường 100% giá trị sách hoặc thay thế bằng sách tương đương do thư viện quy định.</li>"
                 + "    </ul>"
                 + "    <h2>6. Thời gian hoạt động của thư viện</h2>"
                 + "    <ul>"
@@ -972,6 +972,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 153, 153));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setText("Xóa sách");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextFieldSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -996,12 +1001,12 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTextFieldSoLuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(jTextFieldNamXuatBan, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(84, 84, 84)
+                        .addComponent(jTextFieldNamXuatBan, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTextFieldTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(219, 219, 219)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
                     .addComponent(jLabel17)
@@ -2209,7 +2214,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jLabel41.setText("Số lượng");
 
         spn_TVMuon_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spn_TVMuon_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 0));
+        spn_TVMuon_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
 
         jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(255, 51, 51));
@@ -2411,7 +2416,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2535,7 +2540,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jLabel50.setText("Số lượng");
 
         spn_ChuaCoThe_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 0));
+        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
 
         jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 51, 51));
@@ -2738,7 +2743,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -4377,6 +4382,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_QLTra_ChinhSuaActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String idSach = jTextFieldMaSach.getText();
+        if(sachBUS.hasID(idSach)){
+            SachDTO sach = sachBUS.getSachById(idSach);
+            sach.setSoLuong(0);
+            JOptionPane.showMessageDialog(rootPane, sachBUS.updateSach(sach));
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Mã sách không tồn tại", "Lỗi", JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void TaoBangThreeColumn(String column1, String column2, String column3) {
         bangTK.setRowCount(0);
         bangTK.setColumnCount(0);
@@ -4487,7 +4503,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         String hanTra = formatter.format(calendar.getTime());
         txt_TVMuon_HanTra.setText(hanTra);
         txt_TVMuon_TrangThai.setText("Mới");
-        String[] options = {"Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"};
+        String[] options = {"Nguyên vẹn", "Hư hỏng nhẹ"};
         JComboBox<String> cbb = new JComboBox<>(options);
         cbb.setFont(new java.awt.Font("Segoe", java.awt.Font.PLAIN, 16));
         TableColumn column = tbl_TVMuon_DSMuonMuon.getColumnModel().getColumn(3);
@@ -4504,7 +4520,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         String hanTra = formatter.format(calendar.getTime());
         txt_ChuaCoThe_HanTra.setText(hanTra);
         txt_ChuaCoThe_TrangThai.setText("Mới");
-        String[] options = {"Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"};
+        String[] options = {"Nguyên vẹn", "Hư hỏng nhẹ"};
         JComboBox<String> cbb = new JComboBox<>(options);
         cbb.setFont(new java.awt.Font("Segoe", java.awt.Font.PLAIN, 16));
         TableColumn column = tbl_ChuaCoThe_DSMuonMuon.getColumnModel().getColumn(3);
@@ -4740,12 +4756,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     private void btn_TVMuon_ThemVaoPMActionPerformed(java.awt.event.ActionEvent evt) {
         if (!txt_TVMuon_TrangThai.getText().equals("Đã trả")) {
-            int soLuong = (int) spn_TVMuon_SoLuong.getValue();
-            TVMuon_quantityBook += soLuong;
-            if (TVMuon_quantityBook > 5) {
-                JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa 5 cuốn sách cho mỗi lần mượn!");
+            int column = 2; int soLuong = 0;
+            for(int i =0; i< TV_DSMuonMuon.getRowCount(); i++){
+                soLuong = Integer.parseInt(TV_DSMuonMuon.getValueAt(i, column).toString());
+                TVMuon_quantityBook += soLuong;
+            }
+            int sl = (int) spn_TVMuon_SoLuong.getValue();
+            if (TVMuon_quantityBook + sl > 5) {
+                int max = 5 - TVMuon_quantityBook;
+                JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa "+max+" cuốn nữa thôi!");
             } else {
-                TV_DSMuonMuon.setRowCount(TVMuon_quantityBook);
+                TV_DSMuonMuon.setRowCount(TV_DSMuonMuon.getRowCount()+1);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), TVMuon_quantityBook - 1, 0);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), TVMuon_quantityBook - 1, 1);
                 TV_DSMuonMuon.setValueAt(soLuong, TVMuon_quantityBook - 1, 2);
@@ -4842,12 +4863,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     }
 
     private void btn_ChuaCoThe_ThemVaoPMActionPerformed(java.awt.event.ActionEvent evt) {
-        int soLuong = (int) spn_ChuaCoThe_SoLuong.getValue();
-        ChuaCothe_quantityBook += soLuong;
-        if (ChuaCothe_quantityBook > 5) {
-            JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa 5 cuốn sách cho mỗi lần mượn!");
+        int column = 2; int soLuong =0;
+        for(int i =0;i<ChuaCoThe_DSMuonMuon.getRowCount(); i++){
+            soLuong = Integer.parseInt(ChuaCoThe_DSMuonMuon.getValueAt(i, column).toString());
+            ChuaCothe_quantityBook += soLuong;
+        }
+        int sl = (int)spn_ChuaCoThe_SoLuong.getValue();
+        if (ChuaCothe_quantityBook + sl > 5) {
+            int max = 5 - ChuaCothe_quantityBook;
+            JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa "+max+" cuốn nữa thôi!");
         } else {
-            ChuaCoThe_DSMuonMuon.setRowCount(ChuaCothe_quantityBook);
+            ChuaCoThe_DSMuonMuon.setRowCount(ChuaCoThe_DSMuonMuon.getRowCount()+1);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), ChuaCothe_quantityBook - 1, 0);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), ChuaCothe_quantityBook - 1, 1);
             ChuaCoThe_DSMuonMuon.setValueAt(soLuong, ChuaCothe_quantityBook - 1, 2);
@@ -4960,9 +4986,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable_TheLoai.getModel();
             model.setRowCount(0);
             for (TheLoaiDTO theLoai : listTheLoai) {
+                int soLuongSach = tlBUS.getSoLuongSachofTheLoai(theLoai.getId());
                 Object[] row = {
                     theLoai.getId(),
-                    theLoai.getTen()
+                    theLoai.getTen(),
+                    soLuongSach
                 };
                 model.addRow(row);
             }
@@ -4980,9 +5008,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable_TacGia.getModel();
             model.setRowCount(0);
             for (TacGiaDTO tg : listTacGia) {
+            int soLuongSach = tgBUS.getSoLuongSachofTacGia(tg.getId());
                 Object[] row = {
                     tg.getId(),
-                    tg.getTen()
+                    tg.getTen(), 
+                    soLuongSach
                 };
                 model.addRow(row);
             }
@@ -5001,9 +5031,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable_NXB.getModel();
             model.setRowCount(0);
             for (NXBDTO nxb : listNXB) {
+                int soLuongSach = nxbBUS.getSoLuongSachofNXB(nxb.getId());
                 Object[] row = {
                     nxb.getId(),
-                    nxb.getTen()
+                    nxb.getTen(),
+                    soLuongSach,
                 };
                 model.addRow(row);
             }

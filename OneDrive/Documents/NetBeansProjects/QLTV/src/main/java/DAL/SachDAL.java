@@ -321,7 +321,7 @@ public class SachDAL {
         String sql = "SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai "
                 + "FROM Sach s "
                 + "LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
-                + "WHERE s.id = ? "
+                + "WHERE s.id = ? and ctpm.trangThai = N'Đang mượn' "
                 + "GROUP BY s.id, s.soLuong ";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {

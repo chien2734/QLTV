@@ -80,6 +80,10 @@ public class SachBUS {
         return "Xóa không thành công!";
     }
 
+    public boolean hasID(String id){
+        return sachDAL.hasID(id);
+    }
+    
     public ArrayList<SachDTO> getSachByName(String name){
         ArrayList<SachDTO> result = new ArrayList<>();
         for(SachDTO sach : ds){
