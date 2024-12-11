@@ -401,8 +401,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         pn_BieuDoTron = new javax.swing.JPanel();
         pn_BieuDo1 = new javax.swing.JPanel();
         pn_BieuDo2 = new javax.swing.JPanel();
-        pn_BieuDo3 = new javax.swing.JPanel();
-        pn_BieuDo4 = new javax.swing.JPanel();
         jPanel_QLTra = new javax.swing.JPanel();
         jLabel68 = new javax.swing.JLabel();
         cbb_DSTra_TimKiem = new javax.swing.JComboBox<>();
@@ -2875,7 +2873,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jLabel38.setText("Tìm kiếm theo:");
 
         cbb_DSMuon_TimKiem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cbb_DSMuon_TimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã phiếu mượn", "Thẻ thành viên", "Ngày mượn", "Hạn trả", "Trạng thái" }));
+        cbb_DSMuon_TimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã phiếu mượn", "Thẻ thành viên", "Ngày mượn", "Hạn trả" }));
 
         txt_DSMuon_TimKiem.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         txt_DSMuon_TimKiem.setText("Nhập thông tin tìm kiếm...");
@@ -3105,7 +3103,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 3230, Short.MAX_VALUE)
+            .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 1800, Short.MAX_VALUE)
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3120,7 +3118,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 3230, Short.MAX_VALUE)
+            .addGap(0, 1800, Short.MAX_VALUE)
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3250,7 +3248,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                     .addComponent(lb_HienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(1608, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         pn_ThongKeLayout.setVerticalGroup(
             pn_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3291,7 +3289,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                         .addComponent(lb_HienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(527, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanel27.add(pn_ThongKe);
@@ -3303,11 +3301,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         pn_BieuDo1.setLayout(pn_BieuDo1Layout);
         pn_BieuDo1Layout.setHorizontalGroup(
             pn_BieuDo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         pn_BieuDo1Layout.setVerticalGroup(
             pn_BieuDo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         pn_BieuDoTron.add(pn_BieuDo1);
@@ -3316,40 +3314,14 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         pn_BieuDo2.setLayout(pn_BieuDo2Layout);
         pn_BieuDo2Layout.setHorizontalGroup(
             pn_BieuDo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         pn_BieuDo2Layout.setVerticalGroup(
             pn_BieuDo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         pn_BieuDoTron.add(pn_BieuDo2);
-
-        javax.swing.GroupLayout pn_BieuDo3Layout = new javax.swing.GroupLayout(pn_BieuDo3);
-        pn_BieuDo3.setLayout(pn_BieuDo3Layout);
-        pn_BieuDo3Layout.setHorizontalGroup(
-            pn_BieuDo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
-        );
-        pn_BieuDo3Layout.setVerticalGroup(
-            pn_BieuDo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
-        );
-
-        pn_BieuDoTron.add(pn_BieuDo3);
-
-        javax.swing.GroupLayout pn_BieuDo4Layout = new javax.swing.GroupLayout(pn_BieuDo4);
-        pn_BieuDo4.setLayout(pn_BieuDo4Layout);
-        pn_BieuDo4Layout.setHorizontalGroup(
-            pn_BieuDo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
-        );
-        pn_BieuDo4Layout.setVerticalGroup(
-            pn_BieuDo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
-        );
-
-        pn_BieuDoTron.add(pn_BieuDo4);
 
         jPanel27.add(pn_BieuDoTron);
 
@@ -3552,7 +3524,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_QLTraActionPerformed
 
     private void displayDataPhieuTra(ArrayList<PhieuTraDTO> dsPhieuTra) {
-        dsPT = (DefaultTableModel) tbl_DSTra_DST.getModel();
         dsPT.setRowCount(0);
         for (PhieuTraDTO phieu : dsPhieuTra) {
             Object[] row = {
@@ -3562,7 +3533,8 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 phieu.getNgayMuon(),
                 phieu.getNgayTra(),
                 phieu.getPhiDenBu(),
-                phieu.getPhiTreHan()
+                phieu.getPhiTreHan(),
+                phieu.getTrangThai()
             };
             dsPT.addRow(row);
         }
@@ -4066,6 +4038,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_DSTra_TimKiemFocusGained
 
     private void btn_DSTra_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DSTra_TimKiemActionPerformed
+        dsPT.setRowCount(0);
         String searchText = txt_DSTra_TimKiem.getText();
         if (searchText.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Hãy nhập thông tin trước khi bạn muốn tìm kiếm!");
@@ -4195,6 +4168,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 if (option2 == 1) {
                     int month = cbb_Thang.getSelectedIndex() + 1;
                     int year = (int) cbb_Nam.getSelectedIndex() + 2020;
+                    result = pmBUS.danhSachPhieuTra(month, year);
                     TaoBangThreeColumn("Mã phiếu trả", "Mã thẻ", "Ngày trả");
                     lb_HienThi.setText("Danh sách phiếu trả tháng " + month + "/" + year);
                 }
@@ -4379,6 +4353,8 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         txt_SoDocGia.setText(tvBUS.getSum() + "");
         txt_SoPhieuMuon.setText(pmBUS.getSum() + "");
         txt_SoPhieuTra.setText(ptBUS.getSum() + "");
+        BieuDo1();
+        BieuDo2(11, 2024);
     }
 
     private void jButton_DangXuatActionPerformed(java.awt.event.ActionEvent evt) {
@@ -4633,10 +4609,15 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 dsPhieuMuon.add(pm);
             }
         }
-        for (int i = 0; i < dsPhieuMuon.size(); i++) {
-            pm = dsPhieuMuon.get(i);
-            Object[] row = {pm.getId(), pm.getMaThe(), pm.getNgayMuon(), pm.getHanTra(), pm.getTienCoc(), pm.getTrangThai()};
-            dsPM.addRow(row);
+        if (dsPhieuMuon == null) {
+            JOptionPane.showMessageDialog(rootPane, "Không có kết quả");
+        } else {
+            PhieuMuonDTO pmDTO = new PhieuMuonDTO();
+            for (int i = 0; i < dsPhieuMuon.size(); i++) {
+                pmDTO = dsPhieuMuon.get(i);
+                Object[] row = {pmDTO.getId(), pmDTO.getMaThe(), pmDTO.getNgayMuon(), pmDTO.getHanTra(), pmDTO.getTienCoc(), pmDTO.getTrangThai()};
+                dsPM.addRow(row);
+            }
         }
     }
 
@@ -4885,6 +4866,10 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             tv.getNgayDK(), tv.getHanSD(), tv.getTrangThai()});
     }
 
+    public void AddRowToDSPhieuTra(PhieuTraDTO pt) {
+        dsPT.addRow(new Object[]{pt.getId(), pt.getMaPhieuMuon(), pt.getMaThe(), pt.getNgayMuon(), pt.getNgayTra(), pt.getPhiDenBu(), pt.getPhiTreHan(), pt.getTrangThai()});
+    }
+
     private void jButton_QLLoaiSachActionPerformed(java.awt.event.ActionEvent evt) {
         cardLayout1.show(jPanel_Main, "LoaiSach");
         try {
@@ -4989,14 +4974,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         LocalDate ngayHienTai = LocalDate.now();
         for (PhieuMuonDTO phieu : listPM) {
             LocalDate ngayHetHan = phieu.getHanTra().toLocalDate();
-            if (ngayHetHan.isBefore(ngayHienTai)) {
-                phieu.setTrangThai("Trễ hạn");
-                pmBUS.updateTrangThaiPhieuMuon(phieu);
+            if (!phieu.getTrangThai().equals("Đã trả")) {
+                if (ngayHetHan.isBefore(ngayHienTai)) {
+                    phieu.setTrangThai("Trễ hạn");
+                    pmBUS.updateTrangThaiPhieuMuon(phieu);
+                }
+                if (ngayHetHan.isEqual(ngayHienTai)) {
+                    phieu.setTrangThai("Tới hạn");
+                    pmBUS.updateTrangThaiPhieuMuon(phieu);
+                }
             }
-            if (ngayHetHan.isEqual(ngayHienTai)) {
-                phieu.setTrangThai("Tới hạn");
-                pmBUS.updateTrangThaiPhieuMuon(phieu);
-            }
+
         }
         dsPM.setRowCount(0);
         for (PhieuMuonDTO phieu : listPM) {
@@ -5413,8 +5401,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lb_QuyDinhVaChinhSach;
     private javax.swing.JPanel pn_BieuDo1;
     private javax.swing.JPanel pn_BieuDo2;
-    private javax.swing.JPanel pn_BieuDo3;
-    private javax.swing.JPanel pn_BieuDo4;
     private javax.swing.JPanel pn_BieuDoTron;
     private javax.swing.JPanel pn_ThongKe;
     private javax.swing.JSpinner spn_ChuaCoThe_SoLuong;

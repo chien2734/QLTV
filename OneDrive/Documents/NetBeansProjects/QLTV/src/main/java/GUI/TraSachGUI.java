@@ -13,7 +13,6 @@ import DTO.SachDTO;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,7 +38,8 @@ public class TraSachGUI extends javax.swing.JFrame {
     CT_PhieuTraBUS ctptBUS;
     CT_PhieuMuonBUS ctpmBUS;
     ArrayList<String> tinhTrangSach = new ArrayList<>(List.of("Nguyên vẹn", "Hư hỏng nhẹ", "Hư hỏng nặng", "Mất"));
-
+    private TrangChuGUI tc;
+    
     public TraSachGUI(String maPM) throws SQLException {
         initComponents();
         this.setTitle("Giao diện trả sách");
@@ -96,7 +96,7 @@ public class TraSachGUI extends javax.swing.JFrame {
         txt_SoLanGiaHan = new javax.swing.JTextField();
         btn_TinhTongTien = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(2147483647, 1010));
         setPreferredSize(new java.awt.Dimension(1130, 1010));
 
@@ -420,6 +420,17 @@ public class TraSachGUI extends javax.swing.JFrame {
                 dsCTPT.add(new CT_PhieuTraDTO(id, idSach, tenSach, soLuong, tinhTrang));
             }
             if (ctptBUS.addCT_PhieuTra(dsCTPT)) {
+                PhieuMuonDTO pm = pmBUS.searchPhieuMuonByMaPhieuMuon(maPM);
+                pm.setTrangThai("Đã trả");
+                pmBUS.updateTrangThaiPhieuMuon(pm);
+                try {
+                    tc = new TrangChuGUI();
+                    tc.AddRowToDSPhieuTra(ptDTO);
+                    tc.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TraSachGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 JOptionPane.showMessageDialog(rootPane,
                 "Tạo phiếu trả " + maPM + " cho người dùng có mã thẻ là " + maThe + " thành công!");
             }
@@ -434,69 +445,64 @@ public class TraSachGUI extends javax.swing.JFrame {
         int quantityRow = tbl_TinhTrangSach.getRowCount();
         for (int i = 0; i < quantityRow; i++) {
             String idSach = tbl_TinhTrangSach.getValueAt(i, 0).toString();
-            String truoc = tbl_TinhTrangSach.getValueAt(i, 3).toString();
-            String sau = tbl_TinhTrangSach.getValueAt(i, 4).toString();
+            String TTtruoc = tbl_TinhTrangSach.getValueAt(i, 3).toString();
+            String TTsau = tbl_TinhTrangSach.getValueAt(i, 4).toString();
             double gia = sachBUS.getSachById(tbl_TinhTrangSach.getValueAt(i, 0).toString()).getGiaSach();
-            int muon = 0, tra = 0;
-            for (int x = 0; x < tinhTrangSach.size(); x++) {
-                String temp = tinhTrangSach.get(x);
-                if (temp.equals(truoc)) {
-                    muon = x;
-                }
-                if (temp.equals(sau)) {
-                    tra = x;
-                }               
-            }
+            int indexTTtruoc = tinhTrangSach.indexOf(TTtruoc);
+            int indexTTsau = tinhTrangSach.indexOf(TTsau);            
             double tong = 0;
-                if (tra - muon == 0) {
-                    tongPhi += tong;
+            int ct = indexTTsau - indexTTtruoc;
+            if(indexTTsau == 3){
+                tong = gia * 1.1;
+                SachDTO sach = sachBUS.getSachById(idSach);
+                sach.setSoLuong(sach.getSoLuong()-1);
+                sachBUS.updateSach(sach);
+            }
+            if(indexTTtruoc == 0){
+                if(ct == 1){
+                    tong =  gia * 0.2;
                 }
-                if (tra - muon == 1) {
-                    tong = gia * 0.2;
-                    tongPhi += tong;
+                if(ct == 2){
+                    tong = gia * 0.8;
                 }
-                if (tra - muon == 2) {
-                    tong = gia;
-                    tongPhi += tong;
-                } else {
-                    tong = gia * 1.1;
-                    tongPhi += tong;
-                    SachDTO sach = sachBUS.getSachById(idSach);
-                    sach.setSoLuong(sach.getSoLuong()-1);
-                    sachBUS.updateSach(sach);
+            } else{
+                if(ct == 1){
+                    tong =  gia * 0.5;
                 }
+            }
+            tongPhi += tong;
+                                   
         }
-        txt_PhiDenBu.setText(tongPhi + "");
+        txt_PhiDenBu.setText(String.format("%.2f", tongPhi));
     }//GEN-LAST:event_btn_TinhPhiDenBuActionPerformed
 
     private void btn_TinhPhiTreHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiTreHanActionPerformed
         String hanTra = txt_HanTra.getText();
-        LocalDate ngayHienTai = LocalDate.now();
-        java.sql.Date ngayTra = java.sql.Date.valueOf(ngayHienTai);
-        Date ht = null;
+        String ngayTRA = txt_NgayTra.getText();
+        
+        Date ht = null, nt = null;
         try {
+            nt = formatter.parse(ngayTRA);
             ht = formatter.parse(hanTra);
         } catch (ParseException ex) {
             Logger.getLogger(TraSachGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         java.sql.Date hantra = new java.sql.Date(ht.getTime());
-        int songay = ptBUS.TinhSoNgay(ngayTra, hantra);
-        int column = 2; int slSach = 0;
-        for(int i=0; i< tbl_TinhTrangSach.getRowCount(); i++){
-            int sl = Integer.parseInt(tbl_TinhTrangSach.getValueAt(i, column).toString());
-            slSach += sl;
-        }
-        int phitrehan = songay * slSach * 1000;
-        txt_PhiTreHan.setText(phitrehan + "");
+        java.sql.Date ngaytra = new java.sql.Date(nt.getTime());
+        int songay = ptBUS.TinhSoNgay(ngaytra, hantra);
+        int slSach = tbl_TinhTrangSach.getRowCount();
+        double phitrehan = songay * slSach * 1000.0;
+        txt_PhiTreHan.setText(String.format("%.2f", phitrehan));
     }//GEN-LAST:event_btn_TinhPhiTreHanActionPerformed
 
     private void btn_TinhTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhTongTienActionPerformed
         double tongTien = 0.0;
         double phiTreHan = Double.parseDouble(txt_PhiTreHan.getText());
         double phiDenBu = Double.parseDouble(txt_PhiDenBu.getText());
+        double tienCoc = Double.parseDouble(txt_TienCoc.getText());
         int solan = Integer.parseInt(txt_SoLanGiaHan.getText());
-        tongTien = phiTreHan + phiDenBu + 10000 * solan;
-        txt_TongTien.setText(tongTien + "");
+        tongTien = phiTreHan + phiDenBu + 10000.0 * solan - tienCoc;
+        txt_TongTien.setText(String.format("%.2f", tongTien));
     }//GEN-LAST:event_btn_TinhTongTienActionPerformed
 
     private void display(String maPM) {

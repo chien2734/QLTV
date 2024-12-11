@@ -82,7 +82,7 @@ public class LoginGUI extends javax.swing.JFrame {
         });
 
         txt_passWord.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_passWord.setText("gfdse");
+        txt_passWord.setText("09876543");
         txt_passWord.setPreferredSize(new java.awt.Dimension(120, 40));
         txt_passWord.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -174,7 +174,7 @@ public class LoginGUI extends javax.swing.JFrame {
         if(ten.isEmpty() || pass.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Không được để trống thông tin nào!");
         }
-        if(ten.equals("Admin") && mk.equals("Admin")){
+        if(ten.equals("Admin") && pass.equals("Admin")){
             JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công!");
             try {
                 TrangChuGUI trangChuGUI = new TrangChuGUI();

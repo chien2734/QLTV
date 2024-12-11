@@ -96,7 +96,7 @@ public class PhieuMuonBUS {
     public ArrayList<PhieuMuonDTO> searchPhieuMuonByMaThe(String maThe) {
         ArrayList<PhieuMuonDTO> result = new ArrayList<>();
         for(PhieuMuonDTO pm : ds){
-            if(pm.getId().contains(maThe)){
+            if(pm.getMaThe().contains(maThe)){
                 result.add(pm);
             }
         }

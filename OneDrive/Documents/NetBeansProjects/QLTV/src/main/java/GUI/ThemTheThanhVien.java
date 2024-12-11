@@ -233,8 +233,14 @@ public class ThemTheThanhVien extends javax.swing.JFrame {
         tv = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, 100000, "Đang hoạt động", 0);
         tvtemp = new ThanhVienDTO(ma, ten, cccd, sdt, diaChi, ngayDk, ngayHh, "Đang hoạt động");
         JOptionPane.showMessageDialog(rootPane, tvBUS.addThanhVien(tv), "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        trangChuGUI.AddRowToDSThe(tvtemp);
+        try {
+            trangChuGUI = new TrangChuGUI();
+             trangChuGUI.AddRowToDSThe(tvtemp);
         dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(ThemTheThanhVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         txt_hoTen.setText("");
         txt_cccd.setText("");
         txt_sdt.setText("");

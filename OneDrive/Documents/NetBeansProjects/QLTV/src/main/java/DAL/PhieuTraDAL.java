@@ -14,7 +14,7 @@ public class PhieuTraDAL {
 
     // Thêm phiếu trả mới
     public boolean addPhieuTra(PhieuTraDTO phieuTra) {
-        String sql = "INSERT INTO PhieuTra (id, maPhieuMuon, maThe, ngayMuon, ngayTra, phiDenBu, phiTreHan, trangthai) "
+        String sql = "INSERT INTO PhieuTra (id, maPhieuMuon, maThe, ngayMuon, ngayTra, phiDenBu, phiTreHan, trangThai) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, phieuTra.getId());
@@ -124,8 +124,9 @@ public class PhieuTraDAL {
     
     public ArrayList<Object[]> CacLoaiPhi(int month, int year){
         ArrayList<Object[]> result = new ArrayList<>();
-        String sql = "SELECT "
-                + "(select SUM(tienCoc) from PhieuMuon where MONTH(ngayMuon) = ? and YEAR(ngayMuon) = ? ) =  as TienCoc, "
+        String sql = "use QLTVOOAD "
+                + "SELECT "
+                + "(select SUM(tienCoc) from PhieuMuon where MONTH(ngayMuon) = ? and YEAR(ngayMuon) = ? ) as TienCoc, "
                 + "(select SUM(phiDenBu) from PhieuTra where MONTH(ngayTra) = ? and YEAR(ngayTra) = ? ) as PhiDenBu, "
                 + "(select SUM(phiTreHan) from PhieuTra where MONTH(ngayTra) = ? and YEAR(ngayTra) = ? ) as PhiTreHan ";               
         try {
