@@ -2780,21 +2780,19 @@
                                           <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txt_QLThe_name" pref="350" max="32767" attributes="0"/>
-                                              <Component id="txt_QLThe_cccd" max="32767" attributes="0"/>
-                                              <Component id="txt_QLThe_sdt" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="jScrollPane1" min="-2" pref="458" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txt_QLThe_name" pref="350" max="32767" attributes="0"/>
+                                          <Component id="txt_QLThe_cccd" max="32767" attributes="0"/>
+                                          <Component id="txt_QLThe_sdt" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
-                                      <Component id="btn_QLthe_Update" min="-2" pref="271" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                                      <Component id="btn_QLthe_Update" min="-2" pref="459" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="108" max="32767" attributes="0"/>
+                              <EmptySpace pref="203" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2816,19 +2814,16 @@
                                   <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_QLThe_sdt" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="btn_QLthe_Update" min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btn_QLthe_Update" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2896,6 +2891,9 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="18" style="1"/>
                         </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="99" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t th&#xf4;ng tin c&#xe1; nh&#xe2;n"/>
                       </Properties>
                       <Events>
@@ -2942,7 +2940,12 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lb_PhiDuyTri" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -2972,22 +2975,9 @@
                                           <Component id="txt_GHT_trangThai" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="btn_QLThe_giaHan" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lb_PhiDuyTri" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="btn_QLThe_moKhoaThe" min="-2" pref="132" max="-2" attributes="0"/>
-                              <EmptySpace pref="64" max="32767" attributes="0"/>
-                              <Component id="btn_QLThe_khoaThe" min="-2" pref="140" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="btn_QLThe_giaHan" min="-2" pref="148" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace pref="88" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3016,13 +3006,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Component id="lb_PhiDuyTri" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btn_QLThe_giaHan" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="btn_QLThe_khoaThe" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="btn_QLThe_moKhoaThe" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="21" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_QLThe_giaHan" min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3132,37 +3118,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QLThe_giaHanActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_QLThe_khoaThe">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="66" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="18" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="33" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Kh&#xf3;a th&#x1ebb;"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QLThe_khoaTheActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btn_QLThe_moKhoaThe">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="f2" green="f2" red="f2" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="18" style="1"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="M&#x1edf; kh&#xf3;a "/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QLThe_moKhoaTheActionPerformed"/>
-                      </Events>
-                    </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JComboBox" name="cbb_TimKiemThe">
@@ -3227,7 +3182,7 @@
                           <Component id="jButton_QLMuon_TVMuon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton_QLMuon_ChuaCoThe" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="2530" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="2424" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3256,7 +3211,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Th&#xe0;nh vi&#xea;n m&#x1b0;&#x1ee3;n s&#xe1;ch "/>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m phi&#x1ebf;u m&#x1b0;&#x1ee3;n (c&#xf3; th&#x1ebb;)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_QLMuon_TVMuonActionPerformed"/>
@@ -3267,7 +3222,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="M&#x1b0;&#x1ee3;n s&#xe1;ch ch&#x1b0;a c&#xf3; th&#x1ebb;"/>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m phi&#x1ebf;u m&#x1b0;&#x1ee3;n (ch&#x1b0;a c&#xf3; th&#x1ebb;)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_QLMuon_ChuaCoTheActionPerformed"/>
@@ -3488,7 +3443,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="0" type="number"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -3775,7 +3730,7 @@
                                   <Table columnCount="4" rowCount="0">
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                                    <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
+                                    <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
                                     <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Tr&#x1ea1;ng th&#xe1;i&lt;/html&gt;" type="java.lang.String"/>
                                   </Table>
                                 </Property>
@@ -4043,7 +3998,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                              <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="0" type="number"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -4327,7 +4282,7 @@
                                   <Table columnCount="4" rowCount="5">
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                                     <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
-                                    <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
+                                    <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
                                     <Column editable="true" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Tr&#x1ea1;ng th&#xe1;i&lt;/html&gt;" type="java.lang.String"/>
                                   </Table>
                                 </Property>
@@ -4559,9 +4514,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
-                                      <Component id="btn_DSMuon_XuatPhieu" min="-2" pref="301" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
                                       <Component id="btn_DSMuon_GiaHan" min="-2" pref="304" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                       <Component id="btn_DSMuon_ChinhSuaPM" min="-2" pref="291" max="-2" attributes="0"/>
@@ -4592,10 +4545,7 @@
                               <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btn_DSMuon_XuatPhieu" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Component id="btn_DSMuon_GiaHan" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btn_DSMuon_GiaHan" min="-2" pref="56" max="-2" attributes="0"/>
                                   <Component id="btn_DSMuon_ChinhSuaPM" max="32767" attributes="0"/>
                                   <Component id="btn_DSMuon_TraSach" max="32767" attributes="0"/>
                               </Group>
@@ -4805,20 +4755,6 @@
                         </Container>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="btn_DSMuon_XuatPhieu">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
-                        </Property>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="24" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="99" red="33" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t phi&#x1ebf;u"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JButton" name="btn_DSMuon_GiaHan">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -5442,10 +5378,6 @@
                                   <Component id="jPanel26" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="637" max="-2" attributes="0"/>
-                              <Component id="btn_QLTra_ChinhSua" min="-2" pref="356" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace pref="1587" max="32767" attributes="0"/>
                   </Group>
@@ -5466,9 +5398,7 @@
                       <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_QLTra_ChinhSua" min="-2" pref="73" max="-2" attributes="0"/>
-                      <EmptySpace pref="964" max="32767" attributes="0"/>
+                      <EmptySpace pref="1057" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -5594,7 +5524,7 @@
                           <Font name="Segoe UI" size="16" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="4">
+                          <Table columnCount="8" rowCount="0">
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; phi&#x1ebf;u tr&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; phi&#x1ebf;u m&#x1b0;&#x1ee3;n&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; th&#x1ebb;&lt;/html&gt;" type="java.lang.String"/>
@@ -5602,6 +5532,7 @@
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Ng&#xe0;y tr&#x1ea3;&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Ph&#xed; &#x111;&#x1ec1;n b&#xf9;&lt;/html&gt;" type="java.lang.Double"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Ph&#xed; tr&#x1ec5; h&#x1ea1;n&lt;/html&gt;" type="java.lang.Double"/>
+                            <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;Tr&#x1ea1;ng th&#xe1;i&lt;/html&gt;" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="rowHeight" type="int" value="25"/>
@@ -5642,7 +5573,10 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane15" min="-2" pref="292" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jScrollPane15" min="-2" pref="290" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -5660,7 +5594,7 @@
                           <Font name="Segoe UI" size="16" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;M&#xe3; s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;T&#xea;n s&#xe1;ch&lt;/html&gt;" type="java.lang.String"/>
                             <Column editable="false" title="&lt;html&gt;&lt;center style=&apos;font-size:16px&apos;&gt;S&#x1ed1; l&#x1b0;&#x1ee3;ng&lt;/html&gt;" type="java.lang.Integer"/>
@@ -5674,23 +5608,6 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btn_QLTra_ChinhSua">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="33" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Ch&#x1ec9;nh s&#x1eed;a phi&#x1ebf;u tr&#x1ea3;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QLTra_ChinhSuaActionPerformed"/>
-              </Events>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

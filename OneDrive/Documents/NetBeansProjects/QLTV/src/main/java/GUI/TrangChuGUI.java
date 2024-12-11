@@ -283,8 +283,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         txt_GHT_ngayHH = new javax.swing.JTextField();
         lb_PhiDuyTri = new javax.swing.JLabel();
         btn_QLThe_giaHan = new javax.swing.JButton();
-        btn_QLThe_khoaThe = new javax.swing.JButton();
-        btn_QLThe_moKhoaThe = new javax.swing.JButton();
         cbb_TimKiemThe = new javax.swing.JComboBox<>();
         jPanel_QLMuon = new javax.swing.JPanel();
         jPanel_QLMuonHeader = new javax.swing.JPanel();
@@ -372,7 +370,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         tbl_DSMuon_DSM = new javax.swing.JTable();
-        btn_DSMuon_XuatPhieu = new javax.swing.JButton();
         btn_DSMuon_GiaHan = new javax.swing.JButton();
         btn_DSMuon_ChinhSuaPM = new javax.swing.JButton();
         btn_DSMuon_TraSach = new javax.swing.JButton();
@@ -418,7 +415,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jPanel26 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
         tbl_DSTra_DST = new javax.swing.JTable();
-        btn_QLTra_ChinhSua = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang chủ");
@@ -1890,6 +1886,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
         btn_QLthe_Update.setBackground(new java.awt.Color(255, 255, 153));
         btn_QLthe_Update.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLthe_Update.setForeground(new java.awt.Color(255, 153, 51));
         btn_QLthe_Update.setText("Cập nhật thông tin cá nhân");
         btn_QLthe_Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1915,16 +1912,15 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(jLabel31))
                         .addGap(63, 63, 63)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_QLThe_name, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                                .addComponent(txt_QLThe_cccd)
-                                .addComponent(txt_QLThe_sdt))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_QLThe_name, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(txt_QLThe_cccd)
+                            .addComponent(txt_QLThe_sdt)
+                            .addComponent(jScrollPane1)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addGap(228, 228, 228)
+                        .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1941,16 +1937,14 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(txt_QLThe_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 65, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addComponent(btn_QLthe_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1999,29 +1993,14 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             }
         });
 
-        btn_QLThe_khoaThe.setBackground(new java.awt.Color(255, 102, 102));
-        btn_QLThe_khoaThe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_QLThe_khoaThe.setForeground(new java.awt.Color(255, 255, 51));
-        btn_QLThe_khoaThe.setText("Khóa thẻ");
-        btn_QLThe_khoaThe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLThe_khoaTheActionPerformed(evt);
-            }
-        });
-
-        btn_QLThe_moKhoaThe.setBackground(new java.awt.Color(242, 242, 242));
-        btn_QLThe_moKhoaThe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_QLThe_moKhoaThe.setText("Mở khóa ");
-        btn_QLThe_moKhoaThe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLThe_moKhoaTheActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_PhiDuyTri)
+                .addGap(166, 166, 166))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2043,20 +2022,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_GHT_ngayHH)
-                            .addComponent(txt_GHT_trangThai))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lb_PhiDuyTri)
-                .addGap(166, 166, 166))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(btn_QLThe_moKhoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(btn_QLThe_khoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(btn_QLThe_giaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                            .addComponent(txt_GHT_trangThai)))
+                    .addComponent(btn_QLThe_giaHan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2079,12 +2047,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                     .addComponent(txt_GHT_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(lb_PhiDuyTri)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_QLThe_giaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_QLThe_khoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_QLThe_moKhoaThe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_QLThe_giaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         cbb_TimKiemThe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -2153,7 +2118,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jButton_QLMuon_TVMuon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton_QLMuon_TVMuon.setText("Thành viên mượn sách ");
+        jButton_QLMuon_TVMuon.setText("Thêm phiếu mượn (có thẻ)");
         jButton_QLMuon_TVMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_QLMuon_TVMuonActionPerformed(evt);
@@ -2161,7 +2126,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         });
 
         jButton_QLMuon_ChuaCoThe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton_QLMuon_ChuaCoThe.setText("Mượn sách chưa có thẻ");
+        jButton_QLMuon_ChuaCoThe.setText("Thêm phiếu mượn (chưa có thẻ)");
         jButton_QLMuon_ChuaCoThe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_QLMuon_ChuaCoTheActionPerformed(evt);
@@ -2178,7 +2143,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 .addComponent(jButton_QLMuon_TVMuon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_QLMuon_ChuaCoThe)
-                .addGap(0, 2530, Short.MAX_VALUE))
+                .addGap(0, 2424, Short.MAX_VALUE))
         );
         jPanel_QLMuonHeaderLayout.setVerticalGroup(
             jPanel_QLMuonHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2214,7 +2179,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jLabel41.setText("Số lượng");
 
         spn_TVMuon_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spn_TVMuon_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
+        spn_TVMuon_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 0));
 
         jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(255, 51, 51));
@@ -2416,7 +2381,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2540,7 +2505,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         jLabel50.setText("Số lượng");
 
         spn_ChuaCoThe_SoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
+        spn_ChuaCoThe_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 0));
 
         jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 51, 51));
@@ -2743,7 +2708,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -3034,11 +2999,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
         );
 
-        btn_DSMuon_XuatPhieu.setBackground(new java.awt.Color(204, 255, 255));
-        btn_DSMuon_XuatPhieu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_DSMuon_XuatPhieu.setForeground(new java.awt.Color(51, 153, 255));
-        btn_DSMuon_XuatPhieu.setText("Xuất phiếu");
-
         btn_DSMuon_GiaHan.setBackground(new java.awt.Color(255, 204, 153));
         btn_DSMuon_GiaHan.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_DSMuon_GiaHan.setForeground(new java.awt.Color(255, 51, 51));
@@ -3092,9 +3052,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 1622, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel_DanhSachMuonLayout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(btn_DSMuon_XuatPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
+                        .addGap(376, 376, 376)
                         .addComponent(btn_DSMuon_GiaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
                         .addComponent(btn_DSMuon_ChinhSuaPM, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3119,9 +3077,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_DanhSachMuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel_DanhSachMuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_DSMuon_XuatPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_DSMuon_GiaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_DSMuon_GiaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_DSMuon_ChinhSuaPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_DSMuon_TraSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -3443,20 +3399,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         tbl_DSTra_DSPT.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbl_DSTra_DSPT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "<html><center style='font-size:16px'>Mã phiếu trả</html>", "<html><center style='font-size:16px'>Mã phiếu mượn</html>", "<html><center style='font-size:16px'>Mã thẻ</html>", "<html><center style='font-size:16px'>Ngày mượn</html>", "<html><center style='font-size:16px'>Ngày trả</html>", "<html><center style='font-size:16px'>Phí đền bù</html>", "<html><center style='font-size:16px'>Phí trễ hạn</html>"
+                "<html><center style='font-size:16px'>Mã phiếu trả</html>", "<html><center style='font-size:16px'>Mã phiếu mượn</html>", "<html><center style='font-size:16px'>Mã thẻ</html>", "<html><center style='font-size:16px'>Ngày mượn</html>", "<html><center style='font-size:16px'>Ngày trả</html>", "<html><center style='font-size:16px'>Phí đền bù</html>", "<html><center style='font-size:16px'>Phí trễ hạn</html>", "<html><center style='font-size:16px'>Trạng thái</html>"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -3494,10 +3447,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         tbl_DSTra_DST.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbl_DSTra_DST.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "<html><center style='font-size:16px'>Mã sách</html>", "<html><center style='font-size:16px'>Tên sách</html>", "<html><center style='font-size:16px'>Số lượng</html>", "<html><center style='font-size:16px'>Tình trạng sách</html>"
@@ -3529,18 +3479,10 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        btn_QLTra_ChinhSua.setBackground(new java.awt.Color(204, 255, 255));
-        btn_QLTra_ChinhSua.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_QLTra_ChinhSua.setForeground(new java.awt.Color(51, 153, 255));
-        btn_QLTra_ChinhSua.setText("Chỉnh sửa phiếu trả");
-        btn_QLTra_ChinhSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLTra_ChinhSuaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel_QLTraLayout = new javax.swing.GroupLayout(jPanel_QLTra);
         jPanel_QLTra.setLayout(jPanel_QLTraLayout);
@@ -3563,10 +3505,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel_QLTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel_QLTraLayout.createSequentialGroup()
-                        .addGap(637, 637, 637)
-                        .addComponent(btn_QLTra_ChinhSua, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(1587, Short.MAX_VALUE))
         );
         jPanel_QLTraLayout.setVerticalGroup(
@@ -3583,9 +3522,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_QLTra_ChinhSua, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(964, Short.MAX_VALUE))
+                .addContainerGap(1057, Short.MAX_VALUE))
         );
 
         jPanel_Main.add(jPanel_QLTra, "card10");
@@ -3609,14 +3546,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     private void jButton_QLTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_QLTraActionPerformed
         cardLayout1.show(jPanel_Main, "QuanLyTra");
-        try {
-            ptBUS = new PhieuTraBUS();
-            ctptBUS = new CT_PhieuTraBUS();
-            ArrayList<PhieuTraDTO> dsPhieuTra = ptBUS.getAllPhieuTra();
-            displayDataPhieuTra(dsPhieuTra);
-        } catch (SQLException ex) {
-            Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList<PhieuTraDTO> dsPhieuTra = ptBUS.getAllPhieuTra();
+        displayDataPhieuTra(dsPhieuTra);
+
     }//GEN-LAST:event_jButton_QLTraActionPerformed
 
     private void displayDataPhieuTra(ArrayList<PhieuTraDTO> dsPhieuTra) {
@@ -3635,7 +3567,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             dsPT.addRow(row);
         }
     }
-    
+
     private void jButton_TimKiem_TacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TimKiem_TacGiaActionPerformed
         try {
             tgBUS = new TacGiaBUS();
@@ -3643,7 +3575,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable_TacGia.getModel();
             model.setRowCount(0);
             for (TacGiaDTO tg : listTacGiaSearch) {
-                 int soLuongSach = tgBUS.getSoLuongSachofTacGia(tg.getId());
+                int soLuongSach = tgBUS.getSoLuongSachofTacGia(tg.getId());
                 Object[] row = {
                     tg.getId(),
                     tg.getTen(),
@@ -3712,9 +3644,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             jTextField_IDTacGia.setText(id);
             jTextField_TenTacGia.setText(jTable_TacGia.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_TacGia.getValueAt(selectedRow, 2).toString());
-            SLCL_TacGia1.setText(soLuong+"");
+            SLCL_TacGia1.setText(soLuong + "");
             int slcl = tgBUS.getSoLuongSachConLai(id);
-            SLCL_TacGia.setText(slcl+"");
+            SLCL_TacGia.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_TacGiaMouseClicked
 
@@ -3767,9 +3699,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             jTextField_IDNXB.setText(id);
             jTextField_TenNXB.setText(jTable_NXB.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_NXB.getValueAt(selectedRow, 2).toString());
-            SLCL_NXB1.setText(soLuong+"");
+            SLCL_NXB1.setText(soLuong + "");
             int slcl = nxbBUS.getSoLuongSachConLai(id);
-            SLCL_NXB.setText(slcl+"");
+            SLCL_NXB.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_NXBMouseClicked
 
@@ -3859,12 +3791,12 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         int selectedRow = jTable_TheLoai.getSelectedRow();
         if (selectedRow != -1) {
             String id = jTable_TheLoai.getValueAt(selectedRow, 0).toString();
-            jTextField_IDLoaiSach.setText(id+"");
+            jTextField_IDLoaiSach.setText(id + "");
             jTextField_TenLoaiSach.setText(jTable_TheLoai.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_TheLoai.getValueAt(selectedRow, 2).toString());
-            jTextField38.setText(soLuong+"");
+            jTextField38.setText(soLuong + "");
             int slcl = tlBUS.getSoLuongSachConLai(id);
-            SLCL_TheLoai.setText(slcl+"");
+            SLCL_TheLoai.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_TheLoaiMouseClicked
 
@@ -3926,7 +3858,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             try {
                 traSachGUI = new TraSachGUI(maPM);
                 traSachGUI.setVisible(true);
-                traSachGUI.updateButtonStatus(true, false);
                 traSachGUI.setLocationRelativeTo(null);
             } catch (SQLException ex) {
                 Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -4177,7 +4108,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         DefaultTableModel ctpt_Model = (DefaultTableModel) tbl_DSTra_DST.getModel();
         ctpt_Model.setRowCount(0);
         for (CT_PhieuTraDTO ctptDTO : dsCT_PhieuTra) {
-            Object[] row = {ctptDTO.getMaPhieuTra(), ctptDTO.getMaSach(), ctptDTO.getTenSach(), ctptDTO.getSoLuong(), ctptDTO.getTrangThai()};
+            Object[] row = {ctptDTO.getMaSach(), ctptDTO.getTenSach(), ctptDTO.getSoLuong(), ctptDTO.getTrangThai()};
             ctpt_Model.addRow(row);
         }
 
@@ -4265,7 +4196,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                     int month = cbb_Thang.getSelectedIndex() + 1;
                     int year = (int) cbb_Nam.getSelectedIndex() + 2020;
                     TaoBangThreeColumn("Mã phiếu trả", "Mã thẻ", "Ngày trả");
-                    lb_HienThi.setText("Danh sách phiếu trả tháng "+month+"/"+year);
+                    lb_HienThi.setText("Danh sách phiếu trả tháng " + month + "/" + year);
                 }
                 if (option2 == 2) {
                     result = pmBUS.sachChuaDuocTra();
@@ -4369,22 +4300,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_TVMuon_PhiDatCocFocusGained
 
-    private void btn_QLTra_ChinhSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLTra_ChinhSuaActionPerformed
-        int selectedRow = tbl_DSTra_DSPT.getSelectedRow();
-        String maPM = dsPT.getValueAt(selectedRow, 1).toString();
-        try {
-            TraSachGUI trasach = new TraSachGUI(maPM);
-            trasach.setVisible(true);
-            trasach.updateButtonStatus(false, true);
-            trasach.setLocationRelativeTo(null);
-        } catch (SQLException ex) {
-            Logger.getLogger(TrangChuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_QLTra_ChinhSuaActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String idSach = jTextFieldMaSach.getText();
-        if(sachBUS.hasID(idSach)){
+        if (sachBUS.hasID(idSach)) {
             SachDTO sach = sachBUS.getSachById(idSach);
             sach.setSoLuong(0);
             JOptionPane.showMessageDialog(rootPane, sachBUS.updateSach(sach));
@@ -4410,24 +4328,23 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         bangTK.addColumn("<html><center style='font-size:16px'>" + column4 + "</html>");
     }
 
-    private void btn_QLThe_khoaTheActionPerformed(java.awt.event.ActionEvent evt) {
-        ThanhVienDTO tv = tvBUS.searchThanhVienById(txt_GHT_idThe.getText());
-        tv.setTrangThai("Đã khóa");
-        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn khóa thẻ?", "Thông báo",
-                JOptionPane.YES_NO_OPTION);
-        if (i == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(rootPane, tvBUS.updateTrangThaiThe(tv));
-            DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
-            int selectedRow = tbl_DanhSachThe.getSelectedRow();
-            if (selectedRow >= 0) {
-                model_DSThe.setValueAt("Đã khóa", selectedRow, 7);
-                model_DSThe.fireTableCellUpdated(selectedRow, 7);
-                txt_GHT_trangThai.setText("Đã khóa");
-                ButtonStatus("đã khóa");
-            }
-        }
-    }
-
+//    private void btn_QLThe_khoaTheActionPerformed(java.awt.event.ActionEvent evt) {
+//        ThanhVienDTO tv = tvBUS.searchThanhVienById(txt_GHT_idThe.getText());
+//        tv.setTrangThai("Đã khóa");
+//        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn khóa thẻ?", "Thông báo",
+//                JOptionPane.YES_NO_OPTION);
+//        if (i == JOptionPane.YES_OPTION) {
+//            JOptionPane.showMessageDialog(rootPane, tvBUS.updateTrangThaiThe(tv));
+//            DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
+//            int selectedRow = tbl_DanhSachThe.getSelectedRow();
+//            if (selectedRow >= 0) {
+//                model_DSThe.setValueAt("Đã khóa", selectedRow, 7);
+//                model_DSThe.fireTableCellUpdated(selectedRow, 7);
+//                txt_GHT_trangThai.setText("Đã khóa");
+//                ButtonStatus("đã khóa");
+//            }
+//        }
+//    }
     private void jButton_TrangChuActionPerformed(java.awt.event.ActionEvent evt) {
         cardLayout1.show(jPanel_Main, "TrangChu");
     }
@@ -4490,7 +4407,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     private void jButton_QLMuon_DanhSachMuonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton_QLMuon_DanhSachMuonActionPerformed
         cardLayout2.show(jPanel_QLMuonTraMain, "DanhSachMuon");
         dsPM.setRowCount(0);
-        jButton_QLMuon_TVMuon.setText("Thành viên mượn sách");
+        jButton_QLMuon_TVMuon.setText("Thêm phiếu mượn (có thẻ)");
         loadDataTrangThaiPhieuMuon(pmBUS.getAllPhieuMuon());
     }
 
@@ -4512,7 +4429,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     private void jButton_QLMuon_ChuaCoTheActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton_QLMuon_ChuaCoTheActionPerformed
         cardLayout2.show(jPanel_QLMuonTraMain, "ChuaCoThe");
-        jButton_QLMuon_TVMuon.setText("Thành viên mượn sách");
+        jButton_QLMuon_TVMuon.setText("Thêm phiếu mượn (có thẻ)");
         Calendar calendar = Calendar.getInstance();
         String currentTime = formatter.format(calendar.getTime());
         txt_ChuaCoThe_NgayMuon.setText(currentTime);
@@ -4550,7 +4467,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             txt_GHT_ngayDK.setText("");
             txt_GHT_ngayHH.setText("");
         }
-        ButtonStatus(tbl_DanhSachThe.getValueAt(selected, 7).toString());
+//        ButtonStatus(tbl_DanhSachThe.getValueAt(selected, 7).toString());
     }
 
     private void txt_TimKiemTheFocusGained(java.awt.event.FocusEvent evt) {
@@ -4642,12 +4559,13 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH, 6);
+        calendar.add(Calendar.YEAR, 1);
 
         Date futureDate = calendar.getTime();
         tv.setHanSD((java.sql.Date) futureDate);
 
-        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn gia hạn thẻ?", "Thông báo",
+        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn gia hạn thẻ?\n"
+                + "Phí gia hạn là 100.000đ cho 1 năm", "Thông báo",
                 JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(rootPane, tvBUS.updateTrangThaiThe(tv));
@@ -4658,29 +4576,28 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 dsThe.setValueAt(futureDate, selectedRow, 6);
                 dsThe.fireTableCellUpdated(selectedRow, 7);
                 txt_GHT_trangThai.setText("Đang hoạt động");
-                ButtonStatus("đang hoạt động");
+//                ButtonStatus("đang hoạt động");
             }
         }
     }
 
-    private void btn_QLThe_moKhoaTheActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_QLThe_moKhoaTheActionPerformed
-        ThanhVienDTO tv = tvBUS.searchThanhVienById(txt_GHT_idThe.getText());
-        tv.setTrangThai("Đang hoạt động");
-        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn mở khóa thẻ?", "Thông báo",
-                JOptionPane.YES_NO_OPTION);
-        if (i == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(rootPane, tvBUS.updateTrangThaiThe(tv));
-            DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
-            int selectedRow = tbl_DanhSachThe.getSelectedRow();
-            if (selectedRow >= 0) {
-                model_DSThe.setValueAt("Đang hoạt động", selectedRow, 7);
-                model_DSThe.fireTableCellUpdated(selectedRow, 7);
-                txt_GHT_trangThai.setText("Đang hoạt động");
-                ButtonStatus("đang hoạt động");
-            }
-        }
-    }
-
+//    private void btn_QLThe_moKhoaTheActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_QLThe_moKhoaTheActionPerformed
+//        ThanhVienDTO tv = tvBUS.searchThanhVienById(txt_GHT_idThe.getText());
+//        tv.setTrangThai("Đang hoạt động");
+//        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn chắc chắn muốn mở khóa thẻ?", "Thông báo",
+//                JOptionPane.YES_NO_OPTION);
+//        if (i == JOptionPane.YES_OPTION) {
+//            JOptionPane.showMessageDialog(rootPane, tvBUS.updateTrangThaiThe(tv));
+//            DefaultTableModel model_DSThe = (DefaultTableModel) tbl_DanhSachThe.getModel();
+//            int selectedRow = tbl_DanhSachThe.getSelectedRow();
+//            if (selectedRow >= 0) {
+//                model_DSThe.setValueAt("Đang hoạt động", selectedRow, 7);
+//                model_DSThe.fireTableCellUpdated(selectedRow, 7);
+//                txt_GHT_trangThai.setText("Đang hoạt động");
+//                ButtonStatus("đang hoạt động");
+//            }
+//        }
+//    }
     private void btn_DSMuon_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_DSMuon_TimKiemActionPerformed
         dsPM.setRowCount(0);
         ArrayList<PhieuMuonDTO> dsPhieuMuon = new ArrayList<>();
@@ -4756,20 +4673,15 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     private void btn_TVMuon_ThemVaoPMActionPerformed(java.awt.event.ActionEvent evt) {
         if (!txt_TVMuon_TrangThai.getText().equals("Đã trả")) {
-            int column = 2; int soLuong = 0;
-            for(int i =0; i< TV_DSMuonMuon.getRowCount(); i++){
-                soLuong = Integer.parseInt(TV_DSMuonMuon.getValueAt(i, column).toString());
-                TVMuon_quantityBook += soLuong;
-            }
             int sl = (int) spn_TVMuon_SoLuong.getValue();
+            TVMuon_quantityBook = TV_DSMuonMuon.getRowCount();
             if (TVMuon_quantityBook + sl > 5) {
-                int max = 5 - TVMuon_quantityBook;
-                JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa "+max+" cuốn nữa thôi!");
+                JOptionPane.showMessageDialog(rootPane, "Không thể thêm được nữa!");
             } else {
-                TV_DSMuonMuon.setRowCount(TV_DSMuonMuon.getRowCount()+1);
+                TV_DSMuonMuon.setRowCount(TV_DSMuonMuon.getRowCount() + 1);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), TVMuon_quantityBook - 1, 0);
                 TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), TVMuon_quantityBook - 1, 1);
-                TV_DSMuonMuon.setValueAt(soLuong, TVMuon_quantityBook - 1, 2);
+                TV_DSMuonMuon.setValueAt(sl, TVMuon_quantityBook - 1, 2);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể chỉnh sửa phiếu đã trả!");
@@ -4826,7 +4738,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         }
         java.sql.Date NgayMuon = new java.sql.Date(ngayMuon.getTime());
         java.sql.Date HanTra = new java.sql.Date(hanTra.getTime());
-        String maPM = "PM" + maThe.substring(maThe.length() - 8) + txt_TVMuon_NgayMuon.getText();
+        String maPM = pmBUS.generateNewPMCode();
         PhieuMuonDTO pmDTO = new PhieuMuonDTO(maPM, maThe, NgayMuon, HanTra, phiDatCoc, "Đâng mượn", 0);
         int quantity = tbl_TVMuon_DSMuonMuon.getRowCount();
         if (quantity == 0) {
@@ -4863,20 +4775,15 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     }
 
     private void btn_ChuaCoThe_ThemVaoPMActionPerformed(java.awt.event.ActionEvent evt) {
-        int column = 2; int soLuong =0;
-        for(int i =0;i<ChuaCoThe_DSMuonMuon.getRowCount(); i++){
-            soLuong = Integer.parseInt(ChuaCoThe_DSMuonMuon.getValueAt(i, column).toString());
-            ChuaCothe_quantityBook += soLuong;
-        }
-        int sl = (int)spn_ChuaCoThe_SoLuong.getValue();
+        int sl = (int) spn_ChuaCoThe_SoLuong.getValue();
+        ChuaCothe_quantityBook = ChuaCoThe_DSMuonMuon.getRowCount();
         if (ChuaCothe_quantityBook + sl > 5) {
-            int max = 5 - ChuaCothe_quantityBook;
-            JOptionPane.showMessageDialog(rootPane, "Chỉ có thể mượn tối đa "+max+" cuốn nữa thôi!");
+            JOptionPane.showMessageDialog(rootPane, "Không thể thêm được nữa!");
         } else {
-            ChuaCoThe_DSMuonMuon.setRowCount(ChuaCoThe_DSMuonMuon.getRowCount()+1);
+            ChuaCoThe_DSMuonMuon.setRowCount(ChuaCoThe_DSMuonMuon.getRowCount() + 1);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), ChuaCothe_quantityBook - 1, 0);
             ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), ChuaCothe_quantityBook - 1, 1);
-            ChuaCoThe_DSMuonMuon.setValueAt(soLuong, ChuaCothe_quantityBook - 1, 2);
+            ChuaCoThe_DSMuonMuon.setValueAt(sl, ChuaCothe_quantityBook - 1, 2);
         }
         txt_ChuaCoThe_idSach.setText("");
         txt_ChuaCoThe_TenSach.setText("");
@@ -4917,7 +4824,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             ThanhVienDTO tv = new ThanhVienDTO(maThe, hoten, cccd, sdt, diaChi, NgayMuon, hanSd, 100000.0, "Đang hoạt động");
             JOptionPane.showMessageDialog(rootPane, tvBUS.addThanhVien(tv));
         } else {
-            String maPM = "PM" + maThe.substring(maThe.length() - 4) + txt_ChuaCoThe_NgayMuon.getText();
+            String maPM = pmBUS.generateNewPMCode();
             PhieuMuonDTO pmDTO = new PhieuMuonDTO(maPM, maThe, NgayMuon, HanTra, phiDatCoc, trangThai, 0);
             int quantity = tbl_ChuaCoThe_DSMuonMuon.getRowCount();
             if (quantity == 0) {
@@ -5008,10 +4915,10 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable_TacGia.getModel();
             model.setRowCount(0);
             for (TacGiaDTO tg : listTacGia) {
-            int soLuongSach = tgBUS.getSoLuongSachofTacGia(tg.getId());
+                int soLuongSach = tgBUS.getSoLuongSachofTacGia(tg.getId());
                 Object[] row = {
                     tg.getId(),
-                    tg.getTen(), 
+                    tg.getTen(),
                     soLuongSach
                 };
                 model.addRow(row);
@@ -5035,8 +4942,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 Object[] row = {
                     nxb.getId(),
                     nxb.getTen(),
-                    soLuongSach,
-                };
+                    soLuongSach,};
                 model.addRow(row);
             }
 
@@ -5045,18 +4951,17 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         }
     }
 
-    private void ButtonStatus(String trangThai) {
-        if (trangThai.toLowerCase().equals("đang hoạt động") || trangThai.toLowerCase().equals("hết hạn")) {
-            btn_QLThe_moKhoaThe.setEnabled(false);
-            btn_QLThe_khoaThe.setEnabled(true);
-            btn_QLThe_giaHan.setEnabled(true);
-        } else {
-            btn_QLThe_moKhoaThe.setEnabled(true);
-            btn_QLThe_khoaThe.setEnabled(false);
-            btn_QLThe_giaHan.setEnabled(false);
-        }
-    }
-
+//    private void ButtonStatus(String trangThai) {
+//        if (trangThai.toLowerCase().equals("đang hoạt động") || trangThai.toLowerCase().equals("hết hạn")) {
+//            btn_QLThe_moKhoaThe.setEnabled(false);
+//            btn_QLThe_khoaThe.setEnabled(true);
+//            btn_QLThe_giaHan.setEnabled(true);
+//        } else {
+//            btn_QLThe_moKhoaThe.setEnabled(true);
+//            btn_QLThe_khoaThe.setEnabled(false);
+//            btn_QLThe_giaHan.setEnabled(false);
+//        }
+//    }
     private void addComponentTojPanel_Main() {
         cardLayout1 = new CardLayout();
         jPanel_Main.setLayout(cardLayout1);
@@ -5185,9 +5090,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         DefaultPieDataset dataset = new DefaultPieDataset();
         ArrayList<Object[]> ds = sachBUS.getSachTheoLuotMuon();
         for (int i = 0; i < ds.size(); i++) {
-            Object[] data = ds.get(i);
-            String tenSach = (String) data[1];
-            int soluotmuon = (int) data[2];
+            Object[] data1 = ds.get(i);
+            String tenSach = (String) data1[1];
+            int soluotmuon = (int) data1[2];
             int tong = 0;
             if (i < 5) {
                 dataset.setValue(tenSach, soluotmuon);
@@ -5288,13 +5193,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_DSMuon_TimKiem;
     private javax.swing.JButton btn_DSMuon_TraSach;
     private javax.swing.JButton btn_DSMuon_XemTatCa;
-    private javax.swing.JButton btn_DSMuon_XuatPhieu;
     private javax.swing.JButton btn_DSTra_TimKiem;
     private javax.swing.JButton btn_DSTra_XemTatCa;
     private javax.swing.JButton btn_QLThe_giaHan;
-    private javax.swing.JButton btn_QLThe_khoaThe;
-    private javax.swing.JButton btn_QLThe_moKhoaThe;
-    private javax.swing.JButton btn_QLTra_ChinhSua;
     private javax.swing.JButton btn_QLthe_Update;
     private javax.swing.JButton btn_TVMuon_CapNhatPM;
     private javax.swing.JButton btn_TVMuon_Clear;

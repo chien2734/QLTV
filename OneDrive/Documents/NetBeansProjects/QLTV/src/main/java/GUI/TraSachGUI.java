@@ -13,6 +13,7 @@ import DTO.SachDTO;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -94,9 +95,8 @@ public class TraSachGUI extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         txt_SoLanGiaHan = new javax.swing.JTextField();
         btn_TinhTongTien = new javax.swing.JButton();
-        btn_CapNhatPhieuTra = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(2147483647, 1010));
         setPreferredSize(new java.awt.Dimension(1130, 1010));
 
@@ -226,10 +226,14 @@ public class TraSachGUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Tiền cọc");
 
+        txt_MaPM.setEditable(false);
+        txt_MaPM.setBackground(new java.awt.Color(255, 255, 255));
         txt_MaPM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txt_TienCoc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        txt_MaThe.setEditable(false);
+        txt_MaThe.setBackground(new java.awt.Color(255, 255, 255));
         txt_MaThe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -250,6 +254,8 @@ public class TraSachGUI extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel19.setText("Số lần gia hạn");
 
+        txt_SoLanGiaHan.setEditable(false);
+        txt_SoLanGiaHan.setBackground(new java.awt.Color(255, 255, 255));
         txt_SoLanGiaHan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btn_TinhTongTien.setBackground(new java.awt.Color(204, 255, 255));
@@ -258,18 +264,6 @@ public class TraSachGUI extends javax.swing.JFrame {
         btn_TinhTongTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TinhTongTienActionPerformed(evt);
-            }
-        });
-
-        btn_CapNhatPhieuTra.setBackground(new java.awt.Color(255, 204, 153));
-        btn_CapNhatPhieuTra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_CapNhatPhieuTra.setForeground(new java.awt.Color(0, 102, 255));
-        btn_CapNhatPhieuTra.setText("CẬP NHẬT PHIẾU TRẢ");
-        btn_CapNhatPhieuTra.setToolTipText("");
-        btn_CapNhatPhieuTra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51), 2));
-        btn_CapNhatPhieuTra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CapNhatPhieuTraActionPerformed(evt);
             }
         });
 
@@ -317,11 +311,8 @@ public class TraSachGUI extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txt_PhiTreHan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txt_PhiDenBu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btn_TraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_CapNhatPhieuTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_TraSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +378,7 @@ public class TraSachGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_TraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_CapNhatPhieuTra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_TraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -432,7 +421,7 @@ public class TraSachGUI extends javax.swing.JFrame {
             }
             if (ctptBUS.addCT_PhieuTra(dsCTPT)) {
                 JOptionPane.showMessageDialog(rootPane,
-                        "Tạo phiếu trả " + maPM + " cho người dùng có mã thẻ là " + maThe + " thành công!");
+                "Tạo phiếu trả " + maPM + " cho người dùng có mã thẻ là " + maThe + " thành công!");
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Tạo phiếu trả thất bại!", id, HEIGHT);
@@ -456,34 +445,49 @@ public class TraSachGUI extends javax.swing.JFrame {
                 }
                 if (temp.equals(sau)) {
                     tra = x;
-                }
-                double tong;
+                }               
+            }
+            double tong = 0;
                 if (tra - muon == 0) {
-                    tong = 0;
                     tongPhi += tong;
                 }
                 if (tra - muon == 1) {
-                    tong = gia * 0.5;
+                    tong = gia * 0.2;
                     tongPhi += tong;
                 }
                 if (tra - muon == 2) {
                     tong = gia;
                     tongPhi += tong;
                 } else {
-                    tong = gia * 1.0;
+                    tong = gia * 1.1;
                     tongPhi += tong;
                     SachDTO sach = sachBUS.getSachById(idSach);
                     sach.setSoLuong(sach.getSoLuong()-1);
                     sachBUS.updateSach(sach);
                 }
-            }
-
         }
         txt_PhiDenBu.setText(tongPhi + "");
     }//GEN-LAST:event_btn_TinhPhiDenBuActionPerformed
 
     private void btn_TinhPhiTreHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhPhiTreHanActionPerformed
-        // TODO add your handling code here:
+        String hanTra = txt_HanTra.getText();
+        LocalDate ngayHienTai = LocalDate.now();
+        java.sql.Date ngayTra = java.sql.Date.valueOf(ngayHienTai);
+        Date ht = null;
+        try {
+            ht = formatter.parse(hanTra);
+        } catch (ParseException ex) {
+            Logger.getLogger(TraSachGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        java.sql.Date hantra = new java.sql.Date(ht.getTime());
+        int songay = ptBUS.TinhSoNgay(ngayTra, hantra);
+        int column = 2; int slSach = 0;
+        for(int i=0; i< tbl_TinhTrangSach.getRowCount(); i++){
+            int sl = Integer.parseInt(tbl_TinhTrangSach.getValueAt(i, column).toString());
+            slSach += sl;
+        }
+        int phitrehan = songay * slSach * 1000;
+        txt_PhiTreHan.setText(phitrehan + "");
     }//GEN-LAST:event_btn_TinhPhiTreHanActionPerformed
 
     private void btn_TinhTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TinhTongTienActionPerformed
@@ -491,13 +495,9 @@ public class TraSachGUI extends javax.swing.JFrame {
         double phiTreHan = Double.parseDouble(txt_PhiTreHan.getText());
         double phiDenBu = Double.parseDouble(txt_PhiDenBu.getText());
         int solan = Integer.parseInt(txt_SoLanGiaHan.getText());
-        tongTien = phiTreHan + phiDenBu + 15000 * solan;
+        tongTien = phiTreHan + phiDenBu + 10000 * solan;
         txt_TongTien.setText(tongTien + "");
     }//GEN-LAST:event_btn_TinhTongTienActionPerformed
-
-    private void btn_CapNhatPhieuTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatPhieuTraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CapNhatPhieuTraActionPerformed
 
     private void display(String maPM) {
         PhieuMuonDTO pmDTO = pmBUS.searchPhieuMuonByMaPhieuMuon(maPM);
@@ -523,13 +523,12 @@ public class TraSachGUI extends javax.swing.JFrame {
         column.setCellEditor(new javax.swing.DefaultCellEditor(cbb));
     }
 
-    public void updateButtonStatus(boolean trasach, boolean capnhat) {
-        btn_TraSach.setEnabled(trasach);
-        btn_CapNhatPhieuTra.setEnabled(capnhat);
-    }
+//    public void updateButtonStatus(boolean trasach, boolean capnhat) {
+//        btn_TraSach.setEnabled(trasach);
+//        btn_CapNhatPhieuTra.setEnabled(capnhat);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_CapNhatPhieuTra;
     private javax.swing.JButton btn_TinhPhiDenBu;
     private javax.swing.JButton btn_TinhPhiTreHan;
     private javax.swing.JButton btn_TinhTongTien;

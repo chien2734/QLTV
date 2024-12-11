@@ -43,6 +43,17 @@ public class PhieuMuonBUS {
         return phieuMuonDAL.hasID(id);
     }
     
+    
+    public String generateNewPMCode() {
+         if (ds == null || ds.isEmpty()) {
+            return "PM001";
+        }
+        String lastPMCode = ds.get(ds.size()-1).getId();
+        int currentId = Integer.parseInt(lastPMCode.substring(2));
+        int nextId = currentId + 1;
+        return String.format("PM%03d", nextId);
+    }
+    
     public boolean updateTrangThaiPhieuMuon(PhieuMuonDTO pm) {
         boolean isUpdated = phieuMuonDAL.updateTrangThaiPhieuMuon(pm);
         if (isUpdated) {

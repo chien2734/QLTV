@@ -88,6 +88,16 @@ public class ThanhVienBUS {
         return result;
     }
     
+    public String generateNewTVCode() {
+         if (ds == null || ds.isEmpty()) {
+            return "TV001";
+        }
+        String lastPMCode = ds.get(ds.size()-1).getId();
+        int currentId = Integer.parseInt(lastPMCode.substring(2));
+        int nextId = currentId + 1;
+        return String.format("TV%03d", nextId);
+    }
+    
     public ArrayList<ThanhVienDTO> searchThanhVienBySDT(String sdt) {
         ArrayList<ThanhVienDTO> result = new ArrayList<>();
         for(ThanhVienDTO tv : ds){

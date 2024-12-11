@@ -68,7 +68,7 @@ public class SachDAL {
     // Lấy tất cả sách
     public ArrayList<SachDTO> getAllSach() {
         ArrayList<SachDTO> list = new ArrayList<>();
-        String sql = "SELECT * FROM Sach";
+        String sql = "SELECT * FROM Sach where soLuong > 0";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 SachDTO sachDTO = new SachDTO(

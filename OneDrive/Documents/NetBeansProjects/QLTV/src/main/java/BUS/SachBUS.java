@@ -22,7 +22,13 @@ public class SachBUS {
     }
 
     public ArrayList<SachDTO> getAllSach() throws SQLException {
-        return ds;
+        ArrayList<SachDTO> result = new ArrayList<>();
+        for(SachDTO sach : ds){
+            if(sach.getSoLuong() > 0){
+                result.add(sach);
+            }
+        }
+        return result;
     }
 
     public ArrayList<TheLoaiDTO> getAllTheLoai() {
@@ -87,7 +93,7 @@ public class SachBUS {
     public ArrayList<SachDTO> getSachByName(String name){
         ArrayList<SachDTO> result = new ArrayList<>();
         for(SachDTO sach : ds){
-            if(sach.getTenSach().toLowerCase().contains(name.toLowerCase())){
+            if(sach.getTenSach().toLowerCase().contains(name.toLowerCase()) && sach.getSoLuong() > 0){
                 result.add(sach);
             }
         }
@@ -96,7 +102,7 @@ public class SachBUS {
     public ArrayList<SachDTO> getSachByTheLoai(String theloai){
         ArrayList<SachDTO> result = new ArrayList<>();
         for(SachDTO sach : ds){
-            if(sach.getTheloai().toLowerCase().contains(theloai.toLowerCase())){
+            if(sach.getTheloai().toLowerCase().contains(theloai.toLowerCase()) && sach.getSoLuong() > 0){
                 result.add(sach);
             }
         }
@@ -105,7 +111,7 @@ public class SachBUS {
     public ArrayList<SachDTO> getSachByTacGia(String tacgia){
         ArrayList<SachDTO> result = new ArrayList<>();
         for(SachDTO sach : ds){
-            if(sach.getTacGia().toLowerCase().contains(tacgia.toLowerCase())){
+            if(sach.getTacGia().toLowerCase().contains(tacgia.toLowerCase()) && sach.getSoLuong() > 0){
                 result.add(sach);
             }
         }
@@ -114,7 +120,7 @@ public class SachBUS {
     public ArrayList<SachDTO> getSachByNXB(String nxb){
         ArrayList<SachDTO> result = new ArrayList<>();
         for(SachDTO sach : ds){
-            if(sach.getNXB().toLowerCase().contains(nxb.toLowerCase())){
+            if(sach.getNXB().toLowerCase().contains(nxb.toLowerCase()) && sach.getSoLuong() > 0){
                 result.add(sach);
             }
         }
@@ -123,7 +129,7 @@ public class SachBUS {
     // Lấy sách theo mã
     public SachDTO getSachById(String id) {
         for (SachDTO sach : ds) {
-            if (sach.getId().equals(id)) {
+            if (sach.getId().equals(id) && sach.getSoLuong() > 0) {
                 return sach;
             }
         }
