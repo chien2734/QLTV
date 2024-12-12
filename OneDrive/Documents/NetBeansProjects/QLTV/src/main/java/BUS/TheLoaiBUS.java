@@ -83,7 +83,12 @@ public class TheLoaiBUS {
         return null;
     }
     
-    public int getSoLuongSachConLai(String id){
+    public int getSLCL(String id){
         return theLoaiDAL.getSoLuongSachConlai(id);
     }
+    
+    public int getSoLuongSachConLai(String id){
+        int a = getSoLuongSachofTheLoai(id);
+        int b = getSLCL(id);
+        return a - b >= 0 ? a-b : 0 ;    }
 }

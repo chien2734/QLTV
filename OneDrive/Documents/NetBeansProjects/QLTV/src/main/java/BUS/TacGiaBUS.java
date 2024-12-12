@@ -85,7 +85,13 @@ public class TacGiaBUS {
         return tacGiaDAL.getSoLuongSachofTacGia(id);
     }
     
+    public int getSSLCL(String id){
+               return tacGiaDAL.getSoLuongSachConlai(id);
+ 
+    }
     public int getSoLuongSachConLai(String id){
-        return tacGiaDAL.getSoLuongSachConlai(id);
+        int a = getSoLuongSachofTacGia(id);
+        int b =  getSSLCL(id);
+        return a - b >= 0 ? a-b : 0 ;
     }
 }

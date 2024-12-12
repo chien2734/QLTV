@@ -110,12 +110,15 @@ public class TacGiaDAL extends connectionDB {
     public int getSoLuongSachConlai(String id) {
         int soLuong = 0;
         String sql = """
-                     SELECT tg.id, tg.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
-                     FROM TacGia tg 
-                     JOIN Sach sach ON sach.tacGia = tacgia.id 
-                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
-                     WHERE tg.id = ? and ctpm.trangThai = 'Đang mượn'
-                     GROUP BY tg.id, tg.ten 
+                     SELECT tl.id, 
+                        tl.ten, 
+                        ISNULL(SUM(ctpm.soLuong), 0) AS SLCl
+                        FROM TacGia tl
+                        LEFT JOIN Sach s ON tl.id = s.tacGia
+                        LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach
+                        LEFT JOIN PhieuMuon pm ON pm.id = ctpm.maPhieuMuon AND pm.trangThai = N'Đang mượn'
+                        WHERE tl.id = ?
+                        GROUP BY tl.id, tl.ten;
                      """;
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);

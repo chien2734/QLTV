@@ -80,10 +80,10 @@ public class NXBDAL extends connectionDB {
     }
     public int getSoLuongSachofNXB(String id){
         int soLuong = 0;
-        String sql = "SELECT nxb.id, nxb.ten, SUM(s.SoLuong) AS SoLuongSach "
+        String sql = "SELECT nxb.id, nxb.ten, SUM(s.soLuong) AS SoLuongSach "
                 + "FROM NXB nxb "
                 + "INNER JOIN Sach s ON s.NXB = nxb.id "
-                + "WHERE nxb.id "
+                + "WHERE nxb.id = ? "
                 + "GROUP BY nxb.id, nxb.ten";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -101,12 +101,15 @@ public class NXBDAL extends connectionDB {
     public int getSoLuongSachConlai(String id) {
         int soLuong = 0;
         String sql = """
-                     SELECT nxb.id, nxb.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
-                     FROM NXB nxb 
-                     JOIN Sach sach ON sach.NXB = nxb.id 
-                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach
-                     WHERE nxb.id = ? and ctpm.trangThai = 'Đang mượn'
-                     GROUP BY nxb.id, nxb.ten  
+                     SELECT tl.id, 
+                        tl.ten, 
+                        ISNULL(SUM(ctpm.soLuong), 0) AS SLCl
+                 FROM NXB tl
+                 LEFT JOIN Sach s ON tl.id = s.theLoai
+                 LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach
+                 LEFT JOIN PhieuMuon pm ON pm.id = ctpm.maPhieuMuon AND pm.trangThai = N'Đang mượn'
+                 WHERE tl.id = ?
+                 GROUP BY tl.id, tl.ten;
                      """;
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);

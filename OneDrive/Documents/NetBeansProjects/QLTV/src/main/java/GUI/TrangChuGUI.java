@@ -2823,6 +2823,11 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         btn_ChuaCoThe_Clear.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_ChuaCoThe_Clear.setForeground(new java.awt.Color(255, 0, 0));
         btn_ChuaCoThe_Clear.setText("Làm mới");
+        btn_ChuaCoThe_Clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChuaCoThe_ClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_ChuaCoTheLayout = new javax.swing.GroupLayout(jPanel_ChuaCoThe);
         jPanel_ChuaCoThe.setLayout(jPanel_ChuaCoTheLayout);
@@ -3608,7 +3613,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             jTextField_TenTacGia.setText(jTable_TacGia.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_TacGia.getValueAt(selectedRow, 2).toString());
             SLCL_TacGia1.setText(soLuong + "");
-            int slcl = tgBUS.getSoLuongSachConLai(id);
+            int slcl = sachBUS.getSachCLcuaTG(id);
             SLCL_TacGia.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_TacGiaMouseClicked
@@ -3663,7 +3668,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             jTextField_TenNXB.setText(jTable_NXB.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_NXB.getValueAt(selectedRow, 2).toString());
             SLCL_NXB1.setText(soLuong + "");
-            int slcl = nxbBUS.getSoLuongSachConLai(id);
+            int slcl = sachBUS.getSachCLcuaNXB(id);
             SLCL_NXB.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_NXBMouseClicked
@@ -3758,7 +3763,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             jTextField_TenLoaiSach.setText(jTable_TheLoai.getValueAt(selectedRow, 1).toString());
             int soLuong = Integer.parseInt(jTable_TheLoai.getValueAt(selectedRow, 2).toString());
             jTextField38.setText(soLuong + "");
-            int slcl = tlBUS.getSoLuongSachConLai(id);
+            int slcl = sachBUS.getSachCLcuaTL(id);
             SLCL_TheLoai.setText(slcl + "");
         }
     }//GEN-LAST:event_jTable_TheLoaiMouseClicked
@@ -4087,8 +4092,6 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             txt_TVMuon_TenSach.setText("");
             txt_TVMuon_idThe.setText("");
             txt_TVMuon_PhiDatCoc.setText("");
-            txt_TVMuon_NgayMuon.setText("");
-            txt_TVMuon_HanTra.setText("");
         }
     }//GEN-LAST:event_btn_TVMuon_ClearActionPerformed
 
@@ -4194,7 +4197,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
 
     private void btn_TVMuon_CapNhatPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TVMuon_CapNhatPMActionPerformed
         String maThe = txt_TVMuon_idThe.getText();
-        String maPM = "PM" + maThe.substring(maThe.length() - 4) + txt_TVMuon_NgayMuon.getText();
+        String maPM = txt_TVMuon_idThe.getText();
         PhieuMuonDTO pm = pmBUS.searchPhieuMuonByMaPhieuMuon(maPM);
         Date ngayMuon = null, hanTra = null;
         try {
@@ -4207,6 +4210,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         java.sql.Date HanTra = new java.sql.Date(hanTra.getTime());
         pm.setNgayMuon(NgayMuon);
         pm.setHanTra(HanTra);
+        pm.setMaThe(maThe);
         ArrayList<CT_PhieuMuonDTO> dsTruoc = ctpmBUS.getCT_PhieuMuonByPhieuMuonId(maPM);
         ArrayList<CT_PhieuMuonDTO> dsSau = new ArrayList<>();
         ArrayList<CT_PhieuMuonDTO> them, xoa;
@@ -4277,6 +4281,22 @@ public final class TrangChuGUI extends javax.swing.JFrame {
     private void cbb_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_NamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbb_NamActionPerformed
+
+    private void btn_ChuaCoThe_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChuaCoThe_ClearActionPerformed
+        int check = JOptionPane.showConfirmDialog(rootPane, "Làm trống các ô thông tin?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+        if (check == JOptionPane.YES_OPTION) {
+            txt_ChuaCoThe_TrangThai.setText("Mới");
+            ChuaCoThe_DSMuonMuon.setRowCount(0);
+            txt_ChuaCoThe_idSach.setText("");
+            txt_ChuaCoThe_TenSach.setText("");
+            txt_ChuaCoThe_idThe.setText("");
+            txt_ChuaCoThe_PhiDatCoc.setText("");
+            txt_ChuaCoThe_HoTen.setText("");
+            txt_ChuaCoThe_cccd.setText("");
+            txt_ChuaCoThe_sdt.setText("");
+            txt_ChuaCoThe_DiaChi.setText("");                   
+        }
+    }//GEN-LAST:event_btn_ChuaCoThe_ClearActionPerformed
 
     private void TaoBangThreeColumn(String column1, String column2, String column3) {
         bangTK.setRowCount(0);
@@ -4653,9 +4673,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Không thể thêm được nữa!");
             } else {
                 TV_DSMuonMuon.setRowCount(TV_DSMuonMuon.getRowCount() + 1);
-                TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), TVMuon_quantityBook - 1, 0);
-                TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), TVMuon_quantityBook - 1, 1);
-                TV_DSMuonMuon.setValueAt(sl, TVMuon_quantityBook - 1, 2);
+                TV_DSMuonMuon.setValueAt(txt_TVMuon_idSach.getText(), TVMuon_quantityBook, 0);
+                TV_DSMuonMuon.setValueAt(txt_TVMuon_TenSach.getText(), TVMuon_quantityBook , 1);
+                TV_DSMuonMuon.setValueAt(sl, TVMuon_quantityBook, 2);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể chỉnh sửa phiếu đã trả!");
@@ -4713,7 +4733,7 @@ public final class TrangChuGUI extends javax.swing.JFrame {
         java.sql.Date NgayMuon = new java.sql.Date(ngayMuon.getTime());
         java.sql.Date HanTra = new java.sql.Date(hanTra.getTime());
         String maPM = pmBUS.generateNewPMCode();
-        PhieuMuonDTO pmDTO = new PhieuMuonDTO(maPM, maThe, NgayMuon, HanTra, phiDatCoc, "Đâng mượn", 0);
+        PhieuMuonDTO pmDTO = new PhieuMuonDTO(maPM, maThe, NgayMuon, HanTra, phiDatCoc, "Đang mượn", 0);
         int quantity = tbl_TVMuon_DSMuonMuon.getRowCount();
         if (quantity == 0) {
             JOptionPane.showMessageDialog(rootPane, "Chưa có cuốn sách nào trong danh sách mượn", "Thông báo",
@@ -4755,9 +4775,9 @@ public final class TrangChuGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Không thể thêm được nữa!");
         } else {
             ChuaCoThe_DSMuonMuon.setRowCount(ChuaCoThe_DSMuonMuon.getRowCount() + 1);
-            ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), ChuaCothe_quantityBook - 1, 0);
-            ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), ChuaCothe_quantityBook - 1, 1);
-            ChuaCoThe_DSMuonMuon.setValueAt(sl, ChuaCothe_quantityBook - 1, 2);
+            ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_idSach.getText(), ChuaCothe_quantityBook, 0);
+            ChuaCoThe_DSMuonMuon.setValueAt(txt_ChuaCoThe_TenSach.getText(), ChuaCothe_quantityBook, 1);
+            ChuaCoThe_DSMuonMuon.setValueAt(sl, ChuaCothe_quantityBook, 2);
         }
         txt_ChuaCoThe_idSach.setText("");
         txt_ChuaCoThe_TenSach.setText("");

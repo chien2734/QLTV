@@ -319,11 +319,15 @@ public class SachDAL {
 
     public int getSoSachConLai(String id) {
         int soLuong = 0;
-        String sql = "SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai "
-                + "FROM Sach s "
-                + "LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
-                + "WHERE s.id = ? and ctpm.trangThai = N'Đang mượn' "
-                + "GROUP BY s.id, s.soLuong ";
+        String sql = """
+                     SELECT s.id, s.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
+                    FROM Sach s 
+                    JOIN CT_PhieuMuon ctpm ON ctpm.maSach  = s.id
+                Join PhieuMuon pm On pm.id = ctpm.maPhieuMuon and  pm.trangThai = N'Đang mượn' 
+                WHERE s.id = ?
+                GROUP BY s.id, s.soLuong
+                        """
+                         ;
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, id);

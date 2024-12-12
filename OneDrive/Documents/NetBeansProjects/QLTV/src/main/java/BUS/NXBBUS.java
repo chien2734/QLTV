@@ -83,7 +83,12 @@ public class NXBBUS {
         return nxbDAL.getSoLuongSachofNXB(id);
     }
     
-    public int getSoLuongSachConLai(String id){
+    public int getSLCL(String id){
         return nxbDAL.getSoLuongSachConlai(id);
     }
+    
+    public int  getSoLuongSachConLai(String id){
+        int a = getSoLuongSachofNXB(id);
+        int b = getSLCL(id);
+return a - b >= 0 ? a-b : 0 ;    }
 }

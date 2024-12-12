@@ -94,7 +94,7 @@ public class TheLoaiDAL extends connectionDB {
                 + "FROM TheLoai tl "
                 + "INNER JOIN Sach s ON s.theloai = tl.id "
                 + "WHERE tl.id = ? "
-                + "GROUP BY tl.id, tl.Ten";
+                + "GROUP BY tl.id, tl.ten";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString( 1, id);
@@ -111,12 +111,15 @@ public class TheLoaiDAL extends connectionDB {
     public int getSoLuongSachConlai(String id) {
         int soLuong = 0;
         String sql = """
-                     SELECT tl.id, tl.ten, sach.soLuong - ISNULL(SUM(ctpm.soLuong), 0) AS SoLuongConLai 
-                     FROM TheLoai tl 
-                     JOIN Sach sach ON sach.theloai = tl.id 
-                     LEFT JOIN  CT_PhieuMuon ctpm ON sach.id = ctpm.maSach 
-                     WHERE tl.id = ? and ctpm.trangThai = 'Đang mượn'
-                     GROUP BY tl.id, tl.ten 
+                     SELECT tl.id, 
+                            tl.ten, 
+                            ISNULL(SUM(ctpm.soLuong), 0) AS SLCl
+                     FROM TheLoai tl
+                     LEFT JOIN Sach s ON tl.id = s.theLoai
+                     LEFT JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach
+                     LEFT JOIN PhieuMuon pm ON pm.id = ctpm.maPhieuMuon AND pm.trangThai = N'Đang mượn'
+                     WHERE tl.id = ?
+                     GROUP BY tl.id, tl.ten;
                      """;
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);

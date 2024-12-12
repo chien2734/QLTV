@@ -212,6 +212,41 @@ public class SachBUS {
         return sachDAL.getTop10SachMuonItNhat();
     }
     public int getSoSachConLai(String id){
-        return sachDAL.getSoSachConLai(id);
+        if(sachDAL.getSoSachConLai(id) == 0){
+            SachDTO s = getSachById(id);
+            return s.getSoLuong();
+        } else{
+            return sachDAL.getSoSachConLai(id);
+        }      
+    }
+    
+    public int getSachCLcuaTL(String idTheLoai){
+        int slcl = 0;
+        for(SachDTO s : ds){
+            if(s.getTheloai().equals(idTheLoai)){
+               slcl +=  getSoSachConLai(s.getId());
+            }
+        }
+        return slcl;
+    }
+    
+    public int getSachCLcuaNXB(String idnxb){
+        int slcl = 0;
+        for(SachDTO s : ds){
+            if(s.getNXB().equals(idnxb)){
+               slcl +=  sachDAL.getSoSachConLai(s.getId());
+            }
+        }
+        return slcl;
+    }
+    
+    public int getSachCLcuaTG(String idTacGia){
+        int slcl = 0;
+        for(SachDTO s : ds){
+            if(s.getTacGia().equals(idTacGia)){
+               slcl +=  getSoSachConLai(s.getId());
+            }
+        }
+        return slcl;
     }
 }
