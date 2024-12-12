@@ -147,4 +147,14 @@ public class ThanhVienBUS {
     public ArrayList<Object[]> getTop10(){
         return thanhVienDAL.getTop10();
     }
+    
+    public double getPhiGiaHan(){
+        double tong = 0;
+        for(ThanhVienDTO tv : ds){
+            double phi = tv.getPhiDuyTri();
+            double soLan = tv.getSoLan();
+            tong += phi * soLan;
+        }
+        return tong;
+    }
 }

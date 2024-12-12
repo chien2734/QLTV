@@ -107,7 +107,7 @@ public class PhieuTraBUS {
         return phieuTraDAL.TinhSoNgay(ngayTra, hanTra);
     }
     
-    public ArrayList<Object[]> CacLoaiPhi(int month, int year){
-        return phieuTraDAL.CacLoaiPhi(month, year);
+    public ArrayList<Object[]> CacLoaiPhi(){
+        return phieuTraDAL.CacLoaiPhi();
     }
 }

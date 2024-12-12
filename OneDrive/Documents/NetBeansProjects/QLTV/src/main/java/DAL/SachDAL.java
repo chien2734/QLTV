@@ -172,10 +172,11 @@ public class SachDAL {
 
     public ArrayList<Object[]> getSachTheoLuotMuon() {
         ArrayList<Object[]> result = new ArrayList<>();
-        String sql = "SELECT s.id , s.tenSach, COUNT(pm.id) as soLanMuon "
-                + "FROM Sach s, PhieuMuon pm "
-                + "JOIN CT_PhieuMuon ctpm ON s.id = ctpm.maSach "
-                + "group by s.id, s.tenSach "
+        String sql = "SELECT sach.id , sach.tenSach, COUNT(pm.id) as soLanMuon "
+                + "FROM Sach sach "
+                + "JOIN CT_PhieuMuon ctpm ON sach.id = ctpm.maSach "
+                + "JOIN PhieuMuon pm ON pm.id = ctpm.maPhieuMuon "
+                + "group by sach.id, sach.tenSach "
                 + "order by soLanMuon desc";
         try {
             Statement stmt = conn.createStatement();
